@@ -13,6 +13,9 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    // clean client side js file
+    clean: ["public/js"],
+
     // client side coffeescript compile
     coffee: {
       client: {
@@ -72,6 +75,8 @@ module.exports = function (grunt) {
 
   // https://github.com/gruntjs/grunt-contrib-coffee
   grunt.loadNpmTasks('grunt-contrib-coffee');
-  
-  grunt.registerTask('default', ['coffee:client', 'develop', 'watch']);
+  //https://github.com/gruntjs/grunt-contrib-clean
+  grunt.loadNpmTasks('grunt-contrib-clean');
+
+  grunt.registerTask('default', ['clean','coffee:client', 'develop', 'watch']);
 };
