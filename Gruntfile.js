@@ -12,6 +12,17 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    // client side coffeescript compile
+    coffee: {
+      client: {
+        expand: true,
+        cwd: 'public/scripts',
+        src: ['**/*.coffee'],
+        dest: 'public/js',
+        ext: '.js'
+      }
+    },
     develop: {
       server: {
         file: 'app.js'
@@ -26,9 +37,10 @@ module.exports = function (grunt) {
         files: [
           'app.coffee',
           'app/**/*.coffee',
-          'config/*.coffee'
+          'config/*.coffee',
+          'public/scripts/*.coffee'
         ],
-        tasks: ['develop', 'delayed-livereload']
+        tasks: ['coffee:client', 'develop', 'delayed-livereload']
       },
       views: {
         files: [
@@ -58,5 +70,8 @@ module.exports = function (grunt) {
     }, 500);
   });
 
-  grunt.registerTask('default', ['develop', 'watch']);
+  // https://github.com/gruntjs/grunt-contrib-coffee
+  grunt.loadNpmTasks('grunt-contrib-coffee');
+  
+  grunt.registerTask('default', ['coffee:client', 'develop', 'watch']);
 };
