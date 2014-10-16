@@ -13,8 +13,8 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    // clean client side js file
-    clean: ["public/js"],
+    // clean client side js and css file
+    clean: ["public/js", "public/css"],
 
     // client side coffeescript compile
     coffee: {

@@ -8,7 +8,6 @@ bodyParser = require 'body-parser'
 compress = require 'compression'
 methodOverride = require 'method-override'
 lessMiddleware = require 'less-middleware'
-path = require 'path'
 
 module.exports = (app, config) ->
   app.set 'views', config.root + '/app/views'
@@ -22,11 +21,9 @@ module.exports = (app, config) ->
   )
   app.use cookieParser()
   app.use compress()
-  app.use lessMiddleware(
-    src: path.join(__dirname, '/public/less')
-    dest: path.join(__dirname, '/public/css')
-    prefix: "/css"
-    force: true
+  app.use lessMiddleware( '/less',
+    dest: '/css',
+    pathRoot: config.root + '/public'
   )
   app.use express.static config.root + '/public'
   app.use methodOverride()
