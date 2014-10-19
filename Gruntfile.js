@@ -41,7 +41,7 @@ module.exports = function (grunt) {
           'app.coffee',
           'app/**/*.coffee',
           'config/*.coffee',
-          'public/scripts/*.coffee'
+          'public/scripts/**/*.coffee'
         ],
         tasks: ['coffee:client', 'develop', 'delayed-livereload']
       },
