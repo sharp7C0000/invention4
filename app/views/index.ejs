@@ -4,6 +4,14 @@
   <p>Welcome to <%-title %></p>
   <div ng-controller="Index">{{ welcomeMessage }}</div>
 
+  <core-toolbar id="mainheader">
+      <paper-icon-button id="navicon" 
+        icon="arrow-back"></paper-icon-button>
+      <span flex>Title</span>
+      <paper-icon-button id="searchbutton" 
+        icon="search"></paper-icon-button>
+    </core-toolbar>
+
   <script src="components/requirejs/require.js" data-main="js/index.js"></script>
 
 <% include footer %>

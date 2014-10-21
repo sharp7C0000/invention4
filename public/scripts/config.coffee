@@ -2,8 +2,10 @@
 
 require.config
 	paths: 
-		angular: '../components/angular/angular'
-		polymer: '../components/polymer/polymer'
+		angular        : '../components/angular/angular'
+		polymer        : '../components/polymer/polymer'
+		text           : '../components/requirejs-text/text'
+		platform       : '../components/platform/platform'
 	shim:
 		'angular': {'exports': 'angular'}
 		'polymer': {'exports': 'polymer'}
