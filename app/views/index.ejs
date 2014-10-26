@@ -1,5 +1,24 @@
 <% include header %>
 
+  <style>
+  body {
+  font-family: sans-serif;
+}
+core-header-panel {
+  background: white;
+}
+core-toolbar {
+  background-color: #03A9F4;
+}
+div {
+  margin: 20px;
+  padding: 80px 20px;
+  border-radius: 20px;
+  background-color: #eee;
+}
+  </style>
+
+
   <h1><%-title %></h1>
   <p>Welcome to <%-title %></p>
   <div ng-controller="Index">{{ welcomeMessage }}</div>
