@@ -1,0 +1,3 @@
+# Common view layout
+
+require [], () -> 

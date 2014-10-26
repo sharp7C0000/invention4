@@ -1,3 +1,3 @@
 # Index main script
 
-require ['config', 'index/main'], (config, main) -> console.log "index"
+require ['config', 'layout', 'index/main'], (config, layout, main) -> console.log "index"

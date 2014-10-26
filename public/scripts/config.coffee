@@ -4,10 +4,15 @@ require.config
 	paths: 
 		angular                 : '../components/angular/angular'
 		text                    : '../components/requirejs-text/text'
-		layout                  : 'layout'
-		"poly.core.header_panel": "template/core_header_panel"
+		'poly.core.header_panel': 'lib/polymer-component/core_header_panel'
+		'poly.core.toolbar'     : 'lib/polymer-component/core_toolbar'
 	shim:
-		'angular': {'exports': 'angular'}
+		'angular'               : {'exports': 'angular'}
+		layout                  : {'deps': [
+			'poly.core.header_panel'
+			'poly.core.toolbar'
+		]}
+
 	priority: ["angular"]
 
 # https://github.com/tnajdek/angular-requirejs-seed
