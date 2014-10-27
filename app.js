@@ -21,6 +21,7 @@ models.forEach(function (model) {
 
 // insert initial data
 db.once('open', function() {
+  var User = mongoose.model('User');
 	admin = new User({
     username  : "admin",
     email     : "support@invention4.com",
