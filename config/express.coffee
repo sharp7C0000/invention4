@@ -8,9 +8,11 @@ bodyParser = require 'body-parser'
 compress = require 'compression'
 methodOverride = require 'method-override'
 lessMiddleware = require 'less-middleware'
+session        = require 'express-session'
 
 passport = require 'passport'
-LocalStrategy = require('passport-local').Strategy;
+LocalStrategy = require('passport-local').Strategy
+User = require('mongoose').model("User")
 
 module.exports = (app, config) ->
   app.set 'views', config.root + '/app/views'
@@ -31,23 +33,27 @@ module.exports = (app, config) ->
   app.use express.static config.root + '/public'
   app.use methodOverride()
 
-  app.use express.session({ secret: 'SECRET' })
+  app.use session({ 
+    secret: "cookie_secret"
+    resave: true
+    saveUninitialized: true
+  })
   app.use passport.initialize()
   app.use passport.session()
 
   # setting passport
   localStreategy = new LocalStrategy((username, password, done) ->
-  User.findOne { username: username }, (err, user) ->
-    # DB error
-    if err   then return done(err)
-    # Cannot find user
-    if !user then return done(null, false, { message: "no user" })
-  
-    # Check password
-    if passwordHash.verify(password, user.hashed_pw) is true
-      done(null, user)
-    else
-      done(null, false, { message: messages.auth.PASSWORD_NOT_MATCH })
+    User.findOne { username: username }, (err, user) ->
+      # DB error
+      if err   then return done(err)
+      # Cannot find user
+      if !user then return done(null, false, { message: "no user" })
+    
+      # Check password
+      if passwordHash.verify(password, user.hashed_pw) is true
+        done(null, user)
+      else
+        done(null, false, { message: "password not machting" })
   )
   passport.use(localStreategy)
 

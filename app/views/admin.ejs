@@ -1,0 +1,34 @@
+<% include header %>
+
+  <style>
+  body {
+    font-family: helvetica sans-serif;
+  }
+  core-header-panel {
+    background-color:#fff;
+  }
+  core-toolbar {
+    background-color: #152B3C;
+  }
+  p {
+    margin: 20px;
+    padding: 80px 20px;
+    border-radius: 20px;
+    background-color: #eee;
+    color:#E32D40;
+  }
+  </style>
+
+<link href='http://fonts.googleapis.com/css?family=Coda' rel='stylesheet' type='text/css'>
+
+<core-header-panel flex mode="seamed">
+  <core-toolbar class="tall" id="mainheader"><div class="middle" style="color:white;font-size:32px;font-family: 'Coda', cursive;text-align:center;width:100%;">Invention4</div></core-toolbar>
+  <p ng-controller="Index">
+    {{ welcomeMessage }}
+  </p>
+  <p>Sample content.</p>
+</core-header-panel>
+  
+<script src="components/requirejs/require.js" data-main="js/index.js"></script>
+
+<% include footer %>
