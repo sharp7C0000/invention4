@@ -1,13 +1,22 @@
 express  = require 'express'
 router = express.Router()
+session        = require 'express-session'
 mongoose = require 'mongoose'
 
 module.exports = (app) ->
-  app.use '/admin', router
+  #app.use '/admin', router
+
+  app.use '/admin', (req, res, next) ->
+    authenticatedOrNot(req, res, next)
+    
 
 router.get '/', (req, res, next) ->
 	res.render 'admin',
       title: 'admin page'
+
+router.get '/admin2', (req, res, next) ->
+  res.render 'admin',
+      title: 'admin2 page'
 
 authenticatedOrNot = (req, res, next) ->
   if req.isAuthenticated()
