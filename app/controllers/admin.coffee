@@ -4,11 +4,11 @@ session        = require 'express-session'
 mongoose = require 'mongoose'
 
 module.exports = (app) ->
-  #app.use '/admin', router
-
-  app.use '/admin', (req, res, next) ->
-    authenticatedOrNot(req, res, next)
+  app.use '/admin', router
     
+router.use (req, res, next) ->
+  # admin relative page need auth
+  authenticatedOrNot(req, res, next)
 
 router.get '/', (req, res, next) ->
 	res.render 'admin',
