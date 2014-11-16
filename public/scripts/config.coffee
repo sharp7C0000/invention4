@@ -7,14 +7,16 @@ require.config
 		'poly.core.header_panel': 'lib/polymer-component/core_header_panel'
 		'poly.core.toolbar'     : 'lib/polymer-component/core_toolbar'
 		'poly.paper.input'      : 'lib/polymer-component/paper_input'
-		'poly.grid'             : 'lib/polymer-component/grid_layout'
+		'poly.paper.button'     : 'lib/polymer-component/paper_button'
+		'poly.paper.icon.button': 'lib/polymer-component/paper_icon_button'
 	shim:
 		'angular'               : {'exports': 'angular'}
 		layout                  : {'deps': [
 			'poly.core.header_panel'
 			'poly.core.toolbar'
 			'poly.paper.input'
-			'poly.grid'
+			'poly.paper.button'
+			'poly.paper.icon.button'
 		]}
 
 	priority: ["angular"]

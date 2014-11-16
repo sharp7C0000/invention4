@@ -1,56 +1,38 @@
 <% include header %>
 
-<style>
-body {
-  font-family: sans-serif;
-}
-core-header-panel {
-  background: white;
-}
-core-toolbar {
-  background-color: #D1432F;
-  color:#fff;
-}
-p {
-  margin: 20px;
-  padding: 80px 20px;
-  border-radius: 20px;
-  background-color: #eee;
-}
-</style>
 
-<core-header-panel flex>
-    <core-toolbar id="mainheader">
-      <paper-icon-button id="navicon" 
-        icon="arrow-back"></paper-icon-button>
-      <span flex>Log-in</span>
-      <paper-icon-button id="searchbutton" 
-        icon="search"></paper-icon-button>
-    </core-toolbar>
-    <form>
-      <paper-input label="username"></paper-input>
-    </form>
-    
-  </core-header-panel>
+<core-header-panel flex mode="seamed">
+  <core-toolbar id="mainheader">
+    <paper-icon-button id="navicon" 
+      class="primary" icon="arrow-back">
+    </paper-icon-button>
+    <span flex>Invention4</span>
+  </core-toolbar>
+  <grid-test></grid-test>
+</core-header-panel>
 
-   <grid-test></grid-test>
 
 <polymer-element name="grid-test">
     <template>
       <polymer-grid-layout nodes="{{nodes}}" layout="{{layout}}"></polymer-grid-layout>
 
-      <panel id="toolbar">toolbar</panel>
-      <panel id="sidebar" v-flex>sidebar</panel>
-      <panel id="workspace" flex>workspace</panel>
-      <panel id="outputToolbar">otherbar</panel>
-      <panel id="output" v-flex>
-         
-        output
-        <h2>Documentation</h2>
-        <h1>Verbiage</h1>
-        <p>In backbone record integer LED amplified internet protocol a extension reflective. 
-        Array kilohertz LED. Wavelength extension patch supporting wave an by prompt.</p>
+
+      <panel id="sidebar" v-flex></panel>
+      <panel id="workspace" flex>
+
+         <form style="margin-top:0px;">
+
+      <paper-input style="width:100%;" floatingLabel="true" label="username"></paper-input>
+      <paper-input style="width:100%;" floatingLabel="true" type="password" label="password"></paper-input>
+
+
+<paper-button style="width:100%;margin-top:20px;" raised raised class="primary">Login</paper-button>
+
+    </form>
+
       </panel>
+      <panel id="outputToolbar" v-flex></panel>
+      
 
       <style>
         * {
@@ -59,8 +41,17 @@ p {
         }
         panel {
           display: inline-block;
-          border: 4px dotted lightblue;
+          /*border: 4px dotted lightblue;*/
+
           padding: 16px;
+          padding-left:0;
+          padding-right:0;
+        }
+        #sidebar {
+          width:25%;
+        }
+        #outputToolbar {
+          width: 25%;
         }
         /*#outputToolbar {
           width: 400px;
@@ -76,26 +67,16 @@ p {
     <script>
       Polymer('grid-test', {
         arrangements: [[
-          [1, 1, 1],
-          [2, 3, 4],
-          [2, 3, 5]
-        ], [
-          [4, 3, 2],
-          [5, 3, 2],
-          [5, 1, 1]
-        ], [
-          [1, 1],
-          [2, 3],
-          [4, 3]
+          [1,2,3]
         ]],
         outputLayout: 0,
         ready: function() {
-          //this.nodes = [
+          // this.nodes = [
           //  this.$.toolbar, this.$.sidebar, this.$.workspace, 
           //  this.$.outputToolbar, this.$.output
-          //];
-          this.outputLayoutChanged();
-          //setInterval(this.toggleLayout.bind(this), 2500);
+          // ];
+          //this.outputLayoutChanged();
+          setInterval(this.outputLayoutChanged(), 2500);
         },
         outputLayoutChanged: function() {
           this.layout = this.arrangements[this.outputLayout];
@@ -105,6 +86,7 @@ p {
         }
       });
     </script>
+    </polymer-element>
 
 
   
