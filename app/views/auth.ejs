@@ -1,95 +1,45 @@
 <% include header %>
 
-
-<core-header-panel flex mode="seamed">
+<core-header-panel flex mode="seamed" ng-controller="Auth">
   <core-toolbar id="mainheader">
     <paper-icon-button id="navicon" 
       class="primary" icon="arrow-back">
     </paper-icon-button>
     <span flex>Invention4</span>
   </core-toolbar>
-  <grid-test></grid-test>
+
+  <form style="margin-top:20px;width:350px;margin-left:auto;margin-right:auto;">
+    <paper-input
+      ng-model="formData.username"
+      class="primary"
+      style="width:100%;" 
+      floatingLabel="true" 
+      label="username">
+    </paper-input>
+    <paper-input
+      ng-model="formData.password"
+      class="primary"
+      style="width:100%;" 
+      floatingLabel="true" 
+      type="password" 
+      label="password">
+    </paper-input>
+
+    <paper-button
+      ng-click="submit('<%-submitUrl%>')"
+      style="width:100%;margin-top:20px;" 
+      raised class="primary">
+      Login
+    </paper-button>
+
+    <paper-button 
+      style="margin-top:20px;font-size:11px;float:right;" 
+      class="primary">
+      Forgot password?
+    </paper-button>
+  </form>
 </core-header-panel>
 
-
-<polymer-element name="grid-test">
-    <template>
-      <polymer-grid-layout nodes="{{nodes}}" layout="{{layout}}"></polymer-grid-layout>
-
-
-      <panel id="sidebar" v-flex></panel>
-      <panel id="workspace" flex>
-
-         <form style="margin-top:0px;">
-
-      <paper-input style="width:100%;" floatingLabel="true" label="username"></paper-input>
-      <paper-input style="width:100%;" floatingLabel="true" type="password" label="password"></paper-input>
-
-
-<paper-button style="width:100%;margin-top:20px;" raised raised class="primary">Login</paper-button>
-
-    </form>
-
-      </panel>
-      <panel id="outputToolbar" v-flex></panel>
-      
-
-      <style>
-        * {
-          -webkit-transition: top, right, bottom, left;
-          -webkit-transition-duration: 0.3s;
-        }
-        panel {
-          display: inline-block;
-          /*border: 4px dotted lightblue;*/
-
-          padding: 16px;
-          padding-left:0;
-          padding-right:0;
-        }
-        #sidebar {
-          width:25%;
-        }
-        #outputToolbar {
-          width: 25%;
-        }
-        /*#outputToolbar {
-          width: 400px;
-        }
-        #output {
-          width: 400px;
-        }
-        #workspace {
-          border-color: orange;
-        }*/
-      </style>
-    </template>
-    <script>
-      Polymer('grid-test', {
-        arrangements: [[
-          [1,2,3]
-        ]],
-        outputLayout: 0,
-        ready: function() {
-          // this.nodes = [
-          //  this.$.toolbar, this.$.sidebar, this.$.workspace, 
-          //  this.$.outputToolbar, this.$.output
-          // ];
-          //this.outputLayoutChanged();
-          setInterval(this.outputLayoutChanged(), 2500);
-        },
-        outputLayoutChanged: function() {
-          this.layout = this.arrangements[this.outputLayout];
-        },
-        toggleLayout: function() {
-          this.outputLayout = (this.outputLayout + 1) % this.arrangements.length;
-        }
-      });
-    </script>
-    </polymer-element>
-
-
-  
 <script src="components/requirejs/require.js" data-main="js/auth.js"></script>
 
 <% include footer %>

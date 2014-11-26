@@ -9,15 +9,9 @@ require.config
 		'poly.paper.input'      : 'lib/polymer-component/paper_input'
 		'poly.paper.button'     : 'lib/polymer-component/paper_button'
 		'poly.paper.icon.button': 'lib/polymer-component/paper_icon_button'
+		'ng-polymer-elements'   : '../components/ng-polymer-elements/ng-polymer-elements'
 	shim:
 		'angular'               : {'exports': 'angular'}
-		layout                  : {'deps': [
-			'poly.core.header_panel'
-			'poly.core.toolbar'
-			'poly.paper.input'
-			'poly.paper.button'
-			'poly.paper.icon.button'
-		]}
 
 	priority: ["angular"]
 
