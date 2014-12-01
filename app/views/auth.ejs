@@ -9,6 +9,11 @@
   </core-toolbar>
 
   <form style="margin-top:20px;width:350px;margin-left:auto;margin-right:auto;">
+
+    <paper-input-decorator label="required" floatingLabel error="input is required!">
+      <input is="paper-input" required>
+    </paper-input-decorator>
+
     <paper-input
       ng-model="formData.username"
       class="primary"

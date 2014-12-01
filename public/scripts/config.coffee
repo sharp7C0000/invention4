@@ -2,14 +2,15 @@
 
 require.config
 	paths: 
-		angular                 : '../components/angular/angular'
-		text                    : '../components/requirejs-text/text'
-		'poly.core.header_panel': 'lib/polymer-component/core_header_panel'
-		'poly.core.toolbar'     : 'lib/polymer-component/core_toolbar'
-		'poly.paper.input'      : 'lib/polymer-component/paper_input'
-		'poly.paper.button'     : 'lib/polymer-component/paper_button'
-		'poly.paper.icon.button': 'lib/polymer-component/paper_icon_button'
-		'ng-polymer-elements'   : '../components/ng-polymer-elements/ng-polymer-elements'
+		angular                     : '../components/angular/angular'
+		text                        : '../components/requirejs-text/text'
+		'poly.core.header_panel'    : 'lib/polymer-component/core_header_panel'
+		'poly.core.toolbar'         : 'lib/polymer-component/core_toolbar'
+		'poly.paper.input_decorator': 'lib/polymer-component/paper_input_decorator'
+		'poly.paper.input'          : 'lib/polymer-component/paper_input'
+		'poly.paper.button'         : 'lib/polymer-component/paper_button'
+		'poly.paper.icon.button'    : 'lib/polymer-component/paper_icon_button'
+		'ng-polymer-elements'       : '../components/ng-polymer-elements/ng-polymer-elements'
 	shim:
 		'angular'               : {'exports': 'angular'}
 

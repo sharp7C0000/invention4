@@ -1,3 +1,33 @@
+### temporay response message structure
+  
+  status: "ok"
+  data  : [
+    {sid:1, title: "post1"}
+    {sid:2, title: "post2"}
+    {sid:3, title: "post3"}
+  ]
+  error : null
+
+  ----------------
+
+  status : "ok"
+  data   : null
+  error  : null
+
+  ----------------
+
+  status: "bad_request"
+  data  : null
+  error: {
+    type    : "formValidationFail"
+    contents: {
+      field: "username"
+      text : "no user finded"
+    }
+  }
+
+###
+
 express  = require 'express'
 router = express.Router()
 passport = require 'passport'
@@ -5,19 +35,32 @@ passport = require 'passport'
 module.exports = (app) ->
   app.use '/login', router
 
-# GET : render login page
+# GET : login page (Render view)
 router.get '/', (req, res, next) ->
 	res.render 'auth',
-	  title: 'login'
+	  title    : 'login'
 	  submitUrl: '/login'
 
-# POST : post login form
+# POST : post login form (JSON)
 router.post '/', (req, res, next) ->
 	passport.authenticate("local", (err, user, info) ->
-    return next(err)  if err
-    return res.status(400).json(info) if not user
+    if err 
+      return next(err)
+    if not user
+      return res.status(400).json(
+        status: "BAD_REQUEST"
+        data  : null
+        error : {
+          type    : "INVALID_FORM"
+          contents: info
+        }
+      )
     req.logIn user, (err) ->
-      return next(err)  if err
-      res.status(200).send("ok")
-    return
+      if err
+        return next(err)
+      res.status(200).json(
+        status: "OK"
+        data  : null
+        error : null
+      )
   ) req, res, next

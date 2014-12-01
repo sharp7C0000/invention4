@@ -47,13 +47,19 @@ module.exports = (app, config) ->
       # DB error
       if err   then return done(err)
       # Cannot find user
-      if !user then return done(null, false, { message: "no user" })
+      if !user then return done(null, false, {
+        field: "username"
+        text : "no user finded"
+      })
     
       # Check password
       if passwordHash.verify(password, user.hashed_pw) is true
         done(null, user)
       else
-        done(null, false, { message: "password not machting" })
+        done(null, false, {
+          field: "password" 
+          text : "password not machting" 
+        }) 
   )
   passport.use(localStreategy)
 
