@@ -49,7 +49,7 @@ module.exports = (app, config) ->
       # Cannot find user
       if !user then return done(null, false, {
         field: "username"
-        text : "no user finded"
+        text : "No user finded"
       })
     
       # Check password
@@ -58,7 +58,7 @@ module.exports = (app, config) ->
       else
         done(null, false, {
           field: "password" 
-          text : "password not machting" 
+          text : "Password not machting" 
         }) 
   )
   passport.use(localStreategy)

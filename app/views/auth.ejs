@@ -1,5 +1,25 @@
 <% include header %>
 
+<style>
+.card {
+      display: inline-block;
+      background: pink;
+      box-sizing: border-box;
+      margin-bottom: 0px;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 2px;
+      width:100%;
+      color: red;
+
+    }
+
+.card core-icon {
+  margin-right:5px;
+}
+</style>
+
+
 <core-header-panel flex mode="seamed" ng-controller="Auth">
   <core-toolbar id="mainheader">
     <paper-icon-button id="navicon" 
@@ -10,29 +30,39 @@
 
   <form style="margin-top:20px;width:350px;margin-left:auto;margin-right:auto;">
 
-    <paper-input-decorator label="required" floatingLabel error="input is required!">
-      <input is="paper-input" required>
+
+    <paper-input-decorator 
+      label="username" 
+      floatingLabel 
+      error="{{formData.error.username}}" 
+      isInvalid="{{formData.valid.username}}"
+    >
+      <input is="paper-input" ng-model="formData.username">
     </paper-input-decorator>
 
-    <paper-input
-      ng-model="formData.username"
-      class="primary"
-      style="width:100%;" 
-      floatingLabel="true" 
-      label="username">
-    </paper-input>
-    <paper-input
-      ng-model="formData.password"
-      class="primary"
-      style="width:100%;" 
-      floatingLabel="true" 
-      type="password" 
-      label="password">
-    </paper-input>
+    <paper-input-decorator 
+      label="password" 
+      floatingLabel
+      error="{{formData.error.password}}"
+      isInvalid="{{formData.valid.password}}"
+    >
+      <input is="paper-input" type="password" 
+        ng-model="formData.password">
+    </paper-input-decorator>
+
+    
+    <paper-shadow 
+      class="card" 
+      z="1" 
+      ng-show="formData.valid.global"
+    >
+      <core-icon icon="report-problem"></core-icon>
+      {{formData.error.global}}
+    </paper-shadow>
 
     <paper-button
       ng-click="submit('<%-submitUrl%>')"
-      style="width:100%;margin-top:20px;" 
+      style="width:100%;margin:0;margin-top:20px;" 
       raised class="primary">
       Login
     </paper-button>

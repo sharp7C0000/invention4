@@ -20,10 +20,11 @@
   data  : null
   error: {
     type    : "formValidationFail"
-    contents: {
+    # contents type could be any type
+    contents: [{
       field: "username"
       text : "no user finded"
-    }
+    }]
   }
 
 ###
@@ -52,7 +53,7 @@ router.post '/', (req, res, next) ->
         data  : null
         error : {
           type    : "INVALID_FORM"
-          contents: info
+          contents: [info]
         }
       )
     req.logIn user, (err) ->
