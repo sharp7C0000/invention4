@@ -1,21 +1,24 @@
 <% include header %>
 
 <style>
-.card {
-      display: inline-block;
-      background: pink;
-      box-sizing: border-box;
-      margin-bottom: 0px;
-      margin-top: 20px;
-      padding: 10px;
-      border-radius: 2px;
-      width:100%;
-      color: red;
 
-    }
-
-.card core-icon {
+.global-validator {
+  display: inline-block;
+  background: pink;
+  box-sizing: border-box;
+  margin-bottom: 0px;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 2px;
+  width:100%;
+  color: red;
+  font-size:13px;
+}
+.global-validator core-icon {
   margin-right:5px;
+  font-size:12px;
+  height:18px;
+  width:18px;
 }
 </style>
 
@@ -28,16 +31,17 @@
     <span flex>Invention4</span>
   </core-toolbar>
 
-  <form style="margin-top:20px;width:350px;margin-left:auto;margin-right:auto;">
+  <form name="loginForm" 
+    style="margin-top:20px;width:350px;margin-left:auto;margin-right:auto;">
 
 
     <paper-input-decorator 
       label="username" 
       floatingLabel 
-      error="{{formData.error.username}}" 
-      isInvalid="{{formData.valid.username}}"
+      error="{{errorMessage(loginForm.username.$error)}}" 
+      isInvalid="{{((!loginForm.username.$valid && loginForm.username.$dirty))}}"
     >
-      <input is="paper-input" ng-model="formData.username">
+      <input name="username" is="paper-input" ng-model="formData.username" required ng-maxlength="10" ng-minlength="4">
     </paper-input-decorator>
 
     <paper-input-decorator 
@@ -46,14 +50,15 @@
       error="{{formData.error.password}}"
       isInvalid="{{formData.valid.password}}"
     >
-      <input is="paper-input" type="password" 
+      <input name="password" is="paper-input" type="password" required
         ng-model="formData.password">
     </paper-input-decorator>
 
     
     <paper-shadow 
-      class="card" 
-      z="1" 
+      class="global-validator" 
+      z="1"
+      ng-cloak
       ng-show="formData.valid.global"
     >
       <core-icon icon="report-problem"></core-icon>
