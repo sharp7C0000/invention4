@@ -1,21 +1,29 @@
-# Sample index controller
+# login index controller
 
 define [], () -> [ "$scope", "$http", ($scope, $http) ->
 
 	# initialize form data
-	$scope.formData = {}
+	$scope.formData       = {}
 	$scope.formData.error = {}
-	$scope.formData.valid = {
-		username: false
-		password: false
-	}
+	$scope.formData.valid = {}
 
-	# client side form message
+	# TODO: seperate this at other file
+	# client side form message 
 	errorMessages = {
 		required : "This field is required"
 		maxlength: "The value is too long"
 		minlength: "The value is too short"
 	}
+
+	#### private
+
+	# reset form validation
+	resetValidation = () ->
+		$scope.hideGlobalValidation()
+		$scope.formData.error = {}
+		$scope.formData.valid = {}
+
+	#### public
 
 	# get clientside error message
 	$scope.errorMessage = (error) ->
@@ -28,14 +36,7 @@ define [], () -> [ "$scope", "$http", ($scope, $http) ->
 					message = "validation error: " + k
 		message
 
-	resetValidation = () ->
-		$scope.formData.error = {}
-		$scope.formData.valid = {
-			username: false
-			password: false
-		}
-		$scope.hideGlobalValidation()
-
+	# hide global validation
 	$scope.hideGlobalValidation = () -> 
 		$scope.formData.valid.global = false
 
@@ -43,15 +44,14 @@ define [], () -> [ "$scope", "$http", ($scope, $http) ->
 		resetValidation()
 
 		form = $scope.loginForm
-		form.username.$dirty = true
-		form.password.$dirty = true
+		
+		# set dirty all field
+		angular.forEach form, (v, k) ->
+			if typeof v == "object"
+				v.$dirty = true if v.$dirty?
 
 		if not form.$invalid
 			# submit server
-			console.log $scope.formData.username
-			console.log $scope.formData.password
-			console.log "click submit " + url
-
 			$http.post(url, $scope.formData)
 			.success((data, status, headers, config) -> 
 				window.location = "/admin"
