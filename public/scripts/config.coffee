@@ -3,7 +3,6 @@
 require.config
 	paths: 
 		angular                     : '../components/angular/angular'
-		text                        : '../components/requirejs-text/text'
 		'poly.core.header_panel'    : 'lib/polymer-component/core_header_panel'
 		'poly.core.toolbar'         : 'lib/polymer-component/core_toolbar'
 		'poly.core.icons'           : 'lib/polymer-component/core_icons'
@@ -12,6 +11,10 @@ require.config
 		'poly.paper.button'         : 'lib/polymer-component/paper_button'
 		'poly.paper.icon.button'    : 'lib/polymer-component/paper_icon_button'
 		'poly.paper.shadow'         : 'lib/polymer-component/paper_shadow'
+	map: 
+	  '*': 
+	    'css': '../../components/require-css/css'
+  
 	shim:
 		'angular'               : {'exports': 'angular'}
 

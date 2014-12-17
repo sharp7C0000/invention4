@@ -1,28 +1,5 @@
 <% include header %>
 
-<style>
-
-.global-validator {
-  display: inline-block;
-  background: #EEE;
-  box-sizing: border-box;
-  margin-bottom: 0px;
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 2px;
-  width:100%;
-  color: red;
-  font-size:13px;
-}
-.global-validator core-icon {
-  margin-right:5px;
-  font-size:12px;
-  height:18px;
-  width:18px;
-}
-</style>
-
-
 <core-header-panel flex mode="seamed" ng-controller="Auth">
   <core-toolbar id="mainheader">
     <paper-icon-button id="navicon" 
@@ -31,9 +8,7 @@
     <span flex>Invention4</span>
   </core-toolbar>
 
-  <form name="loginForm" 
-    style="margin-top:20px;width:350px;margin-left:auto;margin-right:auto;">
-
+  <form name="loginForm">
 
     <paper-input-decorator 
       label="username" 
@@ -78,16 +53,15 @@
 
     <paper-button
       ng-click="submit('<%-submitUrl%>')"
-      style="width:100%;margin:0;margin-top:20px;" 
-      raised class="primary">
+      raised class="submit primary">
       Login
     </paper-button>
 
-    <paper-button 
-      style="margin-top:20px;font-size:11px;float:right;" 
-      class="primary">
+    <paper-button
+      class="findpassword primary">
       Forgot password?
     </paper-button>
+    
   </form>
 </core-header-panel>
 
