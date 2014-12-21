@@ -1,30 +1,74 @@
-// common css styles
+/** common css styles **/
+
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import 'variables.less';
 
 /** to use ng-cloak **/
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 
-@primaryColor: #fe774d;
-
-core-toolbar#mainheader {
-  background-color: #222;
-  color:#fff;
+body {
+	font-family: 'Roboto', sans-serif;
+	color      : @primaryText;
 }
 
+/** polymer ui customize **/
+
+// core toolbar
+
+core-toolbar#mainheader {
+  background-color: @primaryColor;
+  color           : @textNicon;
+}
+
+// buttons
+
 paper-button[raised].primary {
-  background: @primaryColor;
-  color: #fff;
+  background-color: @accentColor;
+  color           : @textNicon;
 }
 
 paper-icon-button.primary {
-	color: @primaryColor;
+	color: @accentColor;
 }
 
-paper-input.primary[focused] /deep/ .floated-label .label-text {
-  color: @primaryColor;
+// input
+
+/** normal out focus **/
+paper-input-decorator /deep/ .unfocused-underline {
+	background-color: @primaryColor;
+}
+paper-input-decorator /deep/ .floated-label .label-text {
+	color: @primaryText;
 }
 
-paper-input.primary /deep/ .focused-underline {
-  background-color: @primaryColor;
+/** normal focus **/
+paper-input-decorator /deep/ .focused-underline {
+	background-color: @primaryColor;
 }
+paper-input-decorator[focused] /deep/ .floated-label .label-text {
+	color: @primaryText;
+}
+
+/** invalid focus **/
+paper-input-decorator.invalid /deep/ .focused-underline {
+	background-color: @lightPrimaryColor;
+}
+paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,
+paper-input-decorator[focused] /deep/ .error {
+	color: @secondaryText;
+}
+
+/** invalid out focus **/
+paper-input-decorator.invalid /deep/ .unfocused-underline {
+	background-color: @lightPrimaryColor;
+}
+paper-input-decorator.invalid /deep/ .floated-label .label-text,
+paper-input-decorator /deep/ .error {
+	color: @secondaryText;
+}
+
+
+
