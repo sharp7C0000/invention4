@@ -38,36 +38,36 @@ paper-icon-button.primary {
 
 /** normal out focus **/
 paper-input-decorator /deep/ .unfocused-underline {
-	background-color: @primaryColor;
+	background-color: @primaryColor!important;
 }
 paper-input-decorator /deep/ .floated-label .label-text {
-	color: @primaryText;
+	color: @primaryText!important;
 }
 
 /** normal focus **/
 paper-input-decorator /deep/ .focused-underline {
-	background-color: @primaryColor;
+	background-color: @primaryColor!important;
 }
 paper-input-decorator[focused] /deep/ .floated-label .label-text {
-	color: @primaryText;
+	color: @primaryText!important;
 }
 
 /** invalid focus **/
 paper-input-decorator.invalid /deep/ .focused-underline {
-	background-color: @lightPrimaryColor;
+	background-color: @lightPrimaryColor!important;
 }
 paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,
 paper-input-decorator[focused] /deep/ .error {
-	color: @secondaryText;
+	color: @secondaryText!important;
 }
 
 /** invalid out focus **/
 paper-input-decorator.invalid /deep/ .unfocused-underline {
-	background-color: @lightPrimaryColor;
+	background-color: @lightPrimaryColor!important;
 }
 paper-input-decorator.invalid /deep/ .floated-label .label-text,
 paper-input-decorator /deep/ .error {
-	color: @secondaryText;
+	color: @secondaryText!important;
 }
 
 

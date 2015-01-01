@@ -3,7 +3,13 @@
 <core-header-panel flex mode="seamed" ng-controller="Auth">
   <core-toolbar id="mainheader">
     <span flex>Invention4</span>
-    <paper-icon-button icon="account-circle" class="primary"></paper-icon-button>
+    <paper-icon-button icon="account-circle" class="primary">
+      <paper-dropdown>
+          halign = left
+          <br>
+          valign = top
+        </paper-dropdown>
+    </paper-icon-button>
     <paper-icon-button icon="home" class="primary"></paper-icon-button>
   </core-toolbar>
 </core-header-panel>

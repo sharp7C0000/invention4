@@ -11,6 +11,7 @@ require.config
 		'poly.paper.button'         : 'lib/polymer-component/paper_button'
 		'poly.paper.icon.button'    : 'lib/polymer-component/paper_icon_button'
 		'poly.paper.shadow'         : 'lib/polymer-component/paper_shadow'
+		'poly.paper.dropdown'       : 'lib/polymer-component/paper_dropdown'
 	map: 
 	  '*': 
 	    'css': '../../components/require-css/css'

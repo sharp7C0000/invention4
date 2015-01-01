@@ -9,5 +9,6 @@ require [
 	'poly.paper.button'
 	'poly.paper.icon.button'
 	'poly.paper.shadow'
+	'poly.paper.dropdown'
 ], () ->
 	# do some common behavior
