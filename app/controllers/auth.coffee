@@ -38,9 +38,12 @@ module.exports = (app) ->
 
 # GET : login page (Render view)
 router.get '/', (req, res, next) ->
-	res.render 'auth',
-	  title    : 'login'
-	  submitUrl: '/login'
+  if req.isAuthenticated()
+    res.redirect "/admin"
+  else
+    res.render 'auth',
+    title    : 'login'
+    submitUrl: '/login'
 
 # POST : post login form (JSON)
 router.post '/', (req, res, next) ->
