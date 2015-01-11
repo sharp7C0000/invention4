@@ -8,5 +8,8 @@ define [], () -> [ "$scope", "$http", ($scope, $http) ->
 		console.log "toggle", angular.element($event.target).parent().find("paper-dropdown")[0].toggle
 		angular.element($event.target).parent().find("paper-dropdown")[0].toggle()
 
+	$scope.logout = () ->
+		console.log "click logout"
+
 	$scope.$apply()
 ]
