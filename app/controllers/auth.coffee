@@ -34,19 +34,19 @@ router = express.Router()
 passport = require 'passport'
 
 module.exports = (app) ->
-  app.use '/login', router
+  app.use '/auth', router
 
 # GET : login page (Render view)
-router.get '/', (req, res, next) ->
+router.get '/login', (req, res, next) ->
   if req.isAuthenticated()
     res.redirect "/admin"
   else
     res.render 'auth',
     title    : 'login'
-    submitUrl: '/login'
+    submitUrl: '/auth/login'
 
 # POST : post login form (JSON)
-router.post '/', (req, res, next) ->
+router.post '/login', (req, res, next) ->
 	passport.authenticate("local", (err, user, info) ->
     if err 
       return next(err)
@@ -68,3 +68,18 @@ router.post '/', (req, res, next) ->
         error : null
       )
   ) req, res, next
+
+# DELETE : request logout action (JSON)
+router.delete '/logout', (req, res, next) ->
+  req.logout();
+  res.status(200).json(
+    status: "OK"
+    data  : {
+      # redirect after logout
+      redirectUrl: "/admin"
+    }
+    error : null
+  )
+
+
+

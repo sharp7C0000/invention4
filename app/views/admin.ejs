@@ -21,7 +21,7 @@ html /deep/ paper-dropdown::shadow #scroller {
       <paper-icon-button icon="account-circle" class="primary" ng-click="dropdown($event)" ></paper-icon-button>
       <paper-dropdown halign="right">
         <div class="menu">
-          <paper-item ng-click="logout()">Log out</paper-item>  
+          <paper-item ng-click="logout('<%-logoutUrl%>')">Log out</paper-item>  
         </div>
       </paper-dropdown>
       <paper-icon-button icon="home" class="primary"></paper-icon-button>
@@ -29,6 +29,6 @@ html /deep/ paper-dropdown::shadow #scroller {
   </core-toolbar>
 </core-header-panel>
 
-<script src="components/requirejs/require.js" data-main="js/admin.js"></script>
+<script src="/components/requirejs/require.js" data-main="/js/admin.js"></script>
 
 <% include footer %>

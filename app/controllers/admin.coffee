@@ -12,7 +12,8 @@ router.use (req, res, next) ->
 
 router.get '/', (req, res, next) ->
 	res.render 'admin',
-      title: 'admin page'
+      title    : 'admin page'
+      logoutUrl: '/auth/logout'
 
 router.get '/admin2', (req, res, next) ->
   res.render 'admin',
@@ -22,7 +23,7 @@ authenticatedOrNot = (req, res, next) ->
   if req.isAuthenticated()
     next()
   else
-    res.redirect "/login"
+    res.redirect "/auth/login"
   return
 
 userExist = (req, res, next) ->
