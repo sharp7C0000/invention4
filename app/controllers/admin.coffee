@@ -14,6 +14,7 @@ router.get '/', (req, res, next) ->
 	res.render 'admin',
       title    : 'admin page'
       logoutUrl: '/auth/logout'
+      username : req.user.username
 
 router.get '/admin2', (req, res, next) ->
   res.render 'admin',

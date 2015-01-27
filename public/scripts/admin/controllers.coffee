@@ -2,8 +2,14 @@
 
 define ["angular"], (angular) ->
 
-  angular.module("invention4.controllers", []).controller("Admin", ["$scope", "$injector",
-    
+  angular.module("invention4.controllers", [])
+  .controller("AdminTopMenu", ["$scope", "$injector",
+		# load admin top menu controller
+		($scope, $injector) ->
+			require ["admin/controllers/topmenu"], (topmenu) ->
+				$injector.invoke topmenu, this, { $scope: $scope }
+	])
+  .controller("Admin", ["$scope", "$injector",  
     # load admin controller
     ($scope, $injector) ->
       require ["admin/controllers/index"], (index) ->

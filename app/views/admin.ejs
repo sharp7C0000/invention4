@@ -1,32 +1,9 @@
 <% include header %>
-<style shim-shadowdom>
-paper-dropdown {
-  position: absolute!important;
-  top: 38px!important;
-  right:55px!important;
-  width:150px!important;
-}
-html /deep/ paper-dropdown::shadow #scroller {
-      box-sizing: border-box;
-      padding: 10px;
-      color:#000;
-      font-size:12px;
-    }
-</style>
 
-<core-header-panel flex mode="seamed" ng-controller="Admin">
-  <core-toolbar id="mainheader">
-    <span flex>Invention4</span>
-    <div relative>
-      <paper-icon-button icon="account-circle" class="primary" ng-click="dropdown($event)" ></paper-icon-button>
-      <paper-dropdown halign="right">
-        <div class="menu">
-          <paper-item ng-click="logout('<%-logoutUrl%>')">Log out</paper-item>  
-        </div>
-      </paper-dropdown>
-      <paper-icon-button icon="home" class="primary"></paper-icon-button>
-    </div>     
-  </core-toolbar>
+<core-header-panel flex mode="seamed">
+  <% include topbar %>
+  <div id="contents" ng-controller="Admin">
+  </div>
 </core-header-panel>
 
 <script src="/components/requirejs/require.js" data-main="/js/admin.js"></script>

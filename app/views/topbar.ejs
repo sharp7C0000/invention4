@@ -1,0 +1,28 @@
+<style shim-shadowdom>
+papaer-item {
+  border:2px solid red;
+}
+</style>
+
+<core-toolbar id="mainheader" ng-controller="AdminTopMenu">
+  <span flex>Invention4</span>
+  <div relative>
+    <%if (username) { %>
+      <paper-icon-button icon="account-circle" class="primary" ng-click="dropdown($event)" ></paper-icon-button>
+      <paper-dropdown halign="right">
+        <div class="menu">
+          <paper-item noink style="width:100%">Logged in as&nbsp;<a href="#"><%=username%></a></paper-item>
+         
+          <paper-item>
+          <paper-button ng-click="logout('<%- logoutUrl %>')"
+      raised style="width:100%;" class="submit primary">
+      Logout&nbsp;<core-icon="exit-to-app"></core-icon>
+    </paper-button>
+
+        </paper-item>
+        </div>
+      </paper-dropdown>
+    <% } %>
+    <paper-icon-button ng-click="home()" icon="home" class="primary"></paper-icon-button>
+  </div>
+</core-toolbar>
