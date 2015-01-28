@@ -16,8 +16,11 @@ body {
 
 a {
 	text-decoration: none;
-	color: @secondaryText;
-	border-bottom: 1px dashed gray;
+	color: #FF5252;
+}
+
+a:active, a:hover {
+	text-decoration: underline;
 }
 
 /** polymer ui customize **/
@@ -34,6 +37,11 @@ core-toolbar#mainheader {
 paper-button[raised].primary {
   background-color: @accentColor;
   color           : @textNicon;
+}
+
+paper-button[raised].secondary {
+	background-color: #616161;
+	color:@textNicon;
 }
 
 paper-icon-button.primary {

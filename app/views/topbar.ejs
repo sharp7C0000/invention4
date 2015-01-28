@@ -11,9 +11,9 @@ papaer-item {
       <paper-icon-button icon="account-circle" class="primary" ng-click="dropdown($event)" ></paper-icon-button>
       <paper-dropdown halign="right">
         <div class="menu">
-          <paper-item noink style="width:100%">Logged in as&nbsp;<a href="#"><%=username%></a></paper-item>
+          <paper-item noink style="width:100%;text-align:center"> Logged in as&nbsp;<a href="#"><%=username%></a></paper-item>
          
-          <paper-item>
+          <paper-item noink>
           <paper-button ng-click="logout('<%- logoutUrl %>')"
       raised style="width:100%;" class="submit primary">
       Logout&nbsp;<core-icon="exit-to-app"></core-icon>
