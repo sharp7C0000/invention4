@@ -44,6 +44,7 @@ router.get '/login', (req, res, next) ->
     res.render 'auth',
     title    : 'login'
     submitUrl: '/auth/login'
+    username : undefined
 
 # POST : post login form (JSON)
 router.post '/login', (req, res, next) ->

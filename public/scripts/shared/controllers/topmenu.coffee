@@ -1,4 +1,4 @@
-# admin topmenu controller
+# admin and login topmenu controller
 
 define [], () -> [ "$scope", "$http", ($scope, $http) ->
 
