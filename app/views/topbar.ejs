@@ -1,29 +1,21 @@
-<style shim-shadowdom>
-.menu paper-item:first-child > .button-content {
-  padding-bottom:0px!important;
-}
-.menu paper-item:last-child > .button-content {
-  padding-top:5px!important;
-}
-</style>
-
 <core-toolbar id="mainheader" ng-controller="AdminTopMenu">
   <span flex>Invention4</span>
   <div relative>
     <%if (username) { %>
       <paper-icon-button icon="account-circle" class="primary" ng-click="dropdown($event)" ></paper-icon-button>
-      <paper-dropdown halign="right">
+      <paper-dropdown id="userinfo" halign="right">
         <div class="menu">
-          <paper-item noink style="width:100%;"> 
-            <div style="float:left;"><%=username%></div>
-            <div style="float:right;width:100%;">
-              <paper-icon-button class="primary" icon="settings" style="float:right;"></paper-icon-button>
+
+          <paper-item noink> 
+            <div class="username"><%=username%></div>
+            <div class="edituser">
+              <paper-icon-button class="primary" icon="settings"></paper-icon-button>
             </div>
           </paper-item>
          
           <paper-item noink>
             <paper-button ng-click="logout('<%- logoutUrl %>')"
-      raised style="width:100%;" class="submit primary">
+      raised class="submit primary">
       Logout&nbsp;<core-icon="exit-to-app"></core-icon>
             </paper-button>
 

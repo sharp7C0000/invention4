@@ -84,5 +84,34 @@ paper-input-decorator /deep/ .error {
 	color: @secondaryText!important;
 }
 
+/** shared element style **/
 
+#mainheader #userinfo {
 
+	paper-item:first-child > .button-content {
+  	padding-bottom:0px!important;
+	}
+
+	paper-item:last-child > .button-content {
+  	padding-top:5px!important;
+	}
+
+	paper-button {
+		width: 100%;
+	}
+
+	.edituser {
+		float:right;
+
+		.paper-icon-button {
+			float:right;
+			width:100%;
+		}
+
+	}
+
+	.username {
+		float:left;
+		width:100%;
+	}
+}
