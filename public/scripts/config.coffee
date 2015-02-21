@@ -14,6 +14,7 @@ require.config
 		"poly.paper.menu_button"    : 'lib/polymer-component/paper_menu_button'
 		'poly.paper.dropdown'       : 'lib/polymer-component/paper_dropdown'
 		'poly.paper.item'           : 'lib/polymer-component/paper_item'
+		'poly.paper.fab'            : 'lib/polymer-component/paper_fab'
 	map: 
 	  '*': 
 	    'css': '../../components/require-css/css'

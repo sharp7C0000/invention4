@@ -1,5 +1,11 @@
 <core-toolbar id="mainheader" ng-controller="AdminTopMenu">
-  <span flex>Invention4</span>
+  <span flex>
+    <%if (username) { %> 
+      <paper-icon-button icon="menu" class="primary"></paper-icon-button>
+    <% } else { %>
+      Invention4
+    <% } %>
+  </span>
   <div relative>
     <%if (username) { %>
 

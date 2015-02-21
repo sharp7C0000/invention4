@@ -12,5 +12,6 @@ require [
 	'poly.paper.dropdown'
 	'poly.paper.item'
 	'poly.paper.menu_button'
+	'poly.paper.fab'
 ], () ->
 	# do some common behavior
