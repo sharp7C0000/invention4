@@ -2,9 +2,6 @@
 
 define [], () -> [ "$scope", "$http", ($scope, $http) ->
 
-	$scope.dropdown = ($event) ->
-		angular.element($event.target).parent().find("paper-dropdown")[0].toggle()
-
 	$scope.home = () -> window.location = "/"
 
 	$scope.logout = (url) ->

@@ -7,9 +7,10 @@ require [
 	'poly.paper.input'
 	'poly.paper.input_decorator'
 	'poly.paper.button'
-	'poly.paper.icon.button'
+	'poly.paper.icon_button'
 	'poly.paper.shadow'
 	'poly.paper.dropdown'
 	'poly.paper.item'
+	'poly.paper.menu_button'
 ], () ->
 	# do some common behavior

@@ -2,26 +2,28 @@
   <span flex>Invention4</span>
   <div relative>
     <%if (username) { %>
-      <paper-icon-button icon="account-circle" class="primary" ng-click="dropdown($event)" ></paper-icon-button>
-      <paper-dropdown id="userinfo" halign="right">
-        <div class="menu">
 
-          <paper-item noink> 
-            <div class="username"><%=username%></div>
-            <div class="edituser">
-              <paper-icon-button class="primary" icon="settings"></paper-icon-button>
-            </div>
-          </paper-item>
-         
-          <paper-item noink>
-            <paper-button ng-click="logout('<%- logoutUrl %>')"
-      raised class="submit primary">
-      Logout&nbsp;<core-icon="exit-to-app"></core-icon>
-            </paper-button>
-
-          </paper-item>
-        </div>
-      </paper-dropdown>
+      <paper-menu-button>
+        <paper-icon-button icon="account-circle" class="primary" noink></paper-icon-button>
+        <paper-dropdown class="dropdown" transition="" id="userinfo" halign="right">
+          <core-menu class="menu">
+            <paper-item noink> 
+              <div class="username"><%=username%></div>
+              <div class="edituser">
+                <paper-icon-button class="primary" icon="settings"></paper-icon-button>
+              </div>
+            </paper-item>
+             
+            <paper-item noink>
+              <paper-button ng-click="logout('<%- logoutUrl %>')"
+                raised class="submit primary">
+                Logout&nbsp;<core-icon="exit-to-app"></core-icon>
+              </paper-button>
+            </paper-item>
+          </core-menu>
+        </paper-dropdown>
+      </paper-menu-button>
+    
     <% } %>
     <paper-icon-button ng-click="home()" icon="home" class="primary"></paper-icon-button>
   </div>

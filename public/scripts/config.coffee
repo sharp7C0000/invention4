@@ -9,8 +9,9 @@ require.config
 		'poly.paper.input_decorator': 'lib/polymer-component/paper_input_decorator'
 		'poly.paper.input'          : 'lib/polymer-component/paper_input'
 		'poly.paper.button'         : 'lib/polymer-component/paper_button'
-		'poly.paper.icon.button'    : 'lib/polymer-component/paper_icon_button'
+		'poly.paper.icon_button'    : 'lib/polymer-component/paper_icon_button'
 		'poly.paper.shadow'         : 'lib/polymer-component/paper_shadow'
+		"poly.paper.menu_button"    : 'lib/polymer-component/paper_menu_button'
 		'poly.paper.dropdown'       : 'lib/polymer-component/paper_dropdown'
 		'poly.paper.item'           : 'lib/polymer-component/paper_item'
 	map: 

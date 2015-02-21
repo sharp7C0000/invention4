@@ -5,19 +5,17 @@
 paper-dropdown {
   position : absolute!important;
   top      : 38px!important;
-  right    : 55px!important;
+  right    : 10px!important;
   min-width: 150px!important;
 
   paper-item {
 		color    : @primaryText;
 		font-size:12px;
+    height   :52px;
 	}
-  paper-item:first-child {
-    
-  }
+ 
 }
 html /deep/ paper-dropdown::shadow #scroller {
   box-sizing: border-box;
   padding: 0px;
 }
-
