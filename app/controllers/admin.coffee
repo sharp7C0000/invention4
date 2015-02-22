@@ -1,6 +1,6 @@
 express  = require 'express'
-router = express.Router()
-session        = require 'express-session'
+router   = express.Router()
+session  = require 'express-session'
 mongoose = require 'mongoose'
 
 module.exports = (app) ->
@@ -12,9 +12,15 @@ router.use (req, res, next) ->
 
 router.get '/', (req, res, next) ->
 	res.render 'admin',
-      title    : 'admin page'
-      logoutUrl: '/auth/logout'
-      username : req.user.username
+    title    : 'admin page'
+    logoutUrl: '/auth/logout'
+    username : req.user.username
+
+router.get '/post/', (req, res, next) ->
+  res.render 'admin_new_post',
+    title    : 'new post'
+    logoutUrl: '/auth/logout'
+    username : req.user.username
 
 router.get '/admin2', (req, res, next) ->
   res.render 'admin',

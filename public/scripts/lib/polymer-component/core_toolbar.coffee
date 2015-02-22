@@ -1,2 +1,2 @@
 define [], () ->
-	Polymer.import ["../components/core-toolbar/core-toolbar.html"], (() ->).bind(this)
+	Polymer.import ["/components/core-toolbar/core-toolbar.html"], (() ->).bind(this)

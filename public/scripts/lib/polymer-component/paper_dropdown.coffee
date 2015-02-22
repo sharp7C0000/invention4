@@ -1,2 +1,2 @@
 define [], () ->
-	Polymer.import ["../components/paper-dropdown/paper-dropdown.html"], (() ->).bind(this)
+	Polymer.import ["/components/paper-dropdown/paper-dropdown.html"], (() ->).bind(this)
