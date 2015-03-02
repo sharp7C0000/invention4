@@ -3,8 +3,20 @@
 <core-header-panel flex mode="seamed">
   <% include topbar %>
 
-  <div id="contents" ng-controller="Admin">
-  	new
+  <div ng-controller="Admin">
+
+    <core-toolbar id="title-header" class="medium-tall">
+
+    	<div class="top indent title"><h1>Write new post</h1></div>
+    	
+    	<span flex class="bottom indent subtitle">Invention4 > Admin panel</span>
+
+  	</core-toolbar>
+
+    <div id="contents">
+      <div test ng-model="zzzzz"></div>
+    </div>
+  
   </div>
 </core-header-panel>
 

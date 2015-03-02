@@ -23,10 +23,6 @@ router.get '/post/', (req, res, next) ->
     logoutUrl : '/auth/logout'
     username  : req.user.username
 
-router.get '/admin2', (req, res, next) ->
-  res.render 'admin',
-      title: 'admin2 page'
-
 authenticatedOrNot = (req, res, next) ->
   if req.isAuthenticated()
     next()
