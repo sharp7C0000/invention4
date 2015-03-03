@@ -15,7 +15,8 @@ require.config
 		'poly.paper.dropdown'       : 'lib/polymer-component/paper_dropdown'
 		'poly.paper.item'           : 'lib/polymer-component/paper_item'
 		'poly.paper.fab'            : 'lib/polymer-component/paper_fab'
-		
+		'epiceditor'                : '../components_other/epiceditor/epiceditor'
+
 		'directives'                : 'lib/angular_directives'
 	map: 
 	  '*': 
@@ -23,6 +24,11 @@ require.config
   
 	shim:
 		'angular'               : {'exports': 'angular'}
+		'epiceditor'            : {
+			'deps': [
+				
+			]
+		}
 
 	priority: ["angular"]
 
