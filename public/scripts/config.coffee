@@ -24,11 +24,6 @@ require.config
   
 	shim:
 		'angular'               : {'exports': 'angular'}
-		'epiceditor'            : {
-			'deps': [
-				
-			]
-		}
 
 	priority: ["angular"]
 
