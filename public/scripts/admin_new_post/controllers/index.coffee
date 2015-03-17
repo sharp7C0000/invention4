@@ -2,16 +2,10 @@
 
 define [], () -> [ "$scope", "$http", ($scope, $http) ->
 
-	console.log "admin new!"
+	#console.log "admin new!", CodeMirror
 
-	editor = new EpicEditor(
-		basePath: '/css/epiceditor'
-		button: {
-	    preview: true
-	    parser: "marked"
-	    bar: "auto"
-  	}
-	).load()
+	editor = new Editor()
+	editor.render()
 
 	$scope.addPost = (url)-> 
 		console.log "AddPost"

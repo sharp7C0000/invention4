@@ -15,16 +15,19 @@ require.config
 		'poly.paper.dropdown'       : 'lib/polymer-component/paper_dropdown'
 		'poly.paper.item'           : 'lib/polymer-component/paper_item'
 		'poly.paper.fab'            : 'lib/polymer-component/paper_fab'
-		'epiceditor'                : '../components_other/epiceditor/epiceditor'
-
-		'directives'                : 'lib/angular_directives'
+		epiceditor                  : '../components_other/epiceditor/epiceditor'
+		marked                      : '../components/marked/lib/marked'
+		editor                      : '../components_other/editor/editor'
+		
+		directives                : 'lib/angular_directives'
 	map: 
 	  '*': 
 	    'css': '../../components/require-css/css'
   
 	shim:
-		'angular'               : {'exports': 'angular'}
-
+		angular               : {exports: 'angular'}
+		editor                : {deps: ['marked', 'css!../css/editor']}
+		
 	priority: ["angular"]
 
 # https://github.com/tnajdek/angular-requirejs-seed
