@@ -18,15 +18,15 @@ require.config
 		epiceditor                  : '../components_other/epiceditor/epiceditor'
 		marked                      : '../components/marked/lib/marked'
 		editor                      : '../components_other/editor/editor'
-		
-		directives                : 'lib/angular_directives'
+		directives                  : 'lib/angular_directives'
+		globalMarked                : 'lib/marked'
 	map: 
 	  '*': 
 	    'css': '../../components/require-css/css'
   
 	shim:
 		angular               : {exports: 'angular'}
-		editor                : {deps: ['marked', 'css!../css/editor']}
+		editor                : {deps: ['globalMarked'], 'css!../css/editor']}
 		
 	priority: ["angular"]
 
