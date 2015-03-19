@@ -26,7 +26,7 @@ require.config
   
 	shim:
 		angular               : {exports: 'angular'}
-		editor                : {deps: ['globalMarked'], 'css!../css/editor']}
+		editor                : {deps   : ['globalMarked', 'css!../css/editor']}
 		
 	priority: ["angular"]
 
