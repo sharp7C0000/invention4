@@ -13,5 +13,6 @@ require [
 	'poly.paper.item'
 	'poly.paper.menu_button'
 	'poly.paper.fab'
+	'poly.paper.tabs'
 ], () ->
 	# do some common behavior
