@@ -14,6 +14,7 @@ body {
 	color      : @primaryText;
 }
 
+
 a {
 	text-decoration: none;
 	color: #FF5252;
@@ -30,28 +31,24 @@ a:active, a:hover {
 core-toolbar#mainheader {
   background-color: @primaryColor;
   color           : @textNicon;
-}
 
-paper-tabs {
-			font-size:13px;
-			font-weight:bold;
-			height:40px;
-      //background-color: #00bcd4;
-      color: #fff;
-      box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
-    }
-    
-    paper-tabs {
-      box-shadow: none;
-    }
+  // tab menu
+  paper-tabs {
+		font-size  : 13px;
+		font-weight: bold;
+    color      : @textNicon;
+    box-shadow : none;
+    max-width  : 150px;
+  }
+   
+  paper-tabs::shadow #selectionBar {
+  	background-color: @accentColor;
+  	height          :4px;
+	}
 
-    paper-tabs::shadow #selectionBar {
-  background-color: #ff4081;
-  height:4px;
-}
-
-    paper-tabs paper-tab::shadow #ink {
-  color: #ff4081;
+  paper-tabs paper-tab::shadow #ink {
+  	color: @accentColor;
+	}
 }
 
 // buttons

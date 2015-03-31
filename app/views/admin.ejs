@@ -1,20 +1,13 @@
 <% include header %>
 
-<core-header-panel flex mode="seamed">
+<core-header-panel flex>
   <% include topbar %>
 
   <div ng-controller="Admin">
 
- <!--  <core-toolbar id="title-header" class="medium-tall">
-
-    	<div class="top indent title"><h1>List of posts</h1></div>
-    	<paper-fab icon="add" ng-click="addPost('<%= newPostUrl %>')" class="bottom indent" title="add new post"></paper-fab>
-    	<span flex class="bottom indent subtitle">Invention4 > Admin panel</span>
-
-  	</core-toolbar> -->
-
     <div id="contents">
       <div test style="height:800px;" ng-model="zzzzz"></div>
+      <paper-fab id="add-post" icon="add" ng-click="addPost('<%= newPostUrl %>')" class="bottom indent" title="add new post"></paper-fab>
     </div>
   
   </div>

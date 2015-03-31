@@ -1,9 +1,17 @@
-<core-toolbar id="mainheader" class="medium-tall" ng-controller="AdminTopMenu">
+<% if(username) { %>
+  <core-toolbar id="mainheader" class="medium-tall" ng-controller="AdminTopMenu">
+<% } else { %>
+  <core-toolbar id="mainheader" ng-controller="AdminTopMenu">
+<% } %>
+
   <% if (username) { %>
     <paper-icon-button icon="menu" class="primary"></paper-icon-button>
   <% } %>
+  <!-- branding -->
   <span flex>Invention4</span>
 
+
+  <!-- menu buttons -->
   <div relative>
     <%if (username) { %>
 
@@ -32,21 +40,13 @@
     <paper-icon-button ng-click="home()" icon="home" class="primary"></paper-icon-button>
   </div>
 
-  <div class="bottom fit" horizontal layout>
-    <paper-tabs selected="0" flex style="max-width: 150px;">
-      <paper-tab>LIST OF POST</paper-tab>
-    </paper-tabs>
-  </div>
+  <!-- tab menu -->
+  <% if(username) { %>
+    <div class="bottom fit" horizontal layout>
+      <paper-tabs selected="0" flex>
+        <paper-tab>LIST OF POST</paper-tab>
+      </paper-tabs>
+    </div>
+  <% } %>
 
 </core-toolbar>
-
-<% if(username) { %>
- 
-<!--<core-toolbar id="title-header" class="medium-tall">
-
-      <div class="top indent title"><h1>List of posts</h1></div>
-      <paper-fab icon="add" ng-click="addPost('<%= newPostUrl %>')" class="bottom indent" title="add new post"></paper-fab>
-      <span flex class="bottom indent subtitle">Invention4 > Admin panel</span>
-
-    </core-toolbar> -->
-<% } %>

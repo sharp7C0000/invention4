@@ -1,21 +1,33 @@
 <% include header %>
 
-<core-header-panel flex mode="seamed">
+<core-header-panel flex>
   <% include topbar %>
 
   <div ng-controller="Admin">
 
-    <core-toolbar id="title-header" class="medium-tall">
+    <div id="contents" style="max-width:780px;margin-left:auto;margin-right:auto;padding:20px;">
 
-    	<div class="top indent title"><h1>Write new post</h1></div>
-    	
-    	<span flex class="bottom indent subtitle">Invention4 > Admin panel</span>
+      <div style="color:#444;border-bottom:1px solid gray;padding:5px;margin-bottom:50px;padding-bottom:50px;">New Post</div>
+      <paper-input-decorator 
+        label="Title" 
+        floatingLabel 
+       
+      >
+        <input name="username" is="paper-input"
+          required 
+          ng-model="formData.username" 
+          ng-maxlength="10" 
+          ng-minlength="4"
+          ng-keydown="hideGlobalValidation()"
+        >
+      </paper-input-decorator>
 
-  	</core-toolbar>
+      
+    <div style="margin-right:auto;margin-left:auto;width:780px;height200px;"><textarea id="editor" style="height:200px;"></textarea></div>
 
-    <div id="contents">
-      <div style="width:200px;height:200px;margin-right:auto;margin-left:auto;border:1px solid red;"><textarea id="editor"></textarea></div>
-    </div>
+  </div>
+
+   </div>
   
   </div>
 </core-header-panel>
