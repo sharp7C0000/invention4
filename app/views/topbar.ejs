@@ -33,19 +33,20 @@
   </div>
 
   <div class="bottom fit" horizontal layout>
-    <paper-tabs selected="0" flex style="max-width: 600px;">
+    <paper-tabs selected="0" flex style="max-width: 150px;">
       <paper-tab>LIST OF POST</paper-tab>
-      <paper-tab></paper-tab>
-      <paper-tab></paper-tab>
     </paper-tabs>
   </div>
 
 </core-toolbar>
 
-  <!-- <core-toolbar id="title-header" class="medium-tall">
+<% if(username) { %>
+ 
+<!--<core-toolbar id="title-header" class="medium-tall">
 
       <div class="top indent title"><h1>List of posts</h1></div>
       <paper-fab icon="add" ng-click="addPost('<%= newPostUrl %>')" class="bottom indent" title="add new post"></paper-fab>
       <span flex class="bottom indent subtitle">Invention4 > Admin panel</span>
 
     </core-toolbar> -->
+<% } %>
