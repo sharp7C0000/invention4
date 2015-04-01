@@ -27,3 +27,17 @@ define ['angular'], (angular) ->
 
 
 	)
+
+	.directive('paper-tab', () ->
+		{
+			restrict:'E'
+			#require : '^ngClick'
+			link: (scope, elem, attrs) ->
+				console.log "inside link"
+				element.on('load', ()-> console.log "load")
+				element.on('click', ()-> console.log "ok")
+
+				#elem.click = () -> console.log "click!"
+		}
+
+	)

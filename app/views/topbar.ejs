@@ -44,7 +44,7 @@
   <% if(username) { %>
     <div class="bottom fit" horizontal layout>
       <paper-tabs selected="0" flex>
-        <paper-tab>MANAGE POST</paper-tab>
+        <paper-tab ng-click="tab('<%- managePostUrl %>')">MANAGE POST</paper-tab>
       </paper-tabs>
     </div>
   <% } %>

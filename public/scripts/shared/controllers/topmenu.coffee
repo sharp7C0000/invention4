@@ -4,6 +4,8 @@ define [], () -> [ "$scope", "$http", ($scope, $http) ->
 
 	$scope.home = () -> window.location = "/"
 
+	$scope.tab  = (url) -> window.location = url 
+
 	$scope.logout = (url) ->
 		# submit server
 		$http.delete(url)

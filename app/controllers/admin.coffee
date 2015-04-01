@@ -14,6 +14,7 @@ router.get '/', (req, res, next) ->
 	res.render 'admin',
     title     : 'admin page'
     logoutUrl : '/auth/logout'
+    managePostUrl: '/admin'
     newPostUrl: '/admin/post/'
     username  : req.user.username
 
@@ -21,6 +22,7 @@ router.get '/post/', (req, res, next) ->
   res.render 'admin_new_post',
     title     : 'new post'
     logoutUrl : '/auth/logout'
+    managePostUrl: '/admin'
     username  : req.user.username
 
 authenticatedOrNot = (req, res, next) ->
