@@ -11,21 +11,11 @@
 
   <div ng-controller="Admin">
 
-    <div id="contents" style="max-width:780px;margin-left:auto;margin-right:auto;padding:20px;padding-top:40px;">
+    <div id="contents" style="">
 
-      <div style="color:#444;font-size:22px;color:magenta"><core-icon icon="create"></core-icon>New Post</div>
+      <div style="color:#444;font-size:22px;color:magenta;margin-bottom:20px;"><core-icon icon="add"></core-icon>&nbsp;New Post</div>
 
       
-     <paper-button
-        raised class="submit primary" style="margin-top:30px;">
-        SUBMIT
-      </paper-button>
-
-       <paper-button
-        raised class="submit" style="margin-top:30px;">
-        CANCEL
-      </paper-button>
-
 
       <paper-input-decorator 
         label="Title" 
@@ -40,7 +30,26 @@
         >
       </paper-input-decorator>
 
-    <div style="margin-right:auto;margin-left:auto;max-width:780px;padding:10px;margin:0px auto;height:100px;"><textarea id="editor" style="height:100px;" height="100px"></textarea></div>
+    <div style="margin-right:auto;margin-left:auto;max-width:780px;padding:0px;margin:0px auto;height:100px;"><textarea id="editor" style="height:100px;" height="100px"></textarea></div>
+
+    <div style="margin-top:100px;width:100%;border-top:1px solid black;">
+
+      <div style="float:right;">
+
+     <paper-button
+        raised class="submit primary" style="margin-top:20px;">
+        PUBLISH
+      </paper-button>
+
+       <paper-button
+        raised class="submit" style="margin-top:20px;">
+        CANCEL
+      </paper-button>
+
+    </div>
+
+    </div>
+
 
 
   </div>
