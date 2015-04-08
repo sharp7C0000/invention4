@@ -4,6 +4,7 @@ define [
 	'angular'
 	'admin_new_post/app'
 	'css!../../css/admin'
+	'css!../../css/admin_new_post'
 	'editor'
 ], (angular, app) ->
 	$html = angular.element(document.getElementsByTagName('html')[0])
