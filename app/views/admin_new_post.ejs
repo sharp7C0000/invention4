@@ -3,7 +3,7 @@
 <core-header-panel flex>
   <% include topbar %>
 
-  <div ng-controller="Admin">
+  <div ng-controller="AdminNewPost">
 
     <div id="contents">
 
@@ -11,34 +11,42 @@
         <core-icon icon="add"></core-icon>&nbsp;New Post
       </div>
 
-      <paper-input-decorator 
-        label="Title" 
-      >
-        <input name="title" is="paper-input"
-          required 
-          ng-model="formData.title" 
-          ng-minlength="1"
-          ng-keydown="hideGlobalValidation()"
+
+      <form name="newPostForm">
+
+        <paper-input-decorator 
+          label="Title" 
         >
-      </paper-input-decorator>
+          <input name="title" is="paper-input"
+            required 
+            ng-model="formData.title" 
+            ng-minlength="1"
+            ng-keydown="hideGlobalValidation()"
+          >
+        </paper-input-decorator>
  
-      <div class="editor-wrapper">
-        <textarea id="editor"></textarea>
-      </div>
-
-      <div class="buttons">
-        <div>
-           <paper-button
-              raised class="submit primary">
-              PUBLISH
-            </paper-button>
-
-           <paper-button
-              raised class="submit">
-              CANCEL
-            </paper-button>
+        <div class="editor-wrapper">
+          <textarea id="editor"></textarea>
         </div>
-      </div>
+
+        <div class="buttons">
+          <div>
+             <paper-button
+                ng-click="submit('/')"
+                raised class="primary">
+                PUBLISH
+              </paper-button>
+
+             <paper-button
+                ng-click="cancel('<%- managePostUrl %>')"
+                raised>
+                CANCEL
+              </paper-button>
+          </div>
+        </div>
+
+      </form>
+
     </div>
 
   </div>

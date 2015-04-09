@@ -2,14 +2,15 @@
 
 define [], () -> [ "$scope", "$http", ($scope, $http) ->
 
-	#console.log "admin new!", CodeMirror
-
 	editor = new Editor()
 	editor.render()
 
-	$scope.addPost = (url)-> 
-		console.log "AddPost"
-		window.location = url
+	$scope.cancel = (url) -> window.location = url
+
+	$scope.submit = (url) ->
+		form = $scope.newPostForm
+		console.log form
+
 
 	$scope.$apply()
 ]
