@@ -1,60 +1,47 @@
 <% include header %>
 
-<style>
-.CodeMirror {
-  height:80px;
-}
-</style>
-
 <core-header-panel flex>
   <% include topbar %>
 
   <div ng-controller="Admin">
 
-    <div id="contents" style="">
+    <div id="contents">
 
-      <div style="color:#444;font-size:22px;color:magenta;margin-bottom:20px;"><core-icon icon="add"></core-icon>&nbsp;New Post</div>
-
-      
+      <div class="page-title">
+        <core-icon icon="add"></core-icon>&nbsp;New Post
+      </div>
 
       <paper-input-decorator 
         label="Title" 
-       
       >
-        <input name="username" is="paper-input"
+        <input name="title" is="paper-input"
           required 
-          ng-model="formData.username" 
-          ng-maxlength="10" 
-          ng-minlength="4"
+          ng-model="formData.title" 
+          ng-minlength="1"
           ng-keydown="hideGlobalValidation()"
         >
       </paper-input-decorator>
+ 
+      <div class="editor-wrapper">
+        <textarea id="editor"></textarea>
+      </div>
 
-    <div style="margin-right:auto;margin-left:auto;max-width:780px;padding:0px;margin:0px auto;height:100px;margin-top:20px;"><textarea id="editor" style="height:100px;padding:10px;" height="100px"></textarea></div>
+      <div class="buttons">
+        <div>
+           <paper-button
+              raised class="submit primary">
+              PUBLISH
+            </paper-button>
 
-    <div style="margin-top:80px;">
-
-      <div style="margin-left:auto;margin-right:auto;text-align:center">
-
-     <paper-button
-        raised class="submit primary" style="margin-top:20px;width:25%;">
-        PUBLISH
-      </paper-button>
-
-       <paper-button
-        raised class="submit" style="margin-top:20px;width:25%">
-        CANCEL
-      </paper-button>
-
+           <paper-button
+              raised class="submit">
+              CANCEL
+            </paper-button>
+        </div>
+      </div>
     </div>
-
-    </div>
-
-
 
   </div>
-
-   </div>
   
   </div>
 </core-header-panel>
