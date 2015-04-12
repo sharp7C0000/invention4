@@ -15,12 +15,13 @@
       <form name="newPostForm">
 
         <paper-input-decorator 
-          label="Title" 
+          label="Title"
+          error="{{errorMessage(newPostForm.title.$error)}}" 
+          isInvalid="{{!newPostForm.title.$valid && newPostForm.title.$dirty}}"
         >
           <input name="title" is="paper-input"
             required 
             ng-model="formData.title" 
-            ng-minlength="1"
             ng-keydown="hideGlobalValidation()"
           >
         </paper-input-decorator>
