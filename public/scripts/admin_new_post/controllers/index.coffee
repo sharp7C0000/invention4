@@ -6,10 +6,6 @@ define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$http", ($scope, 
 	angular.extend(this, new formCtrl($scope, $http))
 	$scope.targetForm = $scope.newPostForm
 
- 	# initialize editor
-	editor = new Editor()
-	editor.render()
-
 	$scope.cancel = (url) -> window.location = url
 
 	$scope.$apply()

@@ -10,6 +10,7 @@ router.use (req, res, next) ->
   # admin relative page need auth
   authenticatedOrNot(req, res, next)
 
+# GET : admin page (Render view)
 router.get '/', (req, res, next) ->
 	res.render 'admin',
     title     : 'admin page'
@@ -18,12 +19,19 @@ router.get '/', (req, res, next) ->
     newPostUrl: '/admin/post/'
     username  : req.user.username
 
+# GET : posting page (Render view)
 router.get '/post/', (req, res, next) ->
   res.render 'admin_new_post',
     title     : 'new post'
     logoutUrl : '/auth/logout'
     managePostUrl: '/admin'
+    submitUrl: '/admin/post/'
     username  : req.user.username
+
+# POST : post login form (JSON)
+router.post '/post/', (req, res, next) ->
+  console.log "ok", req
+  
 
 authenticatedOrNot = (req, res, next) ->
   if req.isAuthenticated()

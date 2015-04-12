@@ -1,6 +1,6 @@
 # Custom angular directive
 
-define ['angular'], (angular) ->
+define ['angular', 'editor'], (angular, editor) ->
 	angular.module('invention4.directives', [])
 
 	.directive('test', () ->
@@ -15,29 +15,8 @@ define ['angular'], (angular) ->
 	.directive('paper-fab', () ->
 		{
 			restrict:'E'
-			#require : '^ngClick'
 			link: (scope, elem, attrs) ->
-				console.log "inside link"
-				element.on('load', ()-> console.log "load")
-				element.on('click', ()-> console.log "ok")
-
-				#elem.click = () -> console.log "click!"
-
+				elem.on('load', ()-> console.log "load")
+				elem.on('click', ()-> console.log "ok")
 		}
-
-
-	)
-
-	.directive('paper-tab', () ->
-		{
-			restrict:'E'
-			#require : '^ngClick'
-			link: (scope, elem, attrs) ->
-				console.log "inside link"
-				element.on('load', ()-> console.log "load")
-				element.on('click', ()-> console.log "ok")
-
-				#elem.click = () -> console.log "click!"
-		}
-
 	)

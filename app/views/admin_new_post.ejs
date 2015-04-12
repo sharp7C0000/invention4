@@ -27,13 +27,17 @@
         </paper-input-decorator>
  
         <div class="editor-wrapper">
-          <textarea id="editor"></textarea>
+          <textarea ng-editor id="editor"
+            required
+            ng-model="formData.contents"
+            ng-keydown="hideGlobalValidation()"
+          ></textarea>
         </div>
 
         <div class="buttons">
           <div>
              <paper-button
-                ng-click="submit('/')"
+                ng-click="submit('<%-submitUrl%>')"
                 raised class="primary">
                 PUBLISH
               </paper-button>
