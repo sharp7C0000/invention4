@@ -25,9 +25,27 @@
             ng-keydown="hideGlobalValidation()"
           >
         </paper-input-decorator>
+
+        <paper-input-decorator 
+          label="Title"
+          error="{{errorMessage(newPostForm.title.$error)}}" 
+          isInvalid="{{!newPostForm.title.$valid && newPostForm.title.$dirty}}"
+        >
+        Contents
+      </paper-input-decorator>
+
+        <paper-shadow 
+        class="global-validator" 
+        z="1"
+        ng-cloak
+        ng-show="!newPostForm.contents.$valid && newPostForm.contents.$dirty"
+      >
+        <core-icon icon="report-problem"></core-icon>
+        {{errorMessage(newPostForm.contents.$error)}}
+      </paper-shadow>
  
         <div class="editor-wrapper">
-          <textarea ng-editor id="editor"
+          <textarea ng-editor id="editor" name="contents"
             required
             ng-model="formData.contents"
             ng-keydown="hideGlobalValidation()"
