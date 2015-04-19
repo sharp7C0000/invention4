@@ -4,7 +4,8 @@ define [], ($scope, $http) ->
 
 	# submitSuccess (optional) : success callback
 	# submitError   (optional) : error callback
-	formCtrl = ($scope, $http, submitSuccess, submitError) ->
+	# invalid       (optional) : additional invalid process
+	formCtrl = ($scope, $http, submitSuccess, submitError, invalid) ->
 
 		# initialize form data
 		$scope.formData       = {}
@@ -77,6 +78,9 @@ define [], ($scope, $http) ->
 
 						submitError(data, status) if submitError?
 				)
+
+			else
+				invalid() if invalid?
 
 		$scope.$apply()
 

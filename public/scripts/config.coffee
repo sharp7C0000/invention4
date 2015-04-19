@@ -16,6 +16,7 @@ require.config
 		'poly.paper.item'           : 'lib/polymer-component/paper_item'
 		'poly.paper.fab'            : 'lib/polymer-component/paper_fab'
 		'poly.paper.tabs'           : 'lib/polymer-component/paper_tabs'
+		'poly.paper.dialog'         : 'lib/polymer-component/paper_dialog'
 		epiceditor                  : '../components_other/epiceditor/epiceditor'
 		marked                      : '../components/marked/lib/marked'
 		editor                      : '../components_other/editor/editor'

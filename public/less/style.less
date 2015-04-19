@@ -59,7 +59,7 @@ paper-button[raised].primary {
 }
 
 paper-button[raised].secondary {
-	background-color: #616161;
+	background-color: @lightPrimaryColor;
 	color:@textNicon;
 }
 
@@ -124,6 +124,19 @@ paper-shadow.global-validator {
   }
 } 
 
+/** dialog **/
+paper-action-dialog {
+	width    : 50%;
+	min-width: 430px;
+
+	p {
+		margin-bottom: 0;
+	}
+
+	paper-button[autofocus] {
+		color: @primaryColor;
+	}
+}
 
 /** shared element style **/
 

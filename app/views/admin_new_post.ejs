@@ -11,7 +11,6 @@
         <core-icon icon="add"></core-icon>&nbsp;New Post
       </div>
 
-
       <form name="newPostForm">
 
         <paper-input-decorator 
@@ -26,29 +25,10 @@
           >
         </paper-input-decorator>
 
-        <paper-input-decorator 
-          label="Title"
-          error="{{errorMessage(newPostForm.title.$error)}}" 
-          isInvalid="{{!newPostForm.title.$valid && newPostForm.title.$dirty}}"
-        >
-        Contents
-      </paper-input-decorator>
-
-        <paper-shadow 
-        class="global-validator" 
-        z="1"
-        ng-cloak
-        ng-show="!newPostForm.contents.$valid && newPostForm.contents.$dirty"
-      >
-        <core-icon icon="report-problem"></core-icon>
-        {{errorMessage(newPostForm.contents.$error)}}
-      </paper-shadow>
- 
         <div class="editor-wrapper">
           <textarea ng-editor id="editor" name="contents"
             required
             ng-model="formData.contents"
-            ng-keydown="hideGlobalValidation()"
           ></textarea>
         </div>
 
@@ -70,6 +50,14 @@
 
       </form>
 
+      <paper-action-dialog backdrop autoCloseDisabled layered="false"
+        id="content-invalid"
+        ng-cloak
+      >
+        <p>{{contentsErrorMessage(newPostForm.contents.$error)}}</p>
+        <paper-button affirmative autofocus class="primary">close</paper-button>
+      </paper-action-dialog>
+     
     </div>
 
   </div>
