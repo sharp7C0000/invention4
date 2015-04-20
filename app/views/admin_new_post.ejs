@@ -32,6 +32,16 @@
           ></textarea>
         </div>
 
+        <paper-shadow 
+          class="global-validator" 
+          z="1"
+          ng-cloak
+          ng-show="formData.valid.global"
+        >
+          <core-icon icon="report-problem"></core-icon>
+          {{formData.error.global}}
+        </paper-shadow>
+
         <div class="buttons">
           <div>
              <paper-button

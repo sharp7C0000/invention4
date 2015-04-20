@@ -8,9 +8,9 @@ Schema   = mongoose.Schema
 # contents     : the contents of post
 # publish_date : publish date of post
 PostSchema = new Schema(
-  title        : String
-  contents     : String
-  publish_date : Date
+  title        : { type: String, required: true }
+  contents     : { type: String, required: true }
+  publish_date : { type: Date  , required: true }
 )
 Post = mongoose.model 'Post', PostSchema
  
