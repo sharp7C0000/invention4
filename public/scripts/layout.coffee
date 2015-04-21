@@ -14,6 +14,6 @@ require [
 	'poly.paper.menu_button'
 	'poly.paper.fab'
 	'poly.paper.tabs'
-	'poly.paper.dialog'
+	'poly.paper.action_dialog'
 ], () ->
 	# do some common behavior
