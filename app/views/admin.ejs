@@ -8,12 +8,36 @@
     <div id="contents">
       <div>
 
+        <style>
+          ul {
+           
+            list-style-type: none;
+          }
+          ul li {
+
+            padding: 10px;
+            border-bottom:1px solid black;
+          }
+        </style>
+
+
       	<ul>
+
           <li>
-            some long title
+            <span style="font-weight:bold;font-size:24px">title</span>
+            <div style="float:right;font-weight:bold;font-size:24px">published</div>
+            
+            
+          </li>
+
+          <li>
+            <span style="font-weight:bold;font-size:24px">some long title</span>
             <div style="float:right">2015-01</div>
-            <div style="float:clear">
-            <div>icon area</div>
+            <div style="float:clear"></div>
+            <div style="visible:none;">
+              <core-icon icon="create"></core-icon>
+              <core-icon icon="delete"></core-icon>
+            </div>
           </li>
           <li>
             some long title
