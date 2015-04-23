@@ -18,24 +18,75 @@
             padding: 10px;
             border-bottom:1px solid black;
           }
+
+          th {
+            text-align: left;
+            font-size:18px;
+            color: #616161;
+            background-color:#B6B6B6;
+            /*border-bottom: 2px solid #B6B6B6;*/
+            padding-top:10px;
+            padding-bottom:10px;
+          }
+
+
+          tbody td {
+            border-bottom: 1px solid #B6B6B6;
+            padding:10px;
+            padding-left:0px;
+          }
+
+          tbody td {
+            font-size:12px;
+            color: #727272;
+            
+          }
+
         </style>
 
 
-      	<ul>
+      	<div class="page-title">
+        <core-icon icon="list"></core-icon>&nbsp;List of post
+      </div>
 
-          <li>
-            <span style="font-weight:bold;font-size:24px">title</span>
-            <div style="float:right;font-weight:bold;font-size:24px">published</div>
+          <table style="width:100%;margin-top:40px;" cellspacing="0">
+            <thead><tr><th></th><th>Title</th><th>Publish date</th><th></th></tr></thead>
+            <tbody>
+              <tr>
+                <td></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td></td>
+              </tr>
+               <tr>
+                <td></td><td>zzzzzzzzzzzzzzzzz</td><td>2015-01-01</td><td></td>
+              </tr>
+               <tr>
+                <td></td><td>zzzzzzzzzzzzzzzzz</td><td>2015-01-01</td><td></td>
+              </tr>
+               <tr>
+                <td></td><td>zzzzzzzzzzzzzzzzz</td><td>2015-01-01</td><td></td>
+              </tr>
+               <tr>
+                <td></td><td>zzzzzzzzzzzzzzzzz</td><td>2015-01-01</td><td></td>
+              </tr>
+               <tr>
+                <td></td><td>zzzzzzzzzzzzzzzzz</td><td>2015-01-01</td><td></td>
+              </tr>
+            </tbody>
+          </table>
+
+
+         <!--  <li>
+            <span style="font-weight:bold;font-size:24px">Title</span>
+            <div style="float:right;font-weight:bold;font-size:24px">Published</div>
             
             
           </li>
 
           <li>
-            <span style="font-weight:bold;font-size:24px">some long title</span>
+            <span style="">some long title</span>
             <div style="float:right">2015-01</div>
             <div style="float:clear"></div>
             <div style="visible:none;">
-              <core-icon icon="create"></core-icon>
+              <core-icon icon="create" width="16px"></core-icon>
               <core-icon icon="delete"></core-icon>
             </div>
           </li>
@@ -51,7 +102,7 @@
           <li>
             some long title
           </li>
-        </ul>
+        </ul> -->
 
 
 	      <paper-fab id="add-post" icon="add" ng-click="addPost('<%= newPostUrl %>')" class="bottom indent" title="add new post"></paper-fab>
