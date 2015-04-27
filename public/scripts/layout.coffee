@@ -15,5 +15,6 @@ require [
 	'poly.paper.fab'
 	'poly.paper.tabs'
 	'poly.paper.action_dialog'
+	'poly.paper.checkbox'
 ], () ->
 	# do some common behavior

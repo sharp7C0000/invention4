@@ -18,6 +18,7 @@ require.config
 		'poly.paper.tabs'           : 'lib/polymer-component/paper_tabs'
 		'poly.paper.dialog'         : 'lib/polymer-component/paper_dialog'
 		'poly.paper.action_dialog'  : 'lib/polymer-component/paper_action_dialog'
+		'poly.paper.checkbox'       : 'lib/polymer-component/paper_checkbox'
 		epiceditor                  : '../components_other/epiceditor/epiceditor'
 		marked                      : '../components/marked/lib/marked'
 		editor                      : '../components_other/editor/editor'
