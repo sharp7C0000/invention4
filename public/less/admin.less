@@ -21,53 +21,8 @@ paper-dropdown {
 		font-size:12px;
     height   :52px;
 	}
- 
 }
 html /deep/ paper-dropdown::shadow #scroller {
   box-sizing: border-box;
   padding: 0px;
-}
-
-#contents {
-  paper-fab#add-post {
-    position:fixed;
-    right: 25px;
-    bottom:25px;
-    background-color:@accentColor;
-  }
-}
-
-table {
-  width     :100%;
-  margin-top:40px;
-
-  border-left:1px solid @dividerLightColor;
-  border-right:1px solid @dividerLightColor;
-  border-bottom:1px solid black;
-  th {
-    text-align: left;
-    font-size:16px;
-    color: @lightPrimaryColor;
-    background-color:@dividerLightColor;
-    padding-top:15px;
-    padding-bottom:15px;
-    padding-left:12px;
-    padding-right:12px;
-    font-weight:bold;
-  }
-
-
-  tbody td {
-    border-bottom: 1px solid @dividerColor;
-    padding:12px;
-  }
-
-  tbody td {
-    font-size:14px;
-    color: @secondaryText;
-  }
-
-  tbody tr:last-child td{
-    border:none;
-  }
 }
