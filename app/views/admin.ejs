@@ -6,82 +6,70 @@
   <div ng-controller="Admin">
 
     <div id="contents">
+      
       <div>
-
-        <style>
-          ul {
-           
-            list-style-type: none;
-          }
-          ul li {
-
-            padding: 10px;
-            border-bottom:1px solid black;
-          }
-
-          
-
-        </style>
-
-
       	<div class="page-title">
         <core-icon icon="list"></core-icon>&nbsp;List of post
       </div>
 
-          <table style="width:100%;margin-top:40px;" cellspacing="0">
-            <thead><tr><th></th><th>Title</th><th>Publish date</th><th></th></tr></thead>
+          <table cellspacing="0">
+            
+            <thead>
+              <tr>
+                <th style="text-align:center">
+                  <paper-checkbox for></paper-checkbox>
+                </th>
+                <th>Title</th>
+                <th>Publish date</th>
+                <th></th>
+              </tr>
+            </thead>
+            
             <tbody>
               <tr>
-                <td> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
+                <td style="text-align:center">
+                  <paper-checkbox for></paper-checkbox>
+                </td>
+                <td>lolem ipsum doler sit amen</td>
+                <td>2015-01-01</td>
+                <td>
+                  <paper-menu-button>
+                    <paper-icon-button icon="more-vert" title="more"></paper-icon-button>
+                    <paper-dropdown class="dropdown" transition="" halign="right" style="padding:0px;">
+                      <core-menu class="menu" >
+                        <paper-item style="margin-top:10px;margin-left:5px;margin-right:5px;"> 
+                          <core-icon icon="create"></core-icon>&nbsp;Edit
+                        </paper-item>
+                         
+                        <paper-item style="margin-left:5px;margin-right:5px;">
+                          <core-icon icon="delete"></core-icon>&nbsp;Remove
+                        </paper-item>
+                      </core-menu>
+                    </paper-dropdown>
+                  </paper-menu-button>
+
+
+
+                </td>
               </tr>
                <tr>
-                <td> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
+                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
               </tr>
                <tr>
-                <td> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
+                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
               </tr>
                <tr>
-                <td> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
+                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
               </tr>
                <tr>
-                <td> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
+                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
               </tr>
                <tr>
-                <td> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
+                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
               </tr>
             </tbody>
           </table>
 
-
-         <!--  <li>
-            <span style="font-weight:bold;font-size:24px">Title</span>
-            <div style="float:right;font-weight:bold;font-size:24px">Published</div>
-            
-            
-          </li>
-
-          <li>
-            <span style="">some long title</span>
-            <div style="float:right">2015-01</div>
-            <div style="float:clear"></div>
-            <div style="visible:none;">
-              <core-icon icon="create" width="16px"></core-icon>
-              <core-icon icon="delete"></core-icon>
-            </div>
-          </li>
-          <li>
-            some long title
-            <div style="float:right">2015-01</div>
-            <div style="float:clear">
-            <div>icon area</div>
-          </li>
-          <li>
-            some long title
-          </li>
-          <li>
-            some long title
-          </li>
-        </ul> -->
 
 
 	      <paper-fab id="add-post" icon="add" ng-click="addPost('<%= newPostUrl %>')" class="bottom indent" title="add new post"></paper-fab>

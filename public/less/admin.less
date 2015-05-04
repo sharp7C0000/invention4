@@ -38,6 +38,9 @@ html /deep/ paper-dropdown::shadow #scroller {
 }
 
 table {
+  width     :100%;
+  margin-top:40px;
+
   border-left:1px solid @dividerLightColor;
   border-right:1px solid @dividerLightColor;
   border-bottom:1px solid black;
@@ -46,7 +49,6 @@ table {
     font-size:16px;
     color: @lightPrimaryColor;
     background-color:@dividerLightColor;
-    /*border-bottom: 2px solid #B6B6B6;*/
     padding-top:15px;
     padding-bottom:15px;
     padding-left:12px;
@@ -58,13 +60,11 @@ table {
   tbody td {
     border-bottom: 1px solid @dividerColor;
     padding:12px;
-    //padding-left:0px;
   }
 
   tbody td {
     font-size:14px;
     color: @secondaryText;
-    
   }
 
   tbody tr:last-child td{

@@ -67,6 +67,20 @@ paper-icon-button.primary {
 	color: @accentColor;
 }
 
+// checkbox
+paper-checkbox::shadow #checkbox {
+	border-color: @secondaryText;
+}
+
+paper-checkbox::shadow #checkbox.checked {
+  background-color: @accentColor;
+  border-color    : @accentColor;
+}
+
+paper-checkbox::shadow #ink {
+  color: @secondaryText;
+}
+
 // input
 
 /** normal out focus **/
