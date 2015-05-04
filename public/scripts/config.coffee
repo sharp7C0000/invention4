@@ -1,6 +1,7 @@
 # Shared require js config
 
 require.config
+
 	paths: 
 		angular                     : '../components/angular/angular'
 		'poly.core.header_panel'    : 'lib/polymer-component/core_header_panel'
@@ -24,6 +25,7 @@ require.config
 		editor                      : '../components_other/editor/editor'
 		directives                  : 'lib/angular_directives'
 		globalMarked                : 'lib/marked'
+		moment                      : '../components/moment/moment'
 	map: 
 	  '*': 
 	    'css': '../../components/require-css/css'

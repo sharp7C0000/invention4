@@ -3,7 +3,7 @@
 <core-header-panel flex>
   <% include topbar %>
 
-  <div ng-controller="Admin">
+  <div ng-controller="AdminManagePost">
 
     <div id="contents">
       
@@ -26,12 +26,11 @@
             </thead>
             
             <tbody>
-              <tr>
-                <td style="text-align:center">
-                  <paper-checkbox for></paper-checkbox>
-                </td>
-                <td>lolem ipsum doler sit amen</td>
-                <td>2015-01-01</td>
+
+              <tr ng-repeat="post in posts">
+                <td><paper-checkbox for></paper-checkbox></td>
+                <td>{{post.title}}</td>
+                <td>{{toShortDate(post.publish_date)}}</td>
                 <td>
                   <paper-menu-button>
                     <paper-icon-button icon="more-vert" title="more"></paper-icon-button>
@@ -47,26 +46,9 @@
                       </core-menu>
                     </paper-dropdown>
                   </paper-menu-button>
-
-
-
                 </td>
               </tr>
-               <tr>
-                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
-              </tr>
-               <tr>
-                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
-              </tr>
-               <tr>
-                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
-              </tr>
-               <tr>
-                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
-              </tr>
-               <tr>
-                <td style="text-align:center"> <paper-checkbox for></paper-checkbox></td><td>lolem ipsum doler sit amen</td><td>2015-01-01</td><td><paper-icon-button icon="more-vert" title="more"></paper-icon-button></td>
-              </tr>
+               
             </tbody>
           </table>
 
@@ -78,6 +60,6 @@
   </div>
 </core-header-panel>
 
-<script src="/components/requirejs/require.js" data-main="/js/admin.js"></script>
+<script src="/components/requirejs/require.js" data-main="/js/admin_manage_post.js"></script>
 
 <% include footer %>
