@@ -9,15 +9,24 @@
     bottom:25px;
     background-color:@accentColor;
   }
+
+  paper-fab#remove-posts {
+    position:fixed;
+    right: 25px;
+    bottom:100px;
+    background-color:@lightPrimaryColor;
+  }
 }
 
 table {
   width     :100%;
   margin-top:40px;
 
+  
   border-left:1px solid @dividerLightColor;
   border-right:1px solid @dividerLightColor;
   border-bottom:1px solid black;
+
   th {
     text-align: left;
     font-size:16px;
@@ -34,11 +43,16 @@ table {
   tbody td {
     border-bottom: 1px solid @dividerColor;
     padding:12px;
-  }
-
-  tbody td {
     font-size:14px;
     color: @secondaryText;
+
+    &.empty-list {
+      height    : 100px;
+      text-align: center;
+      font-size: 16px;
+      color: @dividerColor ;
+      font-weight:bold;
+    }
   }
 
   tbody tr:last-child td{

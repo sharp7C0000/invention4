@@ -12,12 +12,12 @@
         <core-icon icon="list"></core-icon>&nbsp;List of post
       </div>
 
-          <table cellspacing="0">
+          <table cellspacing="0" ng-cloak>
             
             <thead>
               <tr>
                 <th style="text-align:center">
-                  <paper-checkbox for></paper-checkbox>
+                  <paper-checkbox name="check-all"></paper-checkbox>
                 </th>
                 <th>Title</th>
                 <th>Publish date</th>
@@ -28,7 +28,9 @@
             <tbody>
 
               <tr ng-repeat="post in posts">
-                <td><paper-checkbox for></paper-checkbox></td>
+                <td style="text-align:center">
+                  <paper-checkbox id="{{post._id}}" name="check"></paper-checkbox>
+                </td>
                 <td>{{post.title}}</td>
                 <td>{{toShortDate(post.publish_date)}}</td>
                 <td>
@@ -40,7 +42,7 @@
                           <core-icon icon="create"></core-icon>&nbsp;Edit
                         </paper-item>
                          
-                        <paper-item style="margin-left:5px;margin-right:5px;">
+                        <paper-item style="margin-left:5px;margin-right:5px;" ng-click="removePost('<%= postDeleteUrl %>', post._id)">
                           <core-icon icon="delete"></core-icon>&nbsp;Remove
                         </paper-item>
                       </core-menu>
@@ -48,11 +50,17 @@
                   </paper-menu-button>
                 </td>
               </tr>
+
+              <!-- empty list -->
+              <tr ng-cloak ng-show="posts.length < 1">
+                <td colspan="4" class="empty-list">No Post exsist</td>
+              <tr>
                
             </tbody>
           </table>
 
-
+        <paper-fab id="remove-posts" style="display:none;"
+          icon="delete" ng-click="removePosts('<%= postsDeleteUrl %>')" class="bottom indent" title="add new post"></paper-fab>
 
 	      <paper-fab id="add-post" icon="add" ng-click="addPost('<%= newPostUrl %>')" class="bottom indent" title="add new post"></paper-fab>
 	    </div>

@@ -61,13 +61,9 @@ define [], ($scope, $http) ->
 				# submit server
 				$http.post(url, $scope.formData)
 				.success((data, status, headers, config) ->
-					console.log "success", data, status, headers, config
-
 					submitSuccess(data, status, headers, config) if submitSuccess?
 				)
 				.error((data, status) -> 
-					console.log "error", data, status
-
 					if data.error?
 						error = data.error
 

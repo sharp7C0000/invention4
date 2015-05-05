@@ -5,50 +5,41 @@ mongoose = require 'mongoose'
 moment   = require 'moment'
 Post     = mongoose.model 'Post'
 
+util = require '../util/common'
+
 module.exports = (app) ->
   app.use '/admin', router
 
 router.use (req, res, next) ->
   # admin relative page need auth
-  authenticatedOrNot(req, res, next)
+  util.authenticatedOrNot(req, res, next)
 
 # GET : post list page (Render view)
 router.get '/posts', (req, res, next) ->
 
   resObj = defaultResponse(req)
-  resObj.title       = "list of post"
-  resObj.newPostUrl  = '/admin/post/'
-  resObj.postListUrl = '/admin/posts/list'
+  resObj.title          = "list of post"
+  resObj.newPostUrl     = '/admin/post/'
+  resObj.postListUrl    = '/admin/posts/list'
+  resObj.postDeleteUrl  = '/admin/post/'
+  resObj.postsDeleteUrl = '/admin/posts/delete'
 
   res.render 'admin_manage_post', resObj
 
 # GET : post list datas (JSON)
 router.get '/posts/list', (req, res, next) ->
-  Post.find {}, 'title publish_date', (error, docs) ->
-    if error?
-      
-      console.log "database error : " + error
+  Post.find {}, 'title publish_date', util.dbCallback((docs) ->
+    res.status(200).json(
+      status: "OK"
+      data  : {
+        # post datas
+        posts: docs
+      }
+      error : null
+    )
+  )
 
-      return res.status(400).json(
-        status: "BAD_REQUEST"
-        data  : null
-        error : {
-          type    : "DATABASE_ERROR"
-          # do not send error detail to client
-          contents: null
-        }
-      )
-    else
-      res.status(200).json(
-        status: "OK"
-        data  : {
-          # post datas
-          posts: docs
-        }
-        error : null
-      )
-
-# GET : posting page (Render view)
+# GET : new posting page (Render view)
 router.get '/post/', (req, res, next) ->
 
   resObj = defaultResponse(req)
@@ -68,40 +59,45 @@ router.post '/post/', (req, res, next) ->
     publish_date : moment().format("YYYY-MM-DD HH:mm:ss")
   )
 
-  newPost.save((error, doc) ->
-    if error?
-      
-      console.log "database error : " + error
+  newPost.save(util.dbCallback((docs) ->
+    res.status(200).json(
+      status: "OK"
+      data  : {
+        # redirect after save posting
+        redirectUrl: "/admin"
+      }
+      error : null
+    )
+  ))
 
-      return res.status(400).json(
-        status: "BAD_REQUEST"
-        data  : null
-        error : {
-          type    : "DATABASE_ERROR"
-          # do not send error detail to client
-          contents: null
-        }
-      )
-    else
+# DELETE : delete one exsit post (JSON)
+router.delete '/post/:id', (req, res, next) ->
+
+  Post.findByIdAndRemove(req.params.id, util.dbCallback(() ->
       res.status(200).json(
         status: "OK"
-        data  : {
-          # redirect after save posting
-          redirectUrl: "/admin"
-        }
+        data  : null
         error : null
       )
+    )
   )
 
+# POST : delete many post (JSON)
+router.post '/posts/delete', (req, res, next) ->
+
+  formData = req.body
+
+  # TODO : check form is valid
+
+  Post.remove('_id': { $in: formData }, util.dbCallback((docs) ->
+    res.status(200).json(
+      status: "OK"
+      data  : null
+      error : null
+    )
+  ))
 
 defaultResponse = (req) ->
   logoutUrl    : '/auth/logout'
   managePostUrl: '/admin/posts'
   username     : req.user.username
-
-authenticatedOrNot = (req, res, next) ->
-  if req.isAuthenticated()
-    next()
-  else
-    res.redirect "/auth/login"
-  return
