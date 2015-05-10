@@ -28,3 +28,16 @@ module.exports =
 
 			else
 				success(docs)
+
+	# default database callback (return HTML 400 error)
+	dbCallbackHTML: (success) -> 
+		(error, docs) ->
+			if error?
+			  
+			  console.log "database error : " + error
+
+			  # TODO : show default 400 error page
+			  return res.status(400).send(error)
+
+			else
+				success(docs)

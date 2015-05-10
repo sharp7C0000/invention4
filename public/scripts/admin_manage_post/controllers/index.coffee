@@ -38,6 +38,9 @@ define ['moment'], (moment) -> [ "$scope", "$http", ($scope, $http) ->
 		else 
 			bulkButton.style.display = 'none'
 
+	$scope.editPost = (editUrl, postId) ->
+		window.location = editUrl + postId
+
 	$scope.removePost = (deleteUrl, postId) ->
 		# TODO : confirm remove
 		$http.delete(deleteUrl + postId)

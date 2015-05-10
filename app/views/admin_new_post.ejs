@@ -8,7 +8,12 @@
     <div id="contents">
 
       <div class="page-title">
-        <core-icon icon="add"></core-icon>&nbsp;New Post
+        <% if (postId) { %>
+          <core-icon icon="create"></core-icon>&nbsp;Edit Post
+        <% } else { %>
+          <core-icon icon="add"></core-icon>&nbsp;New Post
+        <% } %>
+        
       </div>
 
       <form name="newPostForm">
@@ -22,14 +27,15 @@
             required 
             ng-model="formData.title" 
             ng-keydown="hideGlobalValidation()"
+            value="<%= postTitle %>"
           >
         </paper-input-decorator>
 
         <div class="editor-wrapper">
-          <textarea ng-editor id="editor" name="contents"
+          <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
             required
             ng-model="formData.contents"
-          ></textarea>
+          ><% if (postContents) { %><%= postContents %><% } %></textarea>
         </div>
 
         <paper-shadow 
@@ -44,10 +50,15 @@
 
         <div class="buttons">
           <div>
+
              <paper-button
                 ng-click="submit('<%-submitUrl%>')"
                 raised class="primary">
-                PUBLISH
+                <% if (postId) { %>
+                  Update
+                <% } else { %>
+                  Publish
+                <% } %>
               </paper-button>
 
              <paper-button
