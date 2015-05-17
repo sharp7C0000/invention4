@@ -34,6 +34,17 @@ db.once('open', function() {
     	console.log("user " + user.username + " created")
     }
   });
+
+  var Setting = mongoose.model('Setting');
+  setting = new Setting();
+  setting.save(function(err, setting){
+    if(err) {
+      console.error(err);
+    } else {
+      console.log("setting created")
+    }
+  });
+
 });
 
 var app = express();
