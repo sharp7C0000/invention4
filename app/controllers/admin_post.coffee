@@ -44,8 +44,8 @@ router.get '/post/', (req, res, next) ->
 
   resObj = defaultResponse(req)
   resObj.postId       = null
-  resObj.postTitle    = null
-  resObj.postContents = null
+  resObj.postTitle    = ""
+  resObj.postContents = ""
   resObj.title      = "new post"
   resObj.submitUrl  = '/admin/post/'
 
@@ -58,10 +58,11 @@ router.get '/post/:id', (req, res, next) ->
     if docs?
       resObj = defaultResponse(req)
       resObj.postId       = req.params.id
-      resObj.title        = "edit post"
       resObj.postTitle    = docs.title
-      resObj.postContents = docs.contents 
+      resObj.postContents = docs.contents
+      resObj.title        = "edit post" 
       resObj.submitUrl    = '/admin/post/' + req.params.id
+
       res.render 'admin_new_post', resObj
     else
       # TODO : make 400 page
@@ -89,6 +90,26 @@ router.post '/post/', (req, res, next) ->
       error : null
     )
   ))
+
+# POST : update exsist post (JSON)
+router.post '/post/:id', (req, res, next) ->
+  
+  formData = req.body
+
+  Post.findByIdAndUpdate(req.params.id, {
+    title    : formData.title
+    contents : formData.contents
+  }, util.dbCallback(() ->
+      res.status(200).json(
+        status: "OK"
+        data  : {
+          # redirect after save posting
+          redirectUrl: "/admin"
+        }
+        error : null
+      )
+    )
+  )
 
 # DELETE : delete one exsit post (JSON)
 router.delete '/post/:id', (req, res, next) ->

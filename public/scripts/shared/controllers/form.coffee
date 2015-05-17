@@ -8,7 +8,7 @@ define [], ($scope, $http) ->
 	formCtrl = ($scope, $http, submitSuccess, submitError, invalid) ->
 
 		# initialize form data
-		$scope.formData       = {}
+		$scope.formData       = {} if not $scope.formData?
 		$scope.formData.error = {}
 		$scope.formData.valid = {}
 

@@ -12,16 +12,24 @@ define ['angular', 'editor'], (angular, editor) ->
 	    }
 			link: (scope, elem, attrs, ngModelCtrl) ->
 
+				updateValue = (value) -> ngModelCtrl.$setViewValue(value)
+
 				# initialize editor
 				editor = new Editor()
 				editor.render()
-				
-				setTimeout (() -> editor.codemirror.refresh()), 200
 
+				# update view value
+				updateValue(editor.codemirror.getValue())
+				
 				# add on change listener
 				editor.codemirror.on("change", () ->
 					# update view value
-					ngModelCtrl.$setViewValue(editor.codemirror.getValue())
+					updateValue(editor.codemirror.getValue())
 				)
+
+				setTimeout (() ->
+					editor.codemirror.refresh()
+					editor.codemirror.focus()
+				), 500
 		}
 	)

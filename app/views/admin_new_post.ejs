@@ -26,8 +26,7 @@
           <input name="title" is="paper-input"
             required 
             ng-model="formData.title"
-            ng-init="formData.title='John'"
-            
+            ng-init="formData.title='<%= postTitle %>'"
             ng-keydown="hideGlobalValidation()"
             value="<%= postTitle %>"
           >
@@ -36,7 +35,7 @@
         <div class="editor-wrapper">
           <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
             required
-            ng-model="submitData.contents"
+            ng-model="formData.contents"
           ><% if (postContents) { %><%= postContents %><% } %></textarea>
         </div>
 
