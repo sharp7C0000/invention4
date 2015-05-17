@@ -1,14 +1,47 @@
 <% include header %>
 
+  <style>
+
+    BODY {
+      background-color:#EAEAEA;
+    }
+    
+    .card {
+      display: inline-block;
+      background: white;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100px;
+      margin: 16px;
+      padding: 16px;
+      border-radius: 2px;
+    }
+
+   
+  </style>
+
 
 <core-header-panel flex>
 
   <core-toolbar>
-    <core-icon-button icon="menu"></core-icon-button>
-    <span flex>Toolbar</span>
-    <core-icon-button icon="refresh"></core-icon-button>
-    <core-icon-button icon="add"></core-icon-button>
+    <span flex>My Blog Name</span>
+    <paper-icon-button icon="info-outline"></paper-icon-button>
   </core-toolbar>
+  <div id="contents">
+     <paper-shadow class="card" z="1">
+      <h3>My Post Title</h3>
+      <p>Some little summary</p>
+    </paper-shadow>
+    <paper-shadow class="card" z="1">
+      z = 1
+    </paper-shadow>
+    <paper-shadow class="card" z="1">
+      z = 1
+    </paper-shadow>
+    <paper-shadow class="card" z="1">
+      z = 1
+    </paper-shadow>
+  </div>
 </core-header-panel>
 
 <script src="/components/requirejs/require.js" data-main="/js/index.js"></script>
