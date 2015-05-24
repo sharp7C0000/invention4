@@ -1,28 +1,5 @@
-// admin page style
+/** admin common css styles **/
 
-@import 'variables.less';
-
-.page-title {
-  font-size    : 26px;
-  color        : @accentColor;
-  margin-bottom: 20px;
-  font-weight  : bold;
-}
-
-paper-dropdown {
-  position  : absolute!important;
-  top       : 38px!important;
-  right     : 10px!important;
-  min-width : 180px!important;
-  min-height:120px!important;
-
-  paper-item {
-		color    : @primaryText;
-		font-size:12px;
-    height   :52px;
-	}
-}
-html /deep/ paper-dropdown::shadow #scroller {
-  box-sizing: border-box;
-  padding: 0px;
-}
+@import './admin/variables.less';
+@import './common.less';
+@import './admin/style.less';

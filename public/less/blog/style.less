@@ -1,193 +1,28 @@
-/** common css styles **/
-
-@import url(http://fonts.googleapis.com/css?family=Roboto);
-@import './variables.less';
-
-/** to use ng-cloak **/
-
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
-}
+/** blog common css styles **/
 
 body {
-	font-family: 'Roboto', sans-serif;
-	color      : @primaryText;
+	background-color:@dividerLightColor;
 }
 
-
-a {
-	text-decoration: none;
-	color: @accentColor;
-}
-
-a:active, a:hover {
-	text-decoration: underline;
-}
-
-/** polymer ui customize **/
-
-// core toolbar
-
-core-toolbar#mainheader {
+core-toolbar#blog-mainheader {
   background-color: @primaryColor;
   color           : @textNicon;
-
-  // tab menu
-  paper-tabs {
-		font-size  : 13px;
-		font-weight: bold;
-    color      : @textNicon;
-    box-shadow : none;
-    max-width  : 150px;
-  }
-   
-  paper-tabs::shadow #selectionBar {
-  	background-color: @accentColor;
-  	height          :4px;
-	}
-
-  paper-tabs paper-tab::shadow #ink {
-  	color: @accentColor;
-	}
 }
 
-// buttons
-
-paper-button[raised].primary {
-  background-color: @accentColor;
-  color           : @textNicon;
+paper-shadow.content-box {
+  display      : inline-block;
+  background   : white;
+  box-sizing   : border-box;
+  width        : 100%;
+  
+  margin       : 16px;
+  padding      : 10px;
+  padding-left :16px;
+  padding-right:16px;
+  border-radius: 2px;
 }
 
-paper-button[raised].secondary {
-	background-color: @lightPrimaryColor;
-	color:@textNicon;
+paper-shadow.content-box.summary {
+	height: 200px;
 }
 
-paper-icon-button.primary {
-	color: @accentColor;
-}
-
-// checkbox
-paper-checkbox::shadow #checkbox {
-	border-color: @secondaryText;
-}
-
-paper-checkbox::shadow #checkbox.checked {
-  background-color: @accentColor;
-  border-color    : @accentColor;
-}
-
-paper-checkbox::shadow #ink {
-  color: @secondaryText;
-}
-
-// input
-
-/** normal out focus **/
-paper-input-decorator /deep/ .unfocused-underline {
-	background-color: @primaryColor!important;
-}
-paper-input-decorator /deep/ .floated-label .label-text {
-	color: @primaryText!important;
-}
-
-/** normal focus **/
-paper-input-decorator /deep/ .focused-underline {
-	background-color: @primaryColor!important;
-}
-paper-input-decorator[focused] /deep/ .floated-label .label-text {
-	color: @primaryText!important;
-}
-
-/** invalid focus **/
-paper-input-decorator.invalid /deep/ .focused-underline {
-	background-color: @lightPrimaryColor!important;
-}
-paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,
-paper-input-decorator[focused] /deep/ .error {
-	color: @secondaryText!important;
-}
-
-/** invalid out focus **/
-paper-input-decorator.invalid /deep/ .unfocused-underline {
-	background-color: @lightPrimaryColor!important;
-}
-paper-input-decorator.invalid /deep/ .floated-label .label-text,
-paper-input-decorator /deep/ .error {
-	color: @secondaryText!important;
-}
-
-/** form - global validation **/
-paper-shadow.global-validator {
-  display         : inline-block;
-  background-color: @lightPrimaryColor;
-  box-sizing      : border-box;
-  margin-bottom   : 0px;
-  margin-top      : 20px;
-  padding         : 10px;
-  border-radius   : 2px;
-  width           : 100%;
-  color           : @textNicon;
-  font-size       : 13px;
-
-  core-icon {
-    margin-right:5px;
-    font-size   :12px;
-    height      :18px;
-    width       :18px; 
-  }
-} 
-
-/** dialog **/
-paper-action-dialog {
-	width    : 50%;
-	min-width: 430px;
-
-	p {
-		margin-bottom: 0;
-	}
-
-	paper-button[autofocus] {
-		color: @primaryColor;
-	}
-}
-
-/** shared element style **/
-
-#mainheader #userinfo {
-
-	paper-item:first-child > .button-content {
-  	padding-bottom:0px!important;
-	}
-
-	paper-item:last-child > .button-content {
-  	padding-top:5px!important;
-	}
-
-	paper-button {
-		width: 100%;
-	}
-
-	.edituser {
-		float:right;
-
-		.paper-icon-button {
-			float:right;
-			width:100%;
-		}
-
-	}
-
-	.username {
-		float:left;
-		width:100%;
-	}
-}
-
-#contents {
-	max-width   :780px;
-	margin-left :auto;
-	margin-right:auto;
-	padding     :20px;
-	padding-top :40px;
-}
