@@ -2,7 +2,7 @@
 
 require.config
 
-	paths: 
+	paths:
 		angular                     : '../components/angular/angular'
 		'poly.core.header_panel'    : 'lib/polymer-component/core_header_panel'
 		'poly.core.toolbar'         : 'lib/polymer-component/core_toolbar'
@@ -20,20 +20,21 @@ require.config
 		'poly.paper.dialog'         : 'lib/polymer-component/paper_dialog'
 		'poly.paper.action_dialog'  : 'lib/polymer-component/paper_action_dialog'
 		'poly.paper.checkbox'       : 'lib/polymer-component/paper_checkbox'
-		epiceditor                  : '../components_other/epiceditor/epiceditor'
 		marked                      : '../components/marked/lib/marked'
 		editor                      : '../components_other/editor/editor'
 		directives                  : 'lib/angular_directives'
 		globalMarked                : 'lib/marked'
 		moment                      : '../components/moment/moment'
-	map: 
-	  '*': 
+		highlightjs                 : '../components/highlightjs/highlight.pack'
+	map:
+	  '*':
 	    'css': '../../components/require-css/css'
-  
+
 	shim:
 		angular               : {exports: 'angular'}
 		editor                : {deps   : ['globalMarked', 'css!../css/editor']}
-		
+		highlightjs           : {deps   : ['css!../components/highlightjs/styles/arta']}
+
 	priority: ["angular"]
 
 # https://github.com/tnajdek/angular-requirejs-seed

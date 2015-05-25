@@ -28,7 +28,7 @@ router.get '/posts', (req, res, next) ->
 
 # GET : post list datas (JSON)
 router.get '/posts/list', (req, res, next) ->
-  Post.find {}, 'title publish_date', util.dbCallback((docs) ->
+  Post.find {}, 'title publish_date', {sort: {publish_date: -1}}, util.dbCallback((docs) ->
     res.status(200).json(
       status: "OK"
       data  : {
@@ -60,7 +60,7 @@ router.get '/post/:id', (req, res, next) ->
       resObj.postId       = req.params.id
       resObj.postTitle    = docs.title
       resObj.postContents = docs.contents
-      resObj.title        = "edit post" 
+      resObj.title        = "edit post"
       resObj.submitUrl    = '/admin/post/' + req.params.id
 
       res.render 'admin_new_post', resObj
@@ -75,7 +75,7 @@ router.post '/post/', (req, res, next) ->
   formData = req.body
 
   newPost = new Post(
-    title        : formData.title 
+    title        : formData.title
     contents     : formData.contents
     publish_date : moment().format("YYYY-MM-DD HH:mm:ss")
   )
@@ -93,7 +93,7 @@ router.post '/post/', (req, res, next) ->
 
 # POST : update exsist post (JSON)
 router.post '/post/:id', (req, res, next) ->
-  
+
   formData = req.body
 
   Post.findByIdAndUpdate(req.params.id, {

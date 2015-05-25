@@ -1,0 +1,43 @@
+<% include header %>
+
+<core-header-panel flex>
+
+  <% include blog_topbar %>
+
+  <div ng-controller="BlogReadPost">
+
+    <div id="contents">
+
+      <paper-shadow class="content-box" z="1">
+        <h1><a href="#" ng-click="clickTitle($event)"><%= post.title %></a></h1>
+
+        <p class="date-and-autor">
+          <core-icon icon="today"></core-icon>&nbsp;
+          <%= post["publish_date"] %>
+        </p>
+
+        <div class="post-contents">
+          <%- post.contents %>
+        </div>
+
+      </paper-shadow>
+
+      <div class="nav-buttons">
+        <paper-button raised ng-click="clickBack($event)">
+          GO BACK
+        </paper-button>
+        <paper-button raised ng-click="clickBack($event)">
+          SHARE
+        </paper-button>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</core-header-panel>
+
+<script src="/components/requirejs/require.js" data-main="/js/blog_read_post.js"></script>
+
+<% include footer %>

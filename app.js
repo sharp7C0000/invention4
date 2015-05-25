@@ -36,15 +36,19 @@ db.once('open', function() {
   });
 
   var Setting = mongoose.model('Setting');
-  setting = new Setting();
-  setting.save(function(err, setting){
-    if(err) {
-      console.error(err);
-    } else {
-      console.log("setting created")
+
+  Setting.count({}, function( err, count){
+    if(count == 0) {
+      setting = new Setting();
+      setting.save(function(err, setting){
+        if(err) {
+          console.error(err);
+        } else {
+          console.log("setting created")
+        }
+      });
     }
   });
-
 });
 
 var app = express();

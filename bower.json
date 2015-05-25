@@ -14,6 +14,7 @@
     "core-elements": "Polymer/core-elements#~0.5.2",
     "paper-elements": "Polymer/paper-elements#~0.5.2",
     "marked": "~0.3.3",
-    "moment": "~2.10.2"
+    "moment": "~2.10.2",
+    "highlightjs": "~8.5.0"
   }
 }

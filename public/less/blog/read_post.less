@@ -1,0 +1,24 @@
+/** read post page style **/
+
+@import './variables.less';
+
+.post-contents {
+	padding-left  :30px;
+  padding-right :30px;
+	padding-bottom:50px;
+	padding-top   :10px;
+
+  /** contents markdown style **/
+
+  h1, h2, h3, h4, h5 {
+    color: @primaryColor;
+  }
+
+  blockquote {
+    color       : @secondaryText;
+    font-style  : italic;
+    border-left : 4px solid @dividerColor;
+    padding-left:10px;
+  }
+
+}
