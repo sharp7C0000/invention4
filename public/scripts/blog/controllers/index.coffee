@@ -1,6 +1,9 @@
 # Sample index controller
 
 define [], () -> [ "$scope", "$http", ($scope, $http) ->
-	$scope.welcomeMessage = "blog page"
-	$scope.$apply() 
+
+	$scope.clickPagenator = (url) ->
+		window.location = url
+
+	$scope.$apply()
 ]
