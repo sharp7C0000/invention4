@@ -20,6 +20,7 @@ require.config
 		'poly.paper.dialog'         : 'lib/polymer-component/paper_dialog'
 		'poly.paper.action_dialog'  : 'lib/polymer-component/paper_action_dialog'
 		'poly.paper.checkbox'       : 'lib/polymer-component/paper_checkbox'
+		'poly.paper.dropdown_menu'  : 'lib/polymer-component/paper_dropdown_menu'
 		marked                      : '../components/marked/lib/marked'
 		editor                      : '../components_other/editor/editor'
 		directives                  : 'lib/angular_directives'

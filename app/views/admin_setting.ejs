@@ -1,0 +1,80 @@
+<% include header %>
+
+<core-header-panel flex>
+
+  <% var activeTab = 1; %>
+  <% include admin_topbar %>
+
+  <div ng-controller="AdminNewPost">
+
+    <div id="contents">
+
+      <div class="page-title">
+        <core-icon icon="settings"></core-icon>&nbsp;Blog Setting
+      </div>
+
+      <form name="loginForm">
+
+        <paper-input-decorator
+          label="Blog Title"
+          floatingLabel
+          error="{{errorMessage(loginForm.username.$error)}}"
+          isInvalid="{{!loginForm.username.$valid && loginForm.username.$dirty}}"
+        >
+          <input name="username" is="paper-input"
+            required
+            value="가나다라마"
+            ng-model="formData.username"
+            ng-maxlength="10"
+            ng-minlength="4"
+            ng-keydown="hideGlobalValidation()"
+          >
+        </paper-input-decorator>
+
+        <paper-dropdown-menu label="Post per page">
+        <paper-dropdown class="dropdown">
+          <core-menu class="menu">
+            <paper-item>1</paper-item>
+            <paper-item>3</paper-item>
+            <paper-item>5</paper-item>
+            <paper-item>10</paper-item>
+            <paper-item>20</paper-item>
+          </core-menu>
+        </paper-dropdown>
+      </paper-dropdown-menu>
+
+      <h2>Profile</h2>
+      <hr>
+
+      <paper-input-decorator
+        label="Profile photo url"
+        floatingLabel
+        error="{{errorMessage(loginForm.username.$error)}}"
+        isInvalid="{{!loginForm.username.$valid && loginForm.username.$dirty}}"
+      >
+        <input name="username" is="paper-input"
+          required
+          value="가나다라마"
+          ng-model="formData.username"
+          ng-maxlength="10"
+          ng-minlength="4"
+          ng-keydown="hideGlobalValidation()"
+        >
+      </paper-input-decorator>
+
+      <textarea>
+        Some text
+      </textarea>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  </div>
+</core-header-panel>
+
+<script src="/components/requirejs/require.js" data-main="/js/admin_new_post.js"></script>
+
+<% include footer %>

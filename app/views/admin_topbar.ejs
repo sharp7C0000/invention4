@@ -19,13 +19,13 @@
         <paper-icon-button icon="account-circle" class="primary" noink></paper-icon-button>
         <paper-dropdown class="dropdown" transition="" id="userinfo" halign="right">
           <core-menu class="menu">
-            <paper-item noink> 
+            <paper-item noink>
               <div class="username"><%=username%></div>
               <div class="edituser">
                 <paper-icon-button class="primary" icon="settings"></paper-icon-button>
               </div>
             </paper-item>
-             
+
             <paper-item noink>
               <paper-button ng-click="logout('<%- logoutUrl %>')"
                 raised class="submit primary">
@@ -35,7 +35,7 @@
           </core-menu>
         </paper-dropdown>
       </paper-menu-button>
-    
+
     <% } %>
     <paper-icon-button ng-click="home()" icon="home" class="primary"></paper-icon-button>
   </div>
@@ -43,8 +43,9 @@
   <!-- tab menu -->
   <% if(username) { %>
     <div class="bottom fit" horizontal layout>
-      <paper-tabs selected="0" flex>
+      <paper-tabs selected="<%= activeTab %>" flex>
         <paper-tab ng-click="tab('<%- managePostUrl %>')">MANAGE POST</paper-tab>
+        <paper-tab ng-click="tab('<%- blogSettingUrl %>')">BLOG SETTING</paper-tab>
       </paper-tabs>
     </div>
   <% } %>

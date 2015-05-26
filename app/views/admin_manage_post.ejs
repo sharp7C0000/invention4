@@ -1,19 +1,21 @@
 <% include header %>
 
 <core-header-panel flex>
+  
+  <% var activeTab = 0; %>
   <% include admin_topbar %>
 
   <div ng-controller="AdminManagePost">
 
     <div id="contents">
-      
+
       <div>
       	<div class="page-title">
         <core-icon icon="list"></core-icon>&nbsp;List of post
       </div>
 
           <table cellspacing="0" ng-cloak>
-            
+
             <thead>
               <tr>
                 <th style="text-align:center">
@@ -24,7 +26,7 @@
                 <th></th>
               </tr>
             </thead>
-            
+
             <tbody>
 
               <tr ng-repeat="post in posts">
@@ -38,10 +40,10 @@
                     <paper-icon-button icon="more-vert" title="more"></paper-icon-button>
                     <paper-dropdown class="dropdown" transition="" halign="right" style="padding:0px;">
                       <core-menu class="menu" >
-                        <paper-item style="margin-top:10px;margin-left:5px;margin-right:5px;" ng-click="editPost('<%= newPostUrl %>', post._id)"> 
+                        <paper-item style="margin-top:10px;margin-left:5px;margin-right:5px;" ng-click="editPost('<%= newPostUrl %>', post._id)">
                           <core-icon icon="create"></core-icon>&nbsp;Edit
                         </paper-item>
-                         
+
                         <paper-item style="margin-left:5px;margin-right:5px;" ng-click="removePost('<%= postDeleteUrl %>', post._id)">
                           <core-icon icon="delete"></core-icon>&nbsp;Remove
                         </paper-item>
@@ -55,7 +57,7 @@
               <tr ng-cloak ng-show="posts.length < 1">
                 <td colspan="4" class="empty-list">No Post exsist</td>
               <tr>
-               
+
             </tbody>
           </table>
 
@@ -64,7 +66,7 @@
 
 	      <paper-fab id="add-post" icon="add" ng-click="addPost('<%= newPostUrl %>')" class="bottom indent" title="add new post"></paper-fab>
 	    </div>
-  
+
   </div>
 </core-header-panel>
 

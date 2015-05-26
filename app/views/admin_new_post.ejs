@@ -1,6 +1,8 @@
 <% include header %>
 
 <core-header-panel flex>
+
+  <% var activeTab = 0; %>
   <% include admin_topbar %>
 
   <div ng-controller="AdminNewPost">
@@ -13,18 +15,18 @@
         <% } else { %>
           <core-icon icon="add"></core-icon>&nbsp;New Post
         <% } %>
-        
+
       </div>
 
       <form name="newPostForm">
 
-        <paper-input-decorator 
+        <paper-input-decorator
           label="Title"
-          error="{{errorMessage(newPostForm.title.$error)}}" 
+          error="{{errorMessage(newPostForm.title.$error)}}"
           isInvalid="{{!newPostForm.title.$valid && newPostForm.title.$dirty}}"
         >
           <input name="title" is="paper-input"
-            required 
+            required
             ng-model="formData.title"
             ng-init="formData.title='<%= postTitle %>'"
             ng-keydown="hideGlobalValidation()"
@@ -39,8 +41,8 @@
           ><% if (postContents) { %><%= postContents %><% } %></textarea>
         </div>
 
-        <paper-shadow 
-          class="global-validator" 
+        <paper-shadow
+          class="global-validator"
           z="1"
           ng-cloak
           ng-show="formData.valid.global"
@@ -79,11 +81,11 @@
         <p>{{contentsErrorMessage(newPostForm.contents.$error)}}</p>
         <paper-button affirmative autofocus class="primary">close</paper-button>
       </paper-action-dialog>
-     
+
     </div>
 
   </div>
-  
+
   </div>
 </core-header-panel>
 

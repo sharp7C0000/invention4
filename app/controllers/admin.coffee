@@ -7,7 +7,7 @@ util = require '../util/common'
 
 module.exports = (app) ->
   app.use '/admin', router
-    
+
 router.use (req, res, next) ->
   # admin relative page need auth
   util.authenticatedOrNot(req, res, next)

@@ -142,6 +142,7 @@ router.post '/posts/delete', (req, res, next) ->
 ###############################################################################
 
 defaultResponse = (req) ->
-  logoutUrl    : '/auth/logout'
-  managePostUrl: '/admin/posts'
-  username     : req.user.username
+  logoutUrl     : '/auth/logout'
+  managePostUrl : '/admin/posts'
+  blogSettingUrl: '/admin/setting'
+  username      : req.user.username
