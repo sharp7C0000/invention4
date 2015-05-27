@@ -15,6 +15,8 @@
     "paper-elements": "Polymer/paper-elements#~0.5.2",
     "marked": "~0.3.3",
     "moment": "~2.10.2",
-    "highlightjs": "~8.5.0"
+    "highlightjs": "~8.5.0",
+    "holderjs": "~2.7.1",
+    "angular-holderjs": "~1.1.0"
   }
 }

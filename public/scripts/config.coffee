@@ -27,6 +27,9 @@ require.config
 		globalMarked                : 'lib/marked'
 		moment                      : '../components/moment/moment'
 		highlightjs                 : '../components/highlightjs/highlight.pack'
+		holderjs                    : '../components/holderjs/holder'
+		globalHolderjs              : 'lib/holderjs'
+		ngHolder                    : '../components/angular-holderjs/src/holder'
 	map:
 	  '*':
 	    'css': '../../components/require-css/css'
@@ -35,6 +38,7 @@ require.config
 		angular               : {exports: 'angular'}
 		editor                : {deps   : ['globalMarked', 'css!../css/editor']}
 		highlightjs           : {deps   : ['css!../components/highlightjs/styles/arta']}
+		ngHolder              : {deps : ['angular', 'globalHolderjs']}
 
 	priority: ["angular"]
 
