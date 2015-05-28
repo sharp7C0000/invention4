@@ -17,5 +17,6 @@ require [
 	'poly.paper.action_dialog'
 	'poly.paper.checkbox'
 	'poly.paper.dropdown_menu'
+	'poly.paper.radio_group'
 ], () ->
 	# do some common behavior

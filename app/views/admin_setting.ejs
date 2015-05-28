@@ -30,18 +30,37 @@
           >
         </paper-input-decorator>
 
-        <paper-dropdown-menu label="Post per page" style="width:100%">
-        <paper-dropdown class="dropdown">
-          <core-menu class="menu">
-            <paper-item>1</paper-item>
-            <paper-item>3</paper-item>
-            <paper-item>5</paper-item>
-            <paper-item>10</paper-item>
-            <paper-item>20</paper-item>
-          </core-menu>
-        </paper-dropdown>
-      </paper-dropdown-menu>
+        <paper-input-decorator
+          label="Autore name"
+          floatingLabel
+          error="{{errorMessage(loginForm.username.$error)}}"
+          isInvalid="{{!loginForm.username.$valid && loginForm.username.$dirty}}"
+        >
+          <input name="username" is="paper-input"
+            required
+            ng-model="formData.username"
+            ng-maxlength="10"
+            ng-minlength="4"
+            ng-keydown="hideGlobalValidation()"
+          >
+        </paper-input-decorator>
 
+
+        <section>
+
+    <h4>Post per page</h4>
+
+    <paper-radio-group selected="always">
+      <paper-radio-button name="always" label="1"></paper-radio-button>
+      <paper-radio-button name="pluggedin" label="3"></paper-radio-button>
+      <paper-radio-button name="never" label="5"></paper-radio-button>
+      <paper-radio-button name="never2" label="10"></paper-radio-button>
+      <paper-radio-button name="never2" label="20"></paper-radio-button>
+    </paper-radio-group>
+
+  </section>
+
+    
       <h3>Profile</h3>
 
       <div>
@@ -50,15 +69,26 @@
         <paper-button class="primary" raised>REMOVE</paper-button>
       </div>
 
-  
-    <div>
 
-      <textarea>
-        Some text
-      </textarea>
-    </div>
+      <paper-input-decorator
+        label="Blog Title"
+        floatingLabel
+        error="{{errorMessage(loginForm.username.$error)}}"
+        isInvalid="{{!loginForm.username.$valid && loginForm.username.$dirty}}"
+      >
+        <input name="username" is="paper-input"
+          required
+          ng-model="formData.username"
+          ng-maxlength="10"
+          ng-minlength="4"
+          ng-keydown="hideGlobalValidation()"
+        >
+      </paper-input-decorator>
 
       </form>
+
+      <paper-button class="primary" raised>SAVE</paper-button>
+      <paper-button class="secondary" raised>CANCLE</paper-button>
 
     </div>
 

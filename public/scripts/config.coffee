@@ -21,6 +21,7 @@ require.config
 		'poly.paper.action_dialog'  : 'lib/polymer-component/paper_action_dialog'
 		'poly.paper.checkbox'       : 'lib/polymer-component/paper_checkbox'
 		'poly.paper.dropdown_menu'  : 'lib/polymer-component/paper_dropdown_menu'
+		'poly.paper.radio_group'    : 'lib/polymer-component/paper_radio_group'
 		marked                      : '../components/marked/lib/marked'
 		editor                      : '../components_other/editor/editor'
 		directives                  : 'lib/angular_directives'
