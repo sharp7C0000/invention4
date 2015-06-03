@@ -43,6 +43,29 @@ paper-checkbox::shadow #ink {
   color: @secondaryText;
 }
 
+// radio
+paper-radio-button::shadow #ink[checked] {
+  color: @accentColor;
+}
+
+paper-radio-button::shadow #onRadio {
+  background-color: @accentColor;
+}
+
+paper-radio-button[checked]::shadow #offRadio {
+  border-color: @accentColor;
+}
+
+paper-radio-button::shadow #ink {
+  color: @secondaryText;
+}
+
+paper-radio-button::shadow #offRadio {
+  border-color: @secondaryText;
+}
+
+
+
 // input
 /** normal out focus **/
 paper-input-decorator /deep/ .unfocused-underline {

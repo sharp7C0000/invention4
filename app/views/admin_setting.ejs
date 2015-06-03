@@ -31,7 +31,7 @@
         </paper-input-decorator>
 
         <paper-input-decorator
-          label="Author name"
+          label="Author Name"
           floatingLabel
           error="{{errorMessage(settingForm.authorname.$error)}}"
           isInvalid="{{!settingForm.authorname.$valid && settingForm.authorname.$dirty}}"
@@ -50,40 +50,41 @@
 
           <h4 class="form-title">Post per page</h4>
 
-    <paper-radio-group selected="always">
-      <paper-radio-button name="always" label="1"></paper-radio-button>
-      <paper-radio-button name="pluggedin" label="3"></paper-radio-button>
-      <paper-radio-button name="never" label="5"></paper-radio-button>
-      <paper-radio-button name="never2" label="10"></paper-radio-button>
-      <paper-radio-button name="never2" label="20"></paper-radio-button>
-    </paper-radio-group>
+          <paper-radio-group selected="one">
+            <paper-radio-button name="one" label="1">
+            </paper-radio-button>
+            <paper-radio-button name="three" label="3">
+            </paper-radio-button>
+            <paper-radio-button name="five" label="5">
+            </paper-radio-button>
+            <paper-radio-button name="ten" label="10">
+            </paper-radio-button>
+            <paper-radio-button name="twenty" label="20">
+            </paper-radio-button>
+          </paper-radio-group>
 
-  </section>
+        </section>
 
+      <div style="margin-top:20px">
     
       <h3>Profile</h3>
 
       <div>
-        <img holder2="holder.js/125x125/text:PHOTO"></img>
+        
+        <img style="width:125px;height:125px" data-holder2="holder.js/125x125/text:PHOTO"></img>
         <paper-button class="primary" raised>CHANGE</paper-button>
         <paper-button class="primary" raised>REMOVE</paper-button>
       </div>
 
 
-      <paper-input-decorator
-        label="Text"
-        floatingLabel
-        error="{{errorMessage(loginForm.username.$error)}}"
-        isInvalid="{{!loginForm.username.$valid && loginForm.username.$dirty}}"
-      >
-        <input name="username" is="paper-input"
-          required
-          ng-model="formData.username"
-          ng-maxlength="10"
-          ng-minlength="4"
-          ng-keydown="hideGlobalValidation()"
-        >
-      </paper-input-decorator>
+      <div class="editor-wrapper">
+      <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
+        required
+        ng-model="formData.contents"
+      >dd</textarea>
+    </div>
+
+    </div>
 
       </form>
 
