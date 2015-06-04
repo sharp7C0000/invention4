@@ -118,9 +118,9 @@ paper-shadow.global-validator {
     margin-right:5px;
     font-size   :12px;
     height      :18px;
-    width       :18px; 
+    width       :18px;
   }
-} 
+}
 
 /** dialog **/
 paper-action-dialog {
@@ -137,8 +137,32 @@ paper-action-dialog {
 }
 
 
-FORM section .form-title {
+FORM section legend {
 	color: @primaryText;
 	font-weight:normal;
+	margin-top: 20px;
 	margin-bottom:0px;
+}
+
+FORM fieldset {
+
+	border:0px;
+	background-color:@dividerLightColor;
+	margin-top:50px;
+}
+
+FORM fieldset legend {
+	line-height:20px;
+	font-size    : 20px;
+  color        : @accentColor;
+  margin-bottom: 20px;
+  font-weight  : bold;
+
+	display: block;
+        width: 100%;
+        float: left;
+        clear: both;
+
+margin-top:-40px;
+margin-left:-15px;
 }
