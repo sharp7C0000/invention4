@@ -46,7 +46,7 @@
         </paper-input-decorator>
 
 
-        <section>
+        <radio-group>
 
           <legend>Post per page</legend>
 
@@ -63,30 +63,28 @@
             </paper-radio-button>
           </paper-radio-group>
 
-        </section>
+        </radio-group>
 
       <fieldset>
 
-      <legend><core-icon icon="face" style="width:20px;height:20px;line-height:20px;"></core-icon>&nbsp;Profile</legend>
+      <legend>Profile</legend>
+
+      <div style="width:100%">
 
       <div>
-
         <div style="width:125px;height:125px">
           <img holder ng-cloak data-src="holder.js/100%x100%/text:PHOTO">
         </div>
-
-
-        <paper-button class="primary" raised>CHANGE</paper-button>
-        <paper-button class="primary" raised>REMOVE</paper-button>
+        <paper-button class="primary" >CHANGE</paper-button>
       </div>
 
 
       <div class="editor-wrapper">
-      <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
-        required
-        ng-model="formData.contents"
-      >dd</textarea>
-
+        <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
+          required
+          ng-model="formData.contents"
+        >dd</textarea>
+      </div>
 
     </div>
 

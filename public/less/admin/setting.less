@@ -1,0 +1,25 @@
+/* admin manage post page style */
+
+@import './variables.less';
+
+@editorColor: @dividerLightColor;
+
+.editor-wrapper {
+	padding     :0px;
+	margin      :0px auto;
+	margin-top  :20px;
+}
+
+/** override editor style **/
+.CodeMirror {
+	height       : 150px!important;
+	border-bottom: 1px solid @primaryColor;
+	border-left  : 1px solid @editorColor;
+	border-right : 1px solid @editorColor;
+	background-color: #fff;
+}
+
+.editor-toolbar {
+	background-color: @editorColor;
+	opacity         : 1!important;
+}
