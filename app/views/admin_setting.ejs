@@ -2,8 +2,7 @@
 
 <core-header-panel flex>
 
-  <% var activeTab = 1; %>
-  <% include admin_topbar %>
+  <%- include('admin_topbar', {activeTab: 1}) %>
 
   <div ng-controller="AdminSetting">
 
@@ -71,32 +70,57 @@
 
       <div style="width:100%">
 
-      <div>
-        <div style="width:125px;height:125px">
-          <img holder ng-cloak data-src="holder.js/100%x100%/text:PHOTO">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width:125px;" valign="bottom">
+
+                <div style="width:125px;height:125px;">
+
+                  <img holder ng-cloak data-src="holder.js/100%x100%/text:PHOTO">
+
+                </div>
+              </td>
+
+              <td valign="bottom">
+                <div style="width:100%; padding-bottom:0px;" >
+                  <paper-button class="" style="font-size:12px;"  role="button" tabindex="0">
+                    <core-icon style="width:16px;height:16px;" icon="create"></core-icon>&nbsp;EDIT
+                  </paper-button>
+
+                </div>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+
+        <div class="editor-wrapper">
+          <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
+            required
+            ng-model="formData.contents"
+          >HI! please edito</textarea>
         </div>
-        <paper-button class="primary" >CHANGE</paper-button>
-      </div>
 
 
-      <div class="editor-wrapper">
-        <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
-          required
-          ng-model="formData.contents"
-        >dd</textarea>
-      </div>
 
     </div>
 
   </fieldset>
 
-  <div style="margin-top:30px;">
+  <div class="buttons">
+    <div>
 
+       <paper-button
 
-          <paper-button class="primary" raised>SAVE</paper-button>
-          <paper-button class="secondary" raised>CANCLE</paper-button>
+          raised class="primary">
 
+            save
 
+        </paper-button>
+
+    </div>
   </div>
 
       </form>

@@ -2,8 +2,7 @@
 
 <core-header-panel flex>
 
-  <% var activeTab = 0; %>
-  <% include admin_topbar %>
+  <%- include('admin_topbar', {activeTab: 0}) %>
 
   <div ng-controller="AdminNewPost">
 
