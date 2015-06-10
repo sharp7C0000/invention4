@@ -38,8 +38,8 @@
           <input name="authorname" is="paper-input"
             required
             ng-model="formData.authorname"
-            ng-maxlength="50"
-            ng-minlength="4"
+            ng-maxlength="125"
+            ng-minlength="1"
             ng-keydown="hideGlobalValidation()"
           >
         </paper-input-decorator>
@@ -64,71 +64,55 @@
 
         </radio-group>
 
-      <fieldset>
+        <fieldset>
 
-      <legend>Profile</legend>
+          <legend>Profile</legend>
 
-      <div style="width:100%">
+          <div style="width:100%">
 
-        <table>
-          <tbody>
-            <tr>
-              <td style="width:125px;" valign="bottom">
+            <table>
+              <tbody>
+                <tr>
+                  <td style="width:125px;" valign="bottom">
 
-                <div style="width:125px;height:125px;">
+                    <div style="width:125px;height:125px;">
 
-                  <img holder ng-cloak data-src="holder.js/100%x100%/text:PHOTO">
+                      <img holder ng-cloak data-src="holder.js/100%x100%/text:PHOTO">
 
-                </div>
-              </td>
+                    </div>
+                  </td>
 
-              <td valign="bottom">
-                <div style="width:100%; padding-bottom:0px;" >
-                  <paper-button class="" style="font-size:12px;"  role="button" tabindex="0">
-                    <core-icon style="width:16px;height:16px;" icon="create"></core-icon>&nbsp;EDIT
-                  </paper-button>
+                  <td valign="bottom">
+                    <div style="width:100%; padding-bottom:0px;" >
+                      <paper-button class="" style="font-size:12px;"  role="button" tabindex="0">
+                        <core-icon style="width:16px;height:16px;" icon="create"></core-icon>&nbsp;EDIT
+                      </paper-button>
 
-                </div>
-              </td>
+                    </div>
+                  </td>
 
-            </tr>
+                </tr>
 
-          </tbody>
-        </table>
+              </tbody>
+            </table>
 
-        <div class="editor-wrapper">
-          <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
-            required
-            ng-model="formData.contents"
-          >HI! please edito</textarea>
+            <div class="editor-wrapper">
+              <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
+                required
+                ng-model="formData.contents"
+              >HI! please edito</textarea>
+            </div>
+
+          </div>
+
+        </fieldset>
+
+        <div class="buttons" style="float:right;">
+          <paper-button raised class="primary">SAVE</paper-button>
         </div>
 
-
-
-    </div>
-
-  </fieldset>
-
-  <div class="buttons">
-    <div>
-
-       <paper-button
-
-          raised class="primary">
-
-            save
-
-        </paper-button>
-
-    </div>
-  </div>
-
       </form>
-
     </div>
-
-  </div>
-
   </div>
 </core-header-panel>
 
