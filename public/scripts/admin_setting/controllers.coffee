@@ -15,3 +15,9 @@ define ["angular"], (angular) ->
       require ["admin_setting/controllers/index"], (index) ->
         $injector.invoke index, this, { $scope: $scope }
   ])
+  .controller("AdminSettingDialog", ["$scope", "$injector",
+    # load admin controller
+    ($scope, $injector) ->
+      require ["admin_setting/controllers/dialog"], (dialog) ->
+        $injector.invoke dialog, this, { $scope: $scope }
+  ])

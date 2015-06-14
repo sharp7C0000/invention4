@@ -77,7 +77,8 @@
                 <tr>
                   <td id="photo" valign="bottom">
                     <div>
-                      <img holder ng-cloak data-src="holder.js/100%x100%/text:PHOTO">
+                      <!-- http://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/256/Font-icon.png -->
+                      <img holder width="125px" height="125px" ng-cloak ng-src="{{formData.photoUrl}}" data-src="holder.js/100%x100%/text:PHOTO">
                     </div>
                   </td>
 
@@ -113,10 +114,11 @@
 </core-header-panel>
 
 
-  <paper-action-dialog backdrop autoCloseDisabled layered="false"
+  <paper-action-dialog backdrop autoCloseDisabled layered="true"
     id="content-invalid"
     heading="Profile Photo"
     ng-cloak
+    ng-controller="AdminSettingDialog"
   >
     <form name="profilePhotoForm">
       <paper-input-decorator
@@ -133,7 +135,7 @@
       </paper-input-decorator>
     </form>
 
-    <paper-button class="primary" affirmative>OK</paper-button>
+    <paper-button ng-click="submit()" class="primary" affirmative>OK</paper-button>
     <paper-button affirmative>CLOSE</paper-button>
 
   </paper-action-dialog>
