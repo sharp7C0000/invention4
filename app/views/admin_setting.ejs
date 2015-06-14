@@ -1,4 +1,4 @@
-<% include header %>
+<%- include('header', {css:""}) %>
 
 <core-header-panel flex>
 
@@ -68,36 +68,30 @@
 
           <legend>Profile</legend>
 
-          <div style="width:100%">
+          <div id="setting-profile">
 
             <table>
               <tbody>
                 <tr>
-                  <td style="width:125px;" valign="bottom">
-
-                    <div style="width:125px;height:125px;">
-
+                  <td id="photo" valign="bottom">
+                    <div>
                       <img holder ng-cloak data-src="holder.js/100%x100%/text:PHOTO">
-
                     </div>
                   </td>
 
-                  <td valign="bottom">
-                    <div style="width:100%; padding-bottom:0px;" >
-                      <paper-button class="" style="font-size:12px;"  role="button" tabindex="0">
-                        <core-icon style="width:16px;height:16px;" icon="create"></core-icon>&nbsp;EDIT
+                  <td id="photo-edit" valign="bottom">
+                    <div>
+                      <paper-button role="button" tabindex="0" ng-click="clickPhotoEdit()">
+                        <core-icon icon="create"></core-icon>&nbsp;EDIT
                       </paper-button>
-
                     </div>
                   </td>
-
                 </tr>
-
               </tbody>
             </table>
 
             <div class="editor-wrapper">
-              <textarea style="display: block;" ng-cloak ng-editor id="editor" name="contents"
+              <textarea  ng-cloak ng-editor id="editor" name="contents"
                 required
                 ng-model="formData.contents"
               >HI! please edito</textarea>
@@ -107,14 +101,26 @@
 
         </fieldset>
 
-        <div class="buttons" style="float:right;">
+        <div class="buttons">
           <paper-button raised class="primary">SAVE</paper-button>
         </div>
-
       </form>
     </div>
   </div>
+
 </core-header-panel>
+
+
+  <paper-action-dialog backdrop autoCloseDisabled layered="false"
+    id="content-invalid"
+    ng-cloak
+  >
+    <p>modal example</p>
+    <paper-button affirmative autofocus class="primary">close</paper-button>
+  </paper-action-dialog>
+
+
+
 
 <script src="/components/requirejs/require.js" data-main="/js/admin_setting.js"></script>
 

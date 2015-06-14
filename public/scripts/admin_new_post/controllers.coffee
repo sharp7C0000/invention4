@@ -9,9 +9,15 @@ define ["angular"], (angular) ->
 			require ["shared/controllers/topmenu"], (topmenu) ->
 				$injector.invoke topmenu, this, { $scope: $scope }
 	])
-  .controller("AdminNewPost", ["$scope", "$injector",  
+  .controller("AdminNewPost", ["$scope", "$injector",
     # load admin new post controller
     ($scope, $injector) ->
       require ["admin_new_post/controllers/index"], (index) ->
+        $injector.invoke index, this, { $scope: $scope }
+  ])
+  .controller("AdminNewPostDialog", ["$scope", "$injector",
+    # load admin new post controller
+    ($scope, $injector) ->
+      require ["admin_new_post/controllers/dialog"], (index) ->
         $injector.invoke index, this, { $scope: $scope }
   ])

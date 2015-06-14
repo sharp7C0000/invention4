@@ -2,8 +2,6 @@
 
 @import './variables.less';
 
-@editorColor: @dividerLightColor;
-
 .page-title {
 	font-size    : 26px;
 	color        : @accentColor;
@@ -11,14 +9,8 @@
 	font-weight  : bold;
 }
 
-.editor-wrapper {
-	padding     :0px;
-	margin      :0px auto;
-	margin-top  :20px;
-}
-
 .buttons {
-	margin-top:40px;	
+	margin-top:40px;
 
 	> div {
 		text-align:center;
@@ -29,15 +21,6 @@
 	}
 }
 
-/** override editor style **/
 .CodeMirror {
-	height       : 250px!important;
-	border-bottom: 1px solid @primaryColor;
-	border-left  : 1px solid @editorColor;
-	border-right : 1px solid @editorColor;
-}
-
-.editor-toolbar {
-	background-color: @editorColor;
-	opacity         : 1!important;
+	height: 250px!important;
 }

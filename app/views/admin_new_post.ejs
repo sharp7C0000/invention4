@@ -1,4 +1,4 @@
-<% include header %>
+<%- include('header', {css:""}) %>
 
 <core-header-panel flex>
 
@@ -73,20 +73,23 @@
 
       </form>
 
-      <paper-action-dialog backdrop autoCloseDisabled layered="false"
-        id="content-invalid"
-        ng-cloak
-      >
-        <p>{{contentsErrorMessage(newPostForm.contents.$error)}}</p>
-        <paper-button affirmative autofocus class="primary">close</paper-button>
-      </paper-action-dialog>
-
     </div>
 
   </div>
 
   </div>
 </core-header-panel>
+
+<div ng-controller="AdminNewPostDialog">
+  <paper-action-dialog backdrop autoCloseDisabled layered="false"
+    id="content-invalid"
+    ng-cloak
+  >
+    <p>{{message}}</p>
+    <paper-button affirmative autofocus class="primary">close</paper-button>
+  </paper-action-dialog>
+</div>
+
 
 <script src="/components/requirejs/require.js" data-main="/js/admin_new_post.js"></script>
 

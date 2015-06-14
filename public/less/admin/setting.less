@@ -1,31 +1,42 @@
-/* admin manage post page style */
+/* admin setting page style */
 
 @import './variables.less';
 
-@editorColor: @dividerLightColor;
+#setting-profile {
+	td#photo {
+		width: 125px;
 
-.editor-wrapper {
-	padding     :0px;
-	margin      :0px auto;
-	margin-top  :20px;
+		> div {
+			width: 125px;
+			height:125px;
+		}
+	}
+
+	td#photo-edit {
+		> div {
+			width: 100%;
+			padding-bottom:0px;
+
+			paper-button {
+				font-size:12px;
+
+				core-icon {
+					width:16px;
+					height:16px;
+				}
+			}
+		}
+	}
 }
 
-/** override editor style **/
 .CodeMirror {
 	height       : 150px!important;
-	border-bottom: 1px solid @primaryColor;
-	border-left  : 1px solid @editorColor;
-	border-right : 1px solid @editorColor;
-	background-color: #fff;
-}
-
-.editor-toolbar {
-	background-color: @editorColor;
-	opacity         : 1!important;
 }
 
 .buttons {
-	margin-top:40px;
+	float        : right;
+	margin-top   :40px;
+	margin-bottom: 50px;
 
 	> div {
 		float:right;

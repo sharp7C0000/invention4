@@ -1,5 +1,7 @@
 /** admin common css styles **/
 
+@editorColor: @dividerLightColor;
+
 .page-title {
   font-size    : 26px;
   color        : @accentColor;
@@ -75,4 +77,24 @@ core-toolbar#admin-mainheader {
 			width:100%;
 		}
 	}
+}
+
+/** override editor style **/
+.editor-wrapper {
+	padding     :0px;
+	margin      :0px auto;
+	margin-top  :20px;
+  display     : block;
+}
+
+.CodeMirror {
+	border-bottom   : 1px solid @primaryColor;
+	border-left     : 1px solid @editorColor;
+	border-right    : 1px solid @editorColor;
+  background-color: #fff;
+}
+
+.editor-toolbar {
+	background-color: @editorColor;
+	opacity         : 1!important;
 }

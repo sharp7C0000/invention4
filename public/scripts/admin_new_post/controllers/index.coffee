@@ -1,6 +1,6 @@
-# admin index controller
+# admin new post index controller
 
-define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$http", ($scope, $http) ->
+define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$rootScope", "$http", ($scope, $rootScope, $http) ->
 
 	# contents field only error message
 	contentsErrorMessages = {
@@ -9,9 +9,9 @@ define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$http", ($scope, 
 
 	invalid = () ->
 		if !$scope.targetForm.contents.$valid && $scope.targetForm.contents.$dirty && $scope.targetForm.title.$valid
-			document.querySelector('#content-invalid').open()
+			$rootScope.$emit('contentInvalid', $scope.contentsErrorMessage($scope.newPostForm.contents.$error))
 
-	submitSuccess = (data, status, headers, config) -> 
+	submitSuccess = (data, status, headers, config) ->
 		window.location = data.data.redirectUrl
 
 	submitError = (data, status, headers, config) ->
@@ -21,7 +21,7 @@ define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$http", ($scope, 
 			# handling database error
 			if error.type == "DATABASE_ERROR"
 				$scope.formData.valid.global = true
-				$scope.formData.error.global = "Database error occured"				
+				$scope.formData.error.global = "Database error occured"
 
 	# extend common form controller
 	angular.extend(this, new formCtrl($scope, $http, submitSuccess, submitError, invalid))
