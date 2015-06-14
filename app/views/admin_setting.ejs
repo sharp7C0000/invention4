@@ -70,6 +70,8 @@
 
           <div id="setting-profile">
 
+            <input type="hidden" name="profilePhoto" ng-model="formData.photoUrl"></input>
+
             <table>
               <tbody>
                 <tr>
@@ -113,10 +115,27 @@
 
   <paper-action-dialog backdrop autoCloseDisabled layered="false"
     id="content-invalid"
+    heading="Profile Photo"
     ng-cloak
   >
-    <p>modal example</p>
-    <paper-button affirmative autofocus class="primary">close</paper-button>
+    <form name="profilePhotoForm">
+      <paper-input-decorator
+        label="Photo Url"
+        error="{{errorMessage(settingForm.blogtitle.$error)}}"
+        isInvalid="{{!profilePhotoForm.photoUrl.$valid && profilePhotoForm.photoUrl.$dirty}}"
+      >
+        <input name="photoUrl" is="paper-input"
+          required
+          type="url"
+          ng-model="formData.photoUrl"
+          ng-keydown="hideGlobalValidation()"
+        >
+      </paper-input-decorator>
+    </form>
+
+    <paper-button class="primary" affirmative autofocus>OK</paper-button>
+    <paper-button affirmative>CLOSE</paper-button>
+
   </paper-action-dialog>
 
 
