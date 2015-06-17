@@ -1,10 +1,10 @@
 # admin index controller
 
-define ["holderjs"], () -> [ "$scope", "$http", ($scope, $http) ->
+define ["holderjs"], () -> [ "$scope", "$rootScope", "$http", ($scope, $rootScope, $http) ->
 
 	$scope.clickPhotoEdit = () ->
 		console.log "click"
-		document.querySelector('#content-invalid').open()
+		$rootScope.$emit('imgDialog', $scope.formData.photoUrl)
 
 	$scope.$apply()
 ]
