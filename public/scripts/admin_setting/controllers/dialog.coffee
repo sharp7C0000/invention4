@@ -2,15 +2,15 @@
 
 define [], () -> [ "$scope", "$rootScope", "$http", ($scope, $rootScope, $http) ->
 
-  # show modal on contentInvalid
+	$scope.formData = {}
+
+  # show photo url modal
 	$rootScope.$on('imgDialog', (event, message) ->
-    $scope.message = message
     document.querySelector('#profile-photo-dialog').open()
   )
 
 	$scope.submit = () ->
-		console.log "click submit"
-		$rootScope.$emit('contentInvalid')
+		$rootScope.$emit('updateProfileImage', $scope.formData.photoUrl)
 
 	$scope.$apply()
 ]
