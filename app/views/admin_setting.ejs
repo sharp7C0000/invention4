@@ -17,12 +17,12 @@
         <paper-input-decorator
           label="Blog Title"
           floatingLabel
-          error="{{errorMessage(settingForm.blogtitle.$error)}}"
-          isInvalid="{{!settingForm.blogtitle.$valid && settingForm.blogtitle.$dirty}}"
+          error="{{errorMessage(settingForm.blogTitle.$error)}}"
+          isInvalid="{{!settingForm.blogTitle.$valid && settingForm.blogTitle.$dirty}}"
         >
-          <input name="blogtitle" is="paper-input"
+          <input name="blogTitle" is="paper-input"
             required
-            ng-model="formData.blogtitle"
+            ng-model="formData.blogTitle"
             ng-maxlength="125"
             ng-minlength="1"
             ng-keydown="hideGlobalValidation()"
@@ -32,12 +32,12 @@
         <paper-input-decorator
           label="Author Name"
           floatingLabel
-          error="{{errorMessage(settingForm.authorname.$error)}}"
-          isInvalid="{{!settingForm.authorname.$valid && settingForm.authorname.$dirty}}"
+          error="{{errorMessage(settingForm.authorName.$error)}}"
+          isInvalid="{{!settingForm.authorName.$valid && settingForm.authorName.$dirty}}"
         >
-          <input name="authorname" is="paper-input"
+          <input name="authorName" is="paper-input"
             required
-            ng-model="formData.authorname"
+            ng-model="formData.authorName"
             ng-maxlength="125"
             ng-minlength="1"
             ng-keydown="hideGlobalValidation()"
@@ -49,16 +49,16 @@
 
           <legend>Post per page</legend>
 
-          <paper-radio-group selected="one">
-            <paper-radio-button name="one" label="1">
+          <paper-radio-group name="postPerPage" selected="1" ng-model="formData.postPerPage">
+            <paper-radio-button label="1" name="1">
             </paper-radio-button>
-            <paper-radio-button name="three" label="3">
+            <paper-radio-button name="3" label="3">
             </paper-radio-button>
-            <paper-radio-button name="five" label="5">
+            <paper-radio-button name="5" label="5">
             </paper-radio-button>
-            <paper-radio-button name="ten" label="10">
+            <paper-radio-button name="10" label="10">
             </paper-radio-button>
-            <paper-radio-button name="twenty" label="20">
+            <paper-radio-button name="20" label="20">
             </paper-radio-button>
           </paper-radio-group>
 
@@ -105,7 +105,7 @@
               <textarea  ng-cloak ng-editor id="editor" name="contents"
                 required
                 ng-model="formData.contents"
-              >HI! please edito</textarea>
+              ></textarea>
             </div>
 
           </div>
@@ -113,7 +113,7 @@
         </fieldset>
 
         <div class="buttons">
-          <paper-button raised class="primary">SAVE</paper-button>
+          <paper-button ng-click="submitForm()" raised class="primary">SAVE</paper-button>
         </div>
       </form>
     </div>
