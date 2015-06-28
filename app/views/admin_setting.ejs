@@ -70,16 +70,24 @@
 
           <div id="setting-profile">
 
-            <input type="hidden" name="profilePhoto" ng-model="formData.photoUrl"></input>
+            <input type="hidden" name="profilePhoto" ng-model="formData.profilePhotoUrl"></input>
 
             <table>
               <tbody>
                 <tr>
                   <td id="photo" valign="bottom">
-                    <div>
-                      <!-- http://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/256/Font-icon.png -->
-                      <img holder width="125px" height="125px" ng-cloak ng-src="{{formData.photoUrl}}" data-src="holder.js/100%x100%/text:PHOTO">
+
+                    <!-- has photo -->
+                    <div ng-show="formData.profilePhotoUrl && formData.profilePhotoUrl.length > 1">
+                      <!-- https://ko.gravatar.com/userimage/73289291/68697ebee38c2b0c11bf79f1b6f95c78.png?size=125 -->
+                      <img width="125px" height="125px" ng-cloak ng-src="{{formData.profilePhotoUrl}}">
                     </div>
+
+                    <!-- do not have photo -->
+                    <div ng-show="!formData.profilePhotoUrl || (formData.profilePhotoUrl && formData.profilePhotoUrl.length == 0)">
+                      <img width="125px" height="125px" holder ng-cloak data-src="holder.js/100%x100%/text:PHOTO">
+                    </div>
+
                   </td>
 
                   <td id="photo-edit" valign="bottom">
@@ -113,32 +121,33 @@
 
 </core-header-panel>
 
+<div ng-controller="AdminSettingDialog">
 
-  <paper-action-dialog backdrop autoCloseDisabled layered="true"
+  <paper-action-dialog backdrop autoCloseDisabled layered="false"
     id="profile-photo-dialog"
     heading="Profile Photo"
+    closeSelector="[force-close]"
     ng-cloak
-    ng-controller="AdminSettingDialog"
   >
     <form name="profilePhotoForm">
       <paper-input-decorator
         label="Photo Url"
-        error="{{errorMessage(settingForm.blogtitle.$error)}}"
+        error="{{errorMessage(profilePhotoForm.photoUrl.$error)}}"
         isInvalid="{{!profilePhotoForm.photoUrl.$valid && profilePhotoForm.photoUrl.$dirty}}"
       >
         <input name="photoUrl" is="paper-input"
-          required
           type="url"
           ng-model="formData.photoUrl"
-          ng-keydown="hideGlobalValidation()"
         >
       </paper-input-decorator>
     </form>
 
-    <paper-button ng-click="submit()" class="primary" affirmative>OK</paper-button>
-    <paper-button affirmative>CLOSE</paper-button>
+    <paper-button ng-click="submit()" class="primary" affirmative>UPDATE</paper-button>
+    <paper-button force-close affirmative>CANCEL</paper-button>
 
   </paper-action-dialog>
+
+</div>
 
 
 

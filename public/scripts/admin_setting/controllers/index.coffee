@@ -5,13 +5,12 @@ define ["holderjs"], () -> [ "$scope", "$rootScope", "$http", ($scope, $rootScop
 	$scope.formData = {}
 
 	# update profile photo
-	$rootScope.$on('updateProfileImage', (event, message) ->
-    console.log "message", message
-    $scope.formData.photoUrl = message
+	$rootScope.$on('updateProfilePhoto', (event, message) ->
+    $scope.formData.profilePhotoUrl = message
   )
 
 	$scope.clickPhotoEdit = () ->
-		$rootScope.$emit('imgDialog', $scope.formData.photoUrl)
+		$rootScope.$emit('profilePhotoDialog', $scope.formData.profilePhotoUrl)
 
 	$scope.$apply()
 ]

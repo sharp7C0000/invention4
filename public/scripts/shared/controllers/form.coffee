@@ -13,11 +13,12 @@ define [], ($scope, $http) ->
 		$scope.formData.valid = {}
 
 		# TODO: seperate this at other file
-		# client side form message 
+		# client side form message
 		errorMessages = {
 			required : "This field is required"
 			maxlength: "The value is too long"
 			minlength: "The value is too short"
+			url      : "Invalid url format"
 		}
 
 		#### private
@@ -42,7 +43,7 @@ define [], ($scope, $http) ->
 			message
 
 		# hide global validation
-		$scope.hideGlobalValidation = () -> 
+		$scope.hideGlobalValidation = () ->
 			$scope.formData.valid.global = false
 
 		$scope.submit = (url) ->
@@ -51,7 +52,7 @@ define [], ($scope, $http) ->
 			resetValidation()
 
 			form = $scope.targetForm
-			
+
 			# set dirty all field
 			angular.forEach form, (v, k) ->
 				if typeof v == "object"
@@ -63,7 +64,7 @@ define [], ($scope, $http) ->
 				.success((data, status, headers, config) ->
 					submitSuccess(data, status, headers, config) if submitSuccess?
 				)
-				.error((data, status) -> 
+				.error((data, status) ->
 					if data.error?
 						error = data.error
 
