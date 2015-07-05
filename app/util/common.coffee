@@ -12,7 +12,6 @@ module.exports =
 	# default database callback
 	dbCallback: (success) ->
 		(error, docs) ->
-			console.log("ggggggg")
 			if error?
 
 			  console.log "database error : " + error
