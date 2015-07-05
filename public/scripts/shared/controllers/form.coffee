@@ -47,8 +47,6 @@ define [], ($scope, $http) ->
 			$scope.formData.valid.global = false
 
 		$scope.submit = (url) ->
-			console.log "formdata", $scope.targetForm, $scope.formData
-
 			resetValidation()
 
 			form = $scope.targetForm

@@ -40,9 +40,11 @@
           <input name="authorName" is="paper-input"
             required
             ng-model="formData.authorName"
+            ng-init="formData.authorName='<%= authorName %>'"
             ng-maxlength="125"
             ng-minlength="1"
             ng-keydown="hideGlobalValidation()"
+            value="<%= authorName %>"
           >
         </paper-input-decorator>
 
@@ -51,7 +53,7 @@
 
           <legend>Post per page</legend>
 
-          <paper-radio-group name="postPerPage" selected="1" ng-model="formData.postPerPage">
+          <paper-radio-group name="postPerPage" selected="<%= postPerPage %>" ng-model="formData.postPerPage">
             <paper-radio-button label="1" name="1">
             </paper-radio-button>
             <paper-radio-button name="3" label="3">
@@ -72,7 +74,16 @@
 
           <div id="setting-profile">
 
-            <input type="hidden" name="profilePhoto" ng-model="formData.profilePhotoUrl"></input>
+            <% if (profilePhoto) { %>
+              <input type="hidden" name="profilePhoto"
+                ng-model="formData.profilePhotoUrl"
+                ng-init="formData.profilePhotoUrl='<%= profilePhoto %>'"
+              ></input>
+            <% } else { %>
+              <input type="hidden" name="profilePhoto"
+                ng-model="formData.profilePhotoUrl"
+              ></input>
+            <% } %>
 
             <table>
               <tbody>
@@ -104,10 +115,9 @@
             </table>
 
             <div class="editor-wrapper">
-              <textarea  ng-cloak ng-editor id="editor" name="contents"
-                required
-                ng-model="formData.contents"
-              ></textarea>
+              <textarea  ng-cloak ng-editor id="editor" name="profileContents"
+                ng-model="formData.profileContents"
+              ><% if (profileContents) { %><%= profileContents %><% } %></textarea>
             </div>
 
           </div>
@@ -115,7 +125,7 @@
         </fieldset>
 
         <div class="buttons">
-          <paper-button ng-click="submitForm()" raised class="primary">SAVE</paper-button>
+          <paper-button ng-click="submitForm('<%-submitUrl%>')" raised class="primary">SAVE</paper-button>
         </div>
       </form>
     </div>
@@ -144,7 +154,7 @@
       </paper-input-decorator>
     </form>
 
-    <paper-button ng-click="submitForm()" class="primary" affirmative>UPDATE</paper-button>
+    <paper-button ng-click="submit()" class="primary" affirmative>UPDATE</paper-button>
     <paper-button force-close affirmative>CANCEL</paper-button>
 
   </paper-action-dialog>

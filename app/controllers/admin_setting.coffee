@@ -14,7 +14,7 @@ router.use (req, res, next) ->
   # admin relative page need auth
   util.authenticatedOrNot(req, res, next)
 
-# GET : post list page (Render view)
+# GET : setting page (Render view)
 router.get '/setting', (req, res, next) ->
 
   Setting.find({}, util.dbCallbackHTML((docs) ->
@@ -22,16 +22,13 @@ router.get '/setting', (req, res, next) ->
 
       doc = docs[0]
 
-      profilePhoto    = doc["profile_photo"]
-      profileContents = doc["profile_contents"] 
-
       resObj = defaultResponse(req)
       resObj.blogTitle       = doc.title
       resObj.authorName      = doc["author_name"]
       resObj.postPerPage     = doc["post_per_page"]
-      resObj.profilePhoto    = if profilePhoto? then profilePhoto else "" 
-      resObj.profileContents = if profileContents? then profileContents else ""
-      
+      resObj.profilePhoto    = doc["profile_photo"]
+      resObj.profileContents = doc["profile_contents"]
+
       resObj.title        = "blog setting"
       resObj.submitUrl    = '/admin/setting/'
 
@@ -41,6 +38,33 @@ router.get '/setting', (req, res, next) ->
       res.status(404).send('setting not exsist')
   ))
 
+# POST : save setting data (JSON)
+router.post '/setting', (req, res, next) ->
+
+  formData = req.body
+
+  updateObj = {
+    title           : formData.blogTitle
+    author_name     : formData.authorName
+    post_per_page   : formData.postPerPage
+  }
+
+  if formData.profilePhotoUrl?
+    updateObj["profile_photo"] = formData.profilePhotoUrl
+  if formData.profileContents?
+    updateObj["profile_contents"] = formData.profileContents
+
+  Setting.findOneAndUpdate({}, updateObj, util.dbCallback(() ->
+      res.status(200).json(
+        status: "OK"
+        data  : {
+          # redirect after save posting
+          redirectUrl: "/admin/setting"
+        }
+        error : null
+      )
+    )
+  )
 
 ###############################################################################
 ###############################################################################

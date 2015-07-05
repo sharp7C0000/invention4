@@ -10,10 +10,11 @@ module.exports =
 	  return
 
 	# default database callback
-	dbCallback: (success) -> 
+	dbCallback: (success) ->
 		(error, docs) ->
+			console.log("ggggggg")
 			if error?
-			  
+
 			  console.log "database error : " + error
 
 			  return res.status(400).json(
@@ -30,10 +31,10 @@ module.exports =
 				success(docs)
 
 	# default database callback (return HTML 400 error)
-	dbCallbackHTML: (success) -> 
+	dbCallbackHTML: (success) ->
 		(error, docs) ->
 			if error?
-			  
+
 			  console.log "database error : " + error
 
 			  # TODO : show default 400 error page

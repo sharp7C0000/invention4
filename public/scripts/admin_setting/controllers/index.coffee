@@ -3,7 +3,7 @@
 define ["shared/controllers/form", "holderjs"], (formCtrl) -> [ "$scope", "$rootScope", "$http", ($scope, $rootScope, $http) ->
 
 	submitSuccess = (data, status, headers, config) ->
-		window.location = data.data.redirectUrl
+		#window.location = data.data.redirectUrl
 
 	submitError = (data, status, headers, config) ->
 		if data.error?
@@ -19,8 +19,10 @@ define ["shared/controllers/form", "holderjs"], (formCtrl) -> [ "$scope", "$root
 
 	$scope.targetForm = $scope.settingForm
 
-	$scope.submitForm = () ->
-		$scope.submit()
+	$scope.submitForm = (url) ->
+		postPerPage = document.querySelector("[name='postPerPage']").selected
+		$scope.formData.postPerPage = postPerPage
+		$scope.submit(url)
 
 	# update profile photo
 	$rootScope.$on('updateProfilePhoto', (event, message) ->
