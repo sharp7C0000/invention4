@@ -23,9 +23,11 @@
           <input name="blogTitle" is="paper-input"
             required
             ng-model="formData.blogTitle"
+            ng-init="formData.blogTitle='<%= blogTitle %>'"
             ng-maxlength="125"
             ng-minlength="1"
             ng-keydown="hideGlobalValidation()"
+            value="<%= blogTitle %>"
           >
         </paper-input-decorator>
 
@@ -142,7 +144,7 @@
       </paper-input-decorator>
     </form>
 
-    <paper-button ng-click="submit()" class="primary" affirmative>UPDATE</paper-button>
+    <paper-button ng-click="submitForm()" class="primary" affirmative>UPDATE</paper-button>
     <paper-button force-close affirmative>CANCEL</paper-button>
 
   </paper-action-dialog>

@@ -3,6 +3,8 @@ router   = express.Router()
 session  = require 'express-session'
 mongoose = require 'mongoose'
 
+Setting  = mongoose.model 'Setting'
+
 util = require '../util/common'
 
 module.exports = (app) ->
@@ -15,10 +17,30 @@ router.use (req, res, next) ->
 # GET : post list page (Render view)
 router.get '/setting', (req, res, next) ->
 
-  resObj = defaultResponse(req)
-  resObj.title = "blog setting"
+  Setting.find({}, util.dbCallbackHTML((docs) ->
+    if docs?
 
-  res.render 'admin_setting', resObj
+      doc = docs[0]
+
+      profilePhoto    = doc["profile_photo"]
+      profileContents = doc["profile_contents"] 
+
+      resObj = defaultResponse(req)
+      resObj.blogTitle       = doc.title
+      resObj.authorName      = doc["author_name"]
+      resObj.postPerPage     = doc["post_per_page"]
+      resObj.profilePhoto    = if profilePhoto? then profilePhoto else "" 
+      resObj.profileContents = if profileContents? then profileContents else ""
+      
+      resObj.title        = "blog setting"
+      resObj.submitUrl    = '/admin/setting/'
+
+      res.render 'admin_setting', resObj
+    else
+      # TODO : make 400 page
+      res.status(404).send('setting not exsist')
+  ))
+
 
 ###############################################################################
 ###############################################################################
