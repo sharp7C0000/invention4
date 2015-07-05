@@ -18,5 +18,6 @@ require [
 	'poly.paper.checkbox'
 	'poly.paper.dropdown_menu'
 	'poly.paper.radio_group'
+	'poly.paper.toast'
 ], () ->
 	# do some common behavior

@@ -12,6 +12,8 @@
         <core-icon icon="settings"></core-icon>&nbsp;Blog Setting
       </div>
 
+
+
       <form name="settingForm">
 
         <paper-input-decorator
@@ -123,6 +125,15 @@
           </div>
 
         </fieldset>
+
+        <paper-shadow
+          class="global-validator"
+          z="1"
+
+        >
+
+          saved success
+        </paper-shadow>
 
         <div class="buttons">
           <paper-button ng-click="submitForm('<%-submitUrl%>')" raised class="primary">SAVE</paper-button>
