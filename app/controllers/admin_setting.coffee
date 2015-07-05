@@ -57,10 +57,7 @@ router.post '/setting', (req, res, next) ->
   Setting.findOneAndUpdate({}, updateObj, util.dbCallback(() ->
       res.status(200).json(
         status: "OK"
-        data  : {
-          # redirect after save posting
-          redirectUrl: "/admin/setting"
-        }
+        data  : null
         error : null
       )
     )

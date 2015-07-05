@@ -3,7 +3,7 @@
 define ["shared/controllers/form", "holderjs"], (formCtrl) -> [ "$scope", "$rootScope", "$http", ($scope, $rootScope, $http) ->
 
 	submitSuccess = (data, status, headers, config) ->
-		#window.location = data.data.redirectUrl
+		$scope.saveSuccess = true
 
 	submitError = (data, status, headers, config) ->
 		if data.error?
@@ -22,6 +22,7 @@ define ["shared/controllers/form", "holderjs"], (formCtrl) -> [ "$scope", "$root
 	$scope.submitForm = (url) ->
 		postPerPage = document.querySelector("[name='postPerPage']").selected
 		$scope.formData.postPerPage = postPerPage
+		$scope.saveSuccess = false
 		$scope.submit(url)
 
 	# update profile photo

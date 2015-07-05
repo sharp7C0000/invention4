@@ -126,16 +126,17 @@
 
         </fieldset>
 
-        <paper-shadow
-          class="global-validator"
-          z="1"
-
-        >
-
-          saved success
-        </paper-shadow>
-
         <div class="buttons">
+          <paper-shadow
+          ng-cloak
+          class="form-alert"
+          style="width:300px;"
+          ng-show="saveSuccess"
+          z="1"
+          >
+            <core-icon icon="check-circle"></core-icon>
+            Successfuly saved!
+          </paper-shadow>
           <paper-button ng-click="submitForm('<%-submitUrl%>')" raised class="primary">SAVE</paper-button>
         </div>
       </form>
