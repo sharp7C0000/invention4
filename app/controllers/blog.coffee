@@ -3,6 +3,7 @@ router = express.Router()
 mongoose = require 'mongoose'
 moment   = require 'moment'
 Post     = mongoose.model 'Post'
+Setting  = mongoose.model 'Setting'
 _        = require 'underscore'
 marked   = require 'marked'
 
@@ -24,18 +25,28 @@ router.get '/page/:pageNum', (req, res, next) ->
 # GET : blog read post page (Render view)
 router.get '/post/:id', (req, res, next) ->
 
-  Post.findById(req.params.id, util.dbCallbackHTML((docs) ->
-    if docs?
-      resObj = {
-        title       : docs.title
-        publish_date: moment(docs["publish_date"]).format("LL")
-        contents    : marked(docs.contents)
-      }
-      res.render 'blog_read_post', {title: 'My blog', post: resObj}
-    else
-    	# TODO : make 400 page
-    	res.status(404).send('post not exsist')
-  ))
+  Setting.findOne {}, util.dbCallback((docs) =>
+    setting = docs
+
+    Post.findById(req.params.id, util.dbCallbackHTML((docs) ->
+      if docs?
+        resObj = {
+          title       : docs.title
+          publish_date: moment(docs["publish_date"]).format("LL")
+          contents    : marked(docs.contents)
+        }
+        res.render 'blog_read_post', {
+          title   : setting.title + " : " + docs.title
+          blogName: setting.title
+          post    : resObj
+        }
+      else
+        # TODO : make 400 page
+        res.status(404).send('post not exsist')
+    ))
+  )
+
+  
 
 ###############################################################################
 ###############################################################################
@@ -60,34 +71,41 @@ pageAction = (req, res, next, pageNum) ->
     .replace(/<(?:.|\n)*?>/gm, '')
     .substring(0, summaryCharNum)
 
-  Post.find {}, 'title publish_date contents', {
-    sort : publish_date: -1
-    skip : realPageNum * perPage
-    limit: perPage
-  }, util.dbCallbackHTML((docs) =>
-    posts = _.map docs, (doc) -> {
-      post_url    : "/post/" + doc._id
-      title       : doc.title
-      publish_date: moment(doc["publish_date"]).format("LL")
-      summary     : getSummary(doc.contents)
-    }
+  Setting.findOne {}, util.dbCallback((docs) =>
+    setting = docs
 
-    nextPosts = (realPageNum + 1) * perPage
-    prevPosts = (realPageNum - 1) * perPage
+    Post.find {}, 'title publish_date contents', {
+      sort : publish_date: -1
+      skip : realPageNum * perPage
+      limit: perPage
+    }, util.dbCallbackHTML((docs) =>
+      posts = _.map docs, (doc) -> {
+        post_url    : "/post/" + doc._id
+        title       : doc.title
+        publish_date: moment(doc["publish_date"]).format("LL")
+        summary     : getSummary(doc.contents)
+      }
 
-    nextPageUrlIndex = pageNum + 1
-    prevPageUrlIndex = pageNum - 1
+      nextPosts = (realPageNum + 1) * perPage
+      prevPosts = (realPageNum - 1) * perPage
 
-    nextUrl = if nextPageUrlIndex > 1 then "/page/" + nextPageUrlIndex else "/"
-    prevUrl = if prevPageUrlIndex > 1 then "/page/" + prevPageUrlIndex else "/"
+      nextPageUrlIndex = pageNum + 1
+      prevPageUrlIndex = pageNum - 1
 
-    nextUrl = if nextPosts > totalDocs then null else nextUrl
-    prevUrl = if prevPosts < 0 then null else prevUrl
+      nextUrl = if nextPageUrlIndex > 1 then "/page/" + nextPageUrlIndex else "/"
+      prevUrl = if prevPageUrlIndex > 1 then "/page/" + prevPageUrlIndex else "/"
 
-    res.render 'blog', {
-      title  : 'My blog'
-      posts  : posts
-      nextUrl: nextUrl
-      prevUrl: prevUrl
-    }
+      nextUrl = if nextPosts > totalDocs then null else nextUrl
+      prevUrl = if prevPosts < 0 then null else prevUrl
+
+      res.render 'blog', {
+        title   : setting.title
+        blogName: setting.title
+        posts   : posts
+        nextUrl : nextUrl
+        prevUrl : prevUrl
+      }
+    )
   )
+
+

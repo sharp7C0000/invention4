@@ -127,6 +127,7 @@
         </fieldset>
 
         <div class="buttons">
+          <!-- TODO : animate show -->
           <paper-shadow
           ng-cloak
           class="form-alert"
@@ -134,6 +135,17 @@
           ng-show="saveSuccess"
           z="1"
           >
+
+          <paper-shadow
+            class="global-validator"
+            z="1"
+            ng-cloak
+            ng-show="formData.valid.global"
+          >
+            <core-icon icon="report-problem"></core-icon>
+            {{formData.error.global}}
+          </paper-shadow>
+
             <core-icon icon="check-circle"></core-icon>
             Successfuly saved!
           </paper-shadow>
