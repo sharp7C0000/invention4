@@ -62,7 +62,6 @@ pageAction = (req, res, next, pageNum) ->
       totalDocs = result
 
   realPageNum    = pageNum - 1
-  perPage        = 3 # will setting at option menu
   summaryCharNum = 200 # will setting at option menu
 
   getSummary  = (contents) ->
@@ -73,6 +72,7 @@ pageAction = (req, res, next, pageNum) ->
 
   Setting.findOne {}, util.dbCallback((docs) =>
     setting = docs
+    perPage = setting["post_per_page"]
 
     Post.find {}, 'title publish_date contents', {
       sort : publish_date: -1
