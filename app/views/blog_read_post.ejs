@@ -12,8 +12,9 @@
         <h1><a href="#" ng-click="clickTitle($event)"><%= post.title %></a></h1>
 
         <p class="date-and-autor">
-          <core-icon icon="today"></core-icon>&nbsp;
-          <%= post["publish_date"] %>
+          <!--<core-icon icon="today"></core-icon>&nbsp;-->
+          <%= post["publish_date"] %>&nbsp;
+          |&nbsp;&nbsp;By <%= authorName %> 
         </p>
 
         <div class="post-contents">

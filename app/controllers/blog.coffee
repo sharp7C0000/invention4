@@ -36,9 +36,10 @@ router.get '/post/:id', (req, res, next) ->
           contents    : marked(docs.contents)
         }
         res.render 'blog_read_post', {
-          title   : setting.title + " : " + docs.title
-          blogName: setting.title
-          post    : resObj
+          title     : setting.title + " : " + docs.title
+          blogName  : setting.title
+          authorName: setting["author_name"]
+          post      : resObj
         }
       else
         # TODO : make 400 page
@@ -99,11 +100,12 @@ pageAction = (req, res, next, pageNum) ->
       prevUrl = if prevPosts < 0 then null else prevUrl
 
       res.render 'blog', {
-        title   : setting.title
-        blogName: setting.title
-        posts   : posts
-        nextUrl : nextUrl
-        prevUrl : prevUrl
+        title     : setting.title
+        blogName  : setting.title
+        authorName: setting["author_name"]
+        posts     : posts
+        nextUrl   : nextUrl
+        prevUrl   : prevUrl
       }
     )
   )

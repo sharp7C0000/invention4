@@ -13,9 +13,9 @@
           <h3><a href="<%= posts[i]["post_url"] %>"><%= posts[i].title %></a></h3>
 
           <p class="date-and-autor">
-            <core-icon icon="today"></core-icon>&nbsp;
+            <!--<core-icon icon="today"></core-icon>&nbsp;-->
             <%= posts[i]["publish_date"] %>&nbsp;
-            Posted by User 
+            |&nbsp;&nbsp;By <%= authorName %> 
           </p>
 
           <p>
