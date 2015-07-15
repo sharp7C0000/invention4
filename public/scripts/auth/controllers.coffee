@@ -6,10 +6,10 @@ define ["angular"], (angular) ->
   .controller("AdminTopMenu", ["$scope", "$injector",
 		# load admin top menu controller
 		($scope, $injector) ->
-			require ["shared/controllers/topmenu"], (topmenu) ->
+			require ["shared/controllers/admin_topmenu"], (topmenu) ->
 				$injector.invoke topmenu, this, { $scope: $scope }
 	])
-  .controller("Auth", ["$scope", "$injector",  
+  .controller("Auth", ["$scope", "$injector",
     # load admin controller
     ($scope, $injector) ->
       require ["auth/controllers/index"], (index) ->

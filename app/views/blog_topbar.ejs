@@ -1,4 +1,28 @@
-<core-toolbar id="blog-mainheader">
-	<span flex><%-blogName %></span>
-	<paper-icon-button icon="info-outline"></paper-icon-button>
+<style>
+html /deep/ .size-position {
+	position: fixed;
+	top: 20px;
+	right: -3px;
+}
+
+html /deep/ .size-position::shadow #scroller {
+	width: 300px;
+	height: 300px;
+}
+</style>
+
+<core-toolbar id="blog-mainheader" ng-controller="BlogTopMenu">
+	<span flex><a class="home-button" href="/"><%-blogName %></a></span>
+	<paper-icon-button ng-click="clickAbout()" icon="info-outline"></paper-icon-button>
+	<paper-action-dialog layered="true"
+		class="size-position"
+		id="about-dialog"
+		ng-cloak
+	>
+		<h3 style="margin-top:0px;">About this blog</h3>
+		<p>ggggggggggggggggggggggggggg
+
+		</p>
+		<paper-button affirmative autofocus class="primary">close</paper-button>
+	</paper-action-dialog>
 </core-toolbar>
