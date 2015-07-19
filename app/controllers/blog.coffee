@@ -47,7 +47,22 @@ router.get '/post/:id', (req, res, next) ->
     ))
   )
 
-  
+# GET : blog profile information (JSON)
+router.get '/profile', (req, res, next) ->
+
+  Setting.findOne {}, util.dbCallback((docs) =>
+    setting = docs
+    res.status(200).json(
+      status: "OK"
+      data  : {
+        # profile datas
+        authorName: setting["author_name"]
+        contents  : marked(setting["profile_contents"])
+        photoUrl  : setting["profile_photo"]
+      }
+      error : null
+    )
+  )
 
 ###############################################################################
 ###############################################################################
@@ -109,5 +124,3 @@ pageAction = (req, res, next, pageNum) ->
       }
     )
   )
-
-

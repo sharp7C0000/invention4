@@ -50,3 +50,30 @@ paper-shadow.content-box {
 paper-shadow.content-box.summary {
 	height: 200px;
 }
+
+// about dialog
+html /deep/ #about-dialog {
+	position: fixed;
+	top     : 20px;
+	right   : -3px;
+	width   : 300px;
+
+	> p {
+		margin-top: 30px;
+	}
+
+	.profile-photo {
+		width:125px;
+		height:125px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	.author-name {
+		 text-align:center;
+		 font-weight:bold;
+		 margin-top:10px;
+		 margin-bottom:20px;
+	}
+
+}

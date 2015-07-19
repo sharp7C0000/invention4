@@ -1,27 +1,23 @@
-<style>
-html /deep/ .size-position {
-	position: fixed;
-	top: 20px;
-	right: -3px;
-}
-
-html /deep/ .size-position::shadow #scroller {
-	width: 300px;
-	height: 300px;
-}
-</style>
-
 <core-toolbar id="blog-mainheader" ng-controller="BlogTopMenu">
 	<span flex><a class="home-button" href="/"><%-blogName %></a></span>
 	<paper-icon-button ng-click="clickAbout()" icon="info-outline"></paper-icon-button>
-	<paper-action-dialog layered="true"
-		class="size-position"
+
+	<paper-action-dialog
+		layered="true"
 		id="about-dialog"
+		heading="About the author"
 		ng-cloak
 	>
-		<h3 style="margin-top:0px;">About this blog</h3>
-		<p>ggggggggggggggggggggggggggg
+		<p>
+			<div class="profile-photo">
+				<img ng-cloak ng-if="!profileData.photoUrl" width="125px" height="125px" holder ng-cloak data-src="holder.js/100%x100%/text:PHOTO">
+				<img ng-cloak ng-if="profileData.photoUrl"  width="125px" height="125px" ng-src="{{profileData.photoUrl}}}">
+			</div>
 
+			<div class="author-name">
+				{{profileData.authorName}}
+			</div>
+			<div ng-bind-html="profileContents"></div>
 		</p>
 		<paper-button affirmative autofocus class="primary">close</paper-button>
 	</paper-action-dialog>
