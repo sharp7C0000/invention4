@@ -1,5 +1,15 @@
 <%- include('header', {css:""}) %>
 
+<style>
+paper-dropdown {
+  position  : absolute!important;
+  top       : 38px!important;
+  right     : 10px!important;
+  min-width : 180px!important;
+  min-height:120px!important;
+}
+</style>
+
 <core-header-panel flex>
 
   <% include blog_topbar %>
@@ -27,9 +37,16 @@
         <paper-button raised ng-click="clickBack($event)">
           GO BACK
         </paper-button>
-        <paper-button raised>
+        <paper-button raised ng-click="clickShare($event)">
           SHARE
+
+          <paper-dropdown class="dropdown" transition="" id="userinfo" halign="right">
+          dddddd
+        </paper-dropdown>
+
         </paper-button>
+
+
       </div>
 
 
