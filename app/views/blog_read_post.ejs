@@ -3,10 +3,10 @@
 <style>
 paper-dropdown {
   position  : absolute!important;
-  top       : 38px!important;
-  right     : 10px!important;
+  top       : 0px!important;
+  right     : -200px!important;
   min-width : 180px!important;
-  min-height:120px!important;
+  min-height :64px!important;
 }
 </style>
 
@@ -24,7 +24,7 @@ paper-dropdown {
         <p class="date-and-autor">
           <!--<core-icon icon="today"></core-icon>&nbsp;-->
           <%= post["publish_date"] %>&nbsp;
-          |&nbsp;&nbsp;By <%= authorName %> 
+          |&nbsp;&nbsp;By <%= authorName %>
         </p>
 
         <div class="post-contents">
@@ -40,9 +40,14 @@ paper-dropdown {
         <paper-button raised ng-click="clickShare($event)">
           SHARE
 
-          <paper-dropdown class="dropdown" transition="" id="userinfo" halign="right">
-          dddddd
-        </paper-dropdown>
+          <paper-dropdown class="dropdown" transition="" id="userinfo">
+            <div class="soc" data-size="80px" data-buttoncolor="#999" data-iconcolor="#000">
+              <a social-twitter class="soc-twitter" title="Twitter"></a>
+              <a social-facebook class="soc-facebook" title="Facebook"></a>
+              <a social-gplus class="soc-google" title="Google plus"></a>
+            </div>
+
+          </paper-dropdown>
 
         </paper-button>
 

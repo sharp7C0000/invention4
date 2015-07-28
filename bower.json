@@ -17,6 +17,7 @@
     "moment": "~2.10.2",
     "highlightjs": "~8.5.0",
     "holderjs": "~2.7.1",
-    "angular-social-links": "~0.0.19"
+    "angular-social-links": "~0.0.19",
+    "socjs": "~1.0.1"
   }
 }

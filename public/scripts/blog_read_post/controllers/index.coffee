@@ -9,8 +9,7 @@ define ['highlightjs'], (hj) -> [ "$scope", "$http", ($scope, $http) ->
 		$event.preventDefault()
 
 	$scope.clickShare = ($event) ->
-		getElementById("user-info").toggle()
-		#this.querySelector('paper-dropdown').toggle()
+		document.getElementById("userinfo").toggle()
 
 	$scope.clickBack = () -> window.history.back()
 

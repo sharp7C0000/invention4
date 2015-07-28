@@ -3,6 +3,7 @@
 define [
 	'angular'
 	'blog_read_post/app'
+	'socjs'
 	'css!../../css/blog'
 	'css!../../css/blog/read_post'
 ], (angular, app) ->

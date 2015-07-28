@@ -30,6 +30,8 @@ require.config
 		moment                      : '../components/moment/moment'
 		highlightjs                 : '../components/highlightjs/highlight.pack'
 		holderjs                    : '../components/holderjs/holder'
+		social                      : '../components/angular-social-links/angular-social-links'
+		socjs                       : '../components/socjs/soc.min'
 
 	map:
 	  '*':
@@ -39,6 +41,8 @@ require.config
 		angular               : {exports: 'angular'}
 		editor                : {deps   : ['globalMarked', 'css!../css/editor']}
 		highlightjs           : {deps   : ['css!../components/highlightjs/styles/arta']}
+		social                : {deps    : ['angular']}
+		socjs                 : {deps : ['css!../components/socjs/soc.min.css']}
 
 	priority: ["angular"]
 
