@@ -1,0 +1,26 @@
+<div>
+
+  <paper-action-dialog backdrop autoCloseDisabled layered="false"
+    id="admin-user-setting-dialog"
+    heading="User Information"
+    closeSelector="[force-close]"
+    ng-cloak
+  >
+    <form name="profilePhotoForm">
+      <paper-input-decorator
+        label="Photo Url"
+        error="{{errorMessage(profilePhotoForm.photoUrl.$error)}}"
+        isInvalid="{{!profilePhotoForm.photoUrl.$valid && profilePhotoForm.photoUrl.$dirty}}"
+      >
+        <input name="photoUrl" is="paper-input"
+          type="url"
+          ng-model="formData.photoUrl"
+        >
+      </paper-input-decorator>
+    </form>
+
+    <paper-button force-close affirmative>close</paper-button>
+
+  </paper-action-dialog>
+
+</div>

@@ -22,7 +22,7 @@
             <paper-item noink>
               <div class="username"><%=username%></div>
               <div class="edituser">
-                <paper-icon-button class="primary" icon="settings"></paper-icon-button>
+                <paper-icon-button class="primary" icon="settings" ng-click="clickUserSetting()"></paper-icon-button>
               </div>
             </paper-item>
 
@@ -39,6 +39,7 @@
     <% } %>
     <paper-icon-button ng-click="home()" icon="home" class="primary"></paper-icon-button>
   </div>
+
 
   <!-- tab menu -->
   <% if(username) { %>
