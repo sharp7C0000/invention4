@@ -1,15 +1,5 @@
 <%- include('header', {css:""}) %>
 
-<style>
-paper-dropdown {
-  position  : absolute!important;
-  top       : 0px!important;
-  right     : -200px!important;
-  min-width : 180px!important;
-  min-height :64px!important;
-}
-</style>
-
 <core-header-panel flex>
 
   <% include blog_topbar %>
@@ -22,7 +12,6 @@ paper-dropdown {
         <h1><a href="#" ng-click="clickTitle($event)"><%= post.title %></a></h1>
 
         <p class="date-and-autor">
-          <!--<core-icon icon="today"></core-icon>&nbsp;-->
           <%= post["publish_date"] %>&nbsp;
           |&nbsp;&nbsp;By <%= authorName %>
         </p>
@@ -39,21 +28,16 @@ paper-dropdown {
         </paper-button>
         <paper-button raised ng-click="clickShare($event)">
           SHARE
-
-          <paper-dropdown class="dropdown" transition="" id="userinfo">
-            <div class="soc" data-size="80px" data-buttoncolor="#999" data-iconcolor="#000">
-              <a social-twitter class="soc-twitter" title="Twitter"></a>
-              <a social-facebook class="soc-facebook" title="Facebook"></a>
-              <a social-gplus class="soc-google" title="Google plus"></a>
+          <paper-dropdown class="dropdown" transition="" id="social-share">
+            <div class="soc" data-size="26px" data-radius="0">
+              <a href="#" social-twitter class="soc-twitter" title="Twitter"></a>
+              <a href="#" social-facebook class="soc-facebook" title="Facebook"></a>
+              <a href="#" social-gplus class="soc-google" title="Google plus"></a>
             </div>
-
           </paper-dropdown>
-
         </paper-button>
 
-
       </div>
-
 
     </div>
 
