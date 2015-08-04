@@ -1,14 +1,12 @@
 # admin and login topmenu controller
 
-define [], () -> [ "$scope", "$http", ($scope, $http) ->
+define [], () -> [ "$scope", "$rootScope", "$http", ($scope, $rootScope, $http) ->
 
 	$scope.home = () -> window.location = "/"
 
 	$scope.tab  = (url) -> window.location = url
 
-	$scope.aboutDialog = document.querySelector('#admin-user-setting-dialog')
-
-	$scope.clickUserSetting = () -> $scope.aboutDialog.toggle()
+	$scope.clickAccountSetting = () -> $rootScope.$emit('accountSettingDialog')
 
 	$scope.logout = (url) ->
 		# submit server

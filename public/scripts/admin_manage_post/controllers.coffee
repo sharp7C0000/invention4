@@ -9,6 +9,12 @@ define ["angular"], (angular) ->
 			require ["shared/controllers/admin_topmenu"], (topmenu) ->
 				$injector.invoke topmenu, this, { $scope: $scope }
 	])
+  .controller("AdminAccountSettingDialog", ["$scope", "$injector",
+		# load admin account setting controller
+		($scope, $injector) ->
+			require ["shared/controllers/admin_account_setting"], (topmenu) ->
+				$injector.invoke topmenu, this, { $scope: $scope }
+	])
   .controller("AdminManagePost", ["$scope", "$injector",
     # load admin controller
     ($scope, $injector) ->

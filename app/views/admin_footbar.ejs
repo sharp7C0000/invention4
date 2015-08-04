@@ -1,85 +1,78 @@
-<div>
+<div ng-controller="AdminAccountSettingDialog"
+  ng-init="userID ='<%=userid%>'"
+>
 
   <paper-action-dialog backdrop autoCloseDisabled layered="false"
-    id="admin-user-setting-dialog"
+    id="admin-account-setting-dialog"
     heading="Account Setting"
     closeSelector="[force-close]"
     ng-cloak
   >
-    <form name="profilePhotoForm">
-      <paper-input-decorator
-        label="Username"
-        floatingLabel
-      >
-        <input name="photoUrl" is="paper-input"
-          type="url"
-          value="admin"
-          readonly
-        >
-      </paper-input-decorator>
 
-      <paper-input-decorator
-        label="Email"
-        floatingLabel
-      >
-        <input name="photoUrl" is="paper-input"
-          type="url"
-          value="admin@admin.com"
-          readonly
-        >
-      </paper-input-decorator>
+    <paper-input-decorator
+      label="Username"
+      floatingLabel
+    >
+      <input name="username" is="paper-input" readonly>
+    </paper-input-decorator>
 
-      <fieldset style="margin-top:55px;">
+    <paper-input-decorator
+      label="Email"
+      floatingLabel
+    >
+      <input name="email" is="paper-input" readonly>
+    </paper-input-decorator>
 
-      <legend style="font-size:16px;margin-bottom:0px;">
+    <form name="accountSettingForm">
 
-        <div style="float:left;line-height:35px">Change Password</div>
-        &nbsp;&nbsp;
-        <paper-button class="primary" role="button" tabindex="0" style="font-size:12px;position:absolute;right:30px;">
-          <core-icon icon="check" style="width:14px;height:14px;"></core-icon>&nbsp;SAVE
-        </paper-button>
-      </legend>
+      <fieldset>
 
-     <div style="float:left;width:100%;">
+        <legend>
+          <div class="title">Change Password</div>
+          &nbsp;&nbsp;
+          <paper-button class="primary" role="button" tabindex="0">
+            <core-icon icon="check"></core-icon>&nbsp;SAVE
+          </paper-button>
+        </legend>
 
-      <paper-input-decorator
-        label="Old Password"
+        <div class="form-body">
 
-      >
-        <input name="photoUrl" is="paper-input"
-          type="password"
-          value="admin@admin.com"
-
-        >
-      </paper-input-decorator>
-
-      <paper-input-decorator
-        label="New Password"
-
-      >
-        <input name="photoUrl" is="paper-input"
-          type="password"
-          value="admin@admin.com"
-
-        >
-      </paper-input-decorator>
-
-      <paper-input-decorator
-        label="Confirm Password"
-
-      >
-        <input name="photoUrl" is="paper-input"
-          type="password"
-          value="admin@admin.com"
-
-        >
-      </paper-input-decorator>
-    </div>
+          <paper-input-decorator
+            label="Old Password"
+            error="{{errorMessage(accountSettingForm.oldPassword.$error)}}"
+            isInvalid="{{!accountSettingForm.oldPassword.$valid && accountSettingForm.oldPassword.$dirty}}"
+          >
+            <input name="oldPassword" is="paper-input"
+              type="password"
+              required
+            >
+          </paper-input-decorator>
 
 
+          <paper-input-decorator
+            label="New Password"
+            error="{{errorMessage(accountSettingForm.newPassword.$error)}}"
+            isInvalid="{{!accountSettingForm.newPassword.$valid && accountSettingForm.newPassword.$dirty}}"
+          >
+            <input name="newPassword" is="paper-input"
+              type="password"
+              required
+            >
+          </paper-input-decorator>
 
-    </fieldset>
+          <paper-input-decorator
+            label="Confirm Password"
+            error="{{errorMessage(accountSettingForm.repeatPassword.$error)}}"
+            isInvalid="{{!accountSettingForm.repeatPassword.$valid && accountSettingForm.repeatPassword.$dirty}}"
+          >
+            <input name="repeatPassword" is="paper-input"
+              type="password"
+              required
+            >
+          </paper-input-decorator>
+        </div>
 
+      </fieldset>
 
     </form>
 
