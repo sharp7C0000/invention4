@@ -42,6 +42,12 @@ router.post '/account/info', (req, res, next) ->
       )
   ))
 
+# POST : update user password (JSON)
+router.post '/account/update/password', (req, res, next) ->
+  formData = rq.body
+
+  res.status(200).json({message:"ok"})
+
 ###############################################################################
 ###############################################################################
 

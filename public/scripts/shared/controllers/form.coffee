@@ -15,10 +15,11 @@ define [], ($scope, $http) ->
 		# TODO: seperate this at other file
 		# client side form message
 		errorMessages = {
-			required : "This field is required"
-			maxlength: "The value is too long"
-			minlength: "The value is too short"
-			url      : "Invalid url format"
+			required  : "This field is required"
+			maxlength : "The value is too long"
+			minlength : "The value is too short"
+			url       : "Invalid url format"
+			custom    : ""
 		}
 
 		#### private
@@ -36,7 +37,9 @@ define [], ($scope, $http) ->
 			message = ""
 			angular.forEach error, (v, k) ->
 				if v
-					if errorMessages[k]?
+					if k == "custom"
+						message = v.message
+					else if errorMessages[k]?
 						message = errorMessages[k]
 					else
 						message = "validation error: " + k
