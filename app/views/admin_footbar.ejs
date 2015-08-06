@@ -1,6 +1,4 @@
-<div ng-controller="AdminAccountSettingDialog"
-  ng-init="userID ='<%=userid%>'"
->
+<div ng-controller="AdminAccountSettingDialog">
 
   <paper-action-dialog backdrop autoCloseDisabled layered="false"
     id="admin-account-setting-dialog"
@@ -10,17 +8,17 @@
   >
 
     <paper-input-decorator
+      name="paper-input-decorator"
       label="Username"
       floatingLabel
-      focused
     >
       <input ng-model="username" name="username" is="paper-input" readonly>
     </paper-input-decorator>
 
     <paper-input-decorator
+      name="paper-input-decorator"
       label="Email"
       floatingLabel
-      focused
     >
       <input ng-model="email" name="email" is="paper-input" readonly>
     </paper-input-decorator>
@@ -32,24 +30,15 @@
         <legend>
           <div class="title">Change Password</div>
           &nbsp;&nbsp;
-          <paper-button ng-click="submit('/admin/account/update/password')" class="primary" role="button" tabindex="0">
+          <paper-button ng-click="submitForm('/admin/account/update/password')" class="primary" role="button" tabindex="0">
             <core-icon icon="check"></core-icon>&nbsp;SAVE
           </paper-button>
         </legend>
 
         <div class="form-body">
 
-          <paper-shadow
-            class="global-validator"
-            z="1"
-            ng-cloak
-            ng-show="formData.valid.global"
-          >
-            <core-icon icon="report-problem"></core-icon>
-            {{formData.error.global}}
-          </paper-shadow>
-
           <paper-input-decorator
+            name="paper-input-decorator"
             label="Old Password"
             error="{{errorMessage(accountSettingForm.oldPassword.$error)}}"
             isInvalid="{{!accountSettingForm.oldPassword.$valid && accountSettingForm.oldPassword.$dirty}}"
@@ -65,6 +54,7 @@
           </paper-input-decorator>
 
           <paper-input-decorator
+            name="paper-input-decorator"
             label="New Password"
             error="{{errorMessage(accountSettingForm.newPassword.$error)}}"
             isInvalid="{{!accountSettingForm.newPassword.$valid && accountSettingForm.newPassword.$dirty}}"
@@ -81,6 +71,7 @@
           </paper-input-decorator>
 
           <paper-input-decorator
+            name="paper-input-decorator"
             label="Confirm Password"
             error="{{errorMessage(accountSettingForm.repeatPassword.$error)}}"
             isInvalid="{{!accountSettingForm.repeatPassword.$valid && accountSettingForm.repeatPassword.$dirty}}"
@@ -93,6 +84,27 @@
               ng-keydown="hideGlobalValidation()"
             >
           </paper-input-decorator>
+
+          <paper-shadow
+            class="form-alert"
+            z="1"
+            ng-cloak
+            ng-show="saveSuccess"
+          >
+            <core-icon icon="check-circle"></core-icon>
+            Successfuly saved!
+          </paper-shadow>
+
+          <paper-shadow
+            class="global-validator"
+            z="1"
+            ng-cloak
+            ng-show="formData.valid.global"
+          >
+            <core-icon icon="report-problem"></core-icon>
+            {{formData.error.global}}
+          </paper-shadow>
+
         </div>
 
       </fieldset>

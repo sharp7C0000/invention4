@@ -3,12 +3,24 @@
 define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$rootScope", "$http", ($scope, $rootScope, $http) ->
 
   submitSuccess = (data, status, headers, config) ->
+    $scope.saveSuccess = true
 
   submitError = (data, status, headers, config) ->
+    if data.error?
+      error = data.error
+      # handling database error
+      if error.type == "DATABASE_ERROR"
+        $scope.formData.valid.global = true
+        $scope.formData.error.global = "Database error occured"
 
   angular.extend(this, new formCtrl($scope, $http, submitSuccess, submitError))
 
-  $scope.targetForm = $scope.accountSettingForm
+  $scope.targetForm  = $scope.accountSettingForm
+  formDataOri = angular.copy($scope.formData)
+
+  $scope.submitForm = (url) ->
+    $scope.saveSuccess = false
+    $scope.submit(url)
 
   $scope.checkNewPasswordMathing = () ->
     newPasswordValue    = $scope.formData.newPassword
@@ -29,18 +41,36 @@ define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$rootScope", "$ht
 
   $scope.dialog = document.querySelector('#admin-account-setting-dialog')
 
-  # fetch data when open dialog
-  $scope.dialog.addEventListener("core-overlay-open-completed", (event) ->
-    fetch()
-  )
+  $scope.dialog.addEventListener("core-overlay-open", (event) -> init())
 
-  $rootScope.$on('accountSettingDialog', (event, message) ->
-    $scope.dialog.open()
-  )
+  # fetch data when open dialog
+  $scope.dialog.addEventListener("core-overlay-open-completed", (event) -> fetch())
+
+  $rootScope.$on('accountSettingDialog', (event, message) -> $scope.dialog.open())
 
   # private
+  init = () ->
+    $scope.formData   = angular.copy(formDataOri)
+    $scope.targetForm.$setPristine()
+
+    $scope.username    = ""
+    $scope.email       = ""
+    $scope.saveSuccess = false
+
+    $scope.formData.repeatPassword = null
+    $scope.formData.oldPassword = null
+    $scope.formData.newPassword = null
+
+    # polymer ui bug
+    # manal focus input
+    $decorators = document.getElementsByName("paper-input-decorator")
+    angular.forEach $decorators, (v, k) -> v.focused = true
+    setTimeout((() ->
+      angular.forEach $decorators,(v, k) -> v.focused = false
+    ), 100)
+
   fetch = () ->
-    $http.post('/admin/account/info', {userID: $scope.userID})
+    $http.post('/admin/account/info')
     .success((data, status, headers, config) ->
       $scope.username  = data.data.username
       $scope.email     = data.data.email

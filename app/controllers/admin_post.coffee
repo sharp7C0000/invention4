@@ -146,4 +146,3 @@ defaultResponse = (req) ->
   managePostUrl : '/admin/posts'
   blogSettingUrl: '/admin/setting'
   username      : req.user.username
-  userid        : req.user._id.toString()
