@@ -28,12 +28,12 @@ module.exports = (app, config) ->
   app.use compress()
   app.use lessMiddleware( '/less',
     dest: '/css',
-    pathRoot: config.root + '/public'
+    pathRoot: config.root + '/' + config.static
   )
-  app.use express.static config.root + '/public'
+  app.use express.static config.root + '/' + config.static
   app.use methodOverride()
 
-  app.use session({ 
+  app.use session({
     secret: "cookie_secret"
     resave: true
     saveUninitialized: true
@@ -51,15 +51,15 @@ module.exports = (app, config) ->
         field: "username"
         text : "No user finded"
       })
-    
+
       # Check password
       if passwordHash.verify(password, user.hashed_pw) is true
         done(null, user)
       else
         done(null, false, {
-          field: "password" 
-          text : "Password not machting" 
-        }) 
+          field: "password"
+          text : "Password not machting"
+        })
   )
   passport.use(localStreategy)
 

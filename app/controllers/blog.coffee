@@ -7,7 +7,8 @@ Setting  = mongoose.model 'Setting'
 _        = require 'underscore'
 marked   = require 'marked'
 
-util = require '../util/common'
+util   = require '../util/common'
+config = require '../../config/config'
 
 module.exports = (app) ->
   app.use '/', router
@@ -68,6 +69,8 @@ router.get '/profile', (req, res, next) ->
 ###############################################################################
 
 pageAction = (req, res, next, pageNum) ->
+
+  console.log "mode", process.env.NODE_ENV
 
   totalDocs = 0
 

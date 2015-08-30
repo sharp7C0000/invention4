@@ -4,25 +4,6 @@ require.config
 
 	paths:
 		angular                     : '../components/angular/angular'
-		'poly.core.header_panel'    : 'lib/polymer-component/core_header_panel'
-		'poly.core.toolbar'         : 'lib/polymer-component/core_toolbar'
-		'poly.core.icons'           : 'lib/polymer-component/core_icons'
-		'poly.paper.input_decorator': 'lib/polymer-component/paper_input_decorator'
-		'poly.paper.input'          : 'lib/polymer-component/paper_input'
-		'poly.paper.button'         : 'lib/polymer-component/paper_button'
-		'poly.paper.icon_button'    : 'lib/polymer-component/paper_icon_button'
-		'poly.paper.shadow'         : 'lib/polymer-component/paper_shadow'
-		"poly.paper.menu_button"    : 'lib/polymer-component/paper_menu_button'
-		'poly.paper.dropdown'       : 'lib/polymer-component/paper_dropdown'
-		'poly.paper.item'           : 'lib/polymer-component/paper_item'
-		'poly.paper.fab'            : 'lib/polymer-component/paper_fab'
-		'poly.paper.tabs'           : 'lib/polymer-component/paper_tabs'
-		'poly.paper.dialog'         : 'lib/polymer-component/paper_dialog'
-		'poly.paper.action_dialog'  : 'lib/polymer-component/paper_action_dialog'
-		'poly.paper.checkbox'       : 'lib/polymer-component/paper_checkbox'
-		'poly.paper.dropdown_menu'  : 'lib/polymer-component/paper_dropdown_menu'
-		'poly.paper.radio_group'    : 'lib/polymer-component/paper_radio_group'
-		'poly.paper.toast'          : 'lib/polymer-component/paper_toast'
 		marked                      : '../components/marked/lib/marked'
 		editor                      : '../components_other/editor/editor'
 		directives                  : 'lib/angular_directives'
@@ -41,8 +22,8 @@ require.config
 		angular               : {exports: 'angular'}
 		editor                : {deps   : ['globalMarked', 'css!../css/editor']}
 		highlightjs           : {deps   : ['css!../components/highlightjs/styles/arta']}
-		social                : {deps    : ['angular']}
-		socjs                 : {deps : ['css!../components/socjs/soc.min.css']}
+		social                : {deps   : ['angular']}
+		socjs                 : {deps   : ['css!../components/socjs/soc.min.css']}
 
 	priority: ["angular"]
 

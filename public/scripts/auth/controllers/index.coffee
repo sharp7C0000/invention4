@@ -6,7 +6,7 @@ define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$http", ($scope, 
 
 	# extend common form controller
 	angular.extend(this, new formCtrl($scope, $http, submitSuccess))
-	
+
 	$scope.targetForm = $scope.loginForm
 
 	$scope.$apply()

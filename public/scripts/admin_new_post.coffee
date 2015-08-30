@@ -1,3 +1,3 @@
 # Admin new post main script
-
-require ['config', 'layout', 'admin_new_post/main'], (config, layout, main) -> console.log "admin new post"
+require ['config'], (config) ->
+  require ['admin_new_post/main'], (main) ->

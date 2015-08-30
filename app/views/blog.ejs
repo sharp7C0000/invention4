@@ -1,4 +1,7 @@
-<%- include('header', {css:""}) %>
+<%- include('header', {
+  css         : "<link rel='stylesheet' href='/css/blog.css' shim-shadowdom>",
+  webcomponent: "<link rel='import' href='/webcomponent/blog.html'>"
+}); %>
 
 <core-header-panel flex>
 
@@ -15,7 +18,7 @@
           <p class="date-and-autor">
             <!--<core-icon icon="today"></core-icon>&nbsp;-->
             <%= posts[i]["publish_date"] %>&nbsp;
-            |&nbsp;&nbsp;By <%= authorName %> 
+            |&nbsp;&nbsp;By <%= authorName %>
           </p>
 
           <p>

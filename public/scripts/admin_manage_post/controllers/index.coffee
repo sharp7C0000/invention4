@@ -13,17 +13,17 @@ define ['moment'], (moment) -> [ "$scope", "$http", ($scope, $http) ->
 	  	$scope.posts = data.data.posts
 		)
 		.error((data, status) ->
-			# TODO: handle error 
+			# TODO: handle error
 			console.log data
 		)
-		
+
 	updateBulk = () ->
 		$scope.formData = []
 		bulkButton      = document.getElementById("remove-posts")
 		checks          = document.getElementsByName("check")
 		checkAll        = document.getElementsByName("check-all")[0]
 		length          = 0
-		
+
 		angular.forEach(checks, (v, k) ->
 			if v.checked == true
 				$scope.formData.push(v.getAttribute("id"))
@@ -32,10 +32,10 @@ define ['moment'], (moment) -> [ "$scope", "$http", ($scope, $http) ->
 
 		# detect check all state
 		checkAll.checked = if length == checks.length then true else false
-		
+
 		if length > 0
 			bulkButton.style.display = ''
-		else 
+		else
 			bulkButton.style.display = 'none'
 
 	$scope.editPost = (editUrl, postId) ->
@@ -46,7 +46,7 @@ define ['moment'], (moment) -> [ "$scope", "$http", ($scope, $http) ->
 		$http.delete(deleteUrl + postId)
 		.success((data, status, headers, config) -> fetch())
 		.error((data, status) ->
-			# TODO: handle error 
+			# TODO: handle error
 			console.log data
 		)
 
@@ -55,7 +55,7 @@ define ['moment'], (moment) -> [ "$scope", "$http", ($scope, $http) ->
 		$http.post(deleteUrl, $scope.formData)
 		.success((data, status, headers, config) -> fetch())
 		.error((data, status) ->
-			# TODO: handle error 
+			# TODO: handle error
 			console.log data
 		)
 
