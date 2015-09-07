@@ -3,3 +3,4 @@ public/components
 public/js
 public/css
 .sass-cache
+/public_production

@@ -26,6 +26,30 @@ module.exports = function (grunt) {
         ext: '.js'
       }
     },
+    vulcanize: {
+      options: {
+        // Task-specific options go here.
+        inlineScripts: true,
+      inlineCss: true,
+      stripComments: true
+      },
+      default: {
+        options: {
+          // Task-specific options go here.
+          inlineScripts: true,
+        inlineCss: true,
+        stripComments: true
+        },
+        files: {
+          'public_production/webcomponent/admin_manage_post.html': 'public/webcomponent/admin_manage_post.html',
+          'public_production/webcomponent/admin_new_post.html': 'public/webcomponent/admin_new_post.html',
+          'public_production/webcomponent/admin_setting.html': 'public/webcomponent/admin_setting.html',
+          'public_production/webcomponent/auth.html': 'public/webcomponent/auth.html',
+          'public_production/webcomponent/blog.html': 'public/webcomponent/blog.html',
+          'public_production/webcomponent/blog_read_post.html': 'public/webcomponent/blog_read_post.html'
+        }
+      }
+    },
     develop: {
       server: {
         file: 'app.js'
@@ -77,6 +101,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-coffee');
   //https://github.com/gruntjs/grunt-contrib-clean
   grunt.loadNpmTasks('grunt-contrib-clean');
+  // https://github.com/Polymer/grunt-vulcanize
+  grunt.loadNpmTasks('grunt-vulcanize');
 
   grunt.registerTask('default', ['clean','coffee:client', 'develop', 'watch']);
+
+  grunt.registerTask('build', ['clean', 'coffee:client', 'vulcanize'])
 };

@@ -26,15 +26,16 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-develop": "~0.4.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-contrib-compass": "~0.9.0",
-    "request": "~2.36.0",
-    "time-grunt": "~0.3.2",
-    "load-grunt-tasks": "~0.6.0",
     "coffee-script": "^1.7.1",
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-coffee": "^0.12.0",
-    "grunt-contrib-clean": "^0.6.0"
+    "grunt-contrib-compass": "~0.9.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-develop": "~0.4.0",
+    "grunt-vulcanize": "^0.6.4",
+    "load-grunt-tasks": "~0.6.0",
+    "request": "~2.36.0",
+    "time-grunt": "~0.3.2"
   }
 }
