@@ -26,19 +26,25 @@ module.exports = function (grunt) {
         ext: '.js'
       }
     },
+    requirejs: {
+      compile: {
+        options: {
+          baseUrl: "public/js",
+          mainConfigFile: "public/js/config.js",
+          out: "public_production/out.js",
+					name: "blog",
+          optimize: 'uglify2',
+          findNestedDependencies: true
+
+        }
+      }
+    },
     vulcanize: {
-      options: {
-        // Task-specific options go here.
-        inlineScripts: true,
-      inlineCss: true,
-      stripComments: true
-      },
       default: {
         options: {
           // Task-specific options go here.
-          inlineScripts: true,
-        inlineCss: true,
-        stripComments: true
+          inline: true,
+          strip : true
         },
         files: {
           'public_production/webcomponent/admin_manage_post.html': 'public/webcomponent/admin_manage_post.html',
@@ -103,8 +109,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   // https://github.com/Polymer/grunt-vulcanize
   grunt.loadNpmTasks('grunt-vulcanize');
+  // https://github.com/gruntjs/grunt-contrib-requirejs
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
 
   grunt.registerTask('default', ['clean','coffee:client', 'develop', 'watch']);
 
-  grunt.registerTask('build', ['clean', 'coffee:client', 'vulcanize'])
+  grunt.registerTask('build', ['clean', 'coffee:client', 'vulcanize', 'requirejs:compile'])
 };
