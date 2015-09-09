@@ -16,7 +16,7 @@ require.config
 
 	map:
 	  '*':
-	    'css': '../../components/require-css/css'
+	    'css': '../components/require-css/css'
 
 	shim:
 		angular               : {exports: 'angular'}

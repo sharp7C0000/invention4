@@ -8,7 +8,31 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
 
-  var reloadPort = 35729, files;
+  var reloadPort = 35729, files
+
+  // looping tasks
+  var files = grunt.file.expand('public/js/*.js');
+  var requirejsOptions = {};
+
+  files.forEach(function(file) {
+      var filename = file.split('/').pop();
+      requirejsOptions[filename] = {
+          options: {
+              // baseUrl: 'static/js/',
+              // include: './apps/'+filename,
+              // out: 'static/js/build/'+filename
+
+              baseUrl: "public/js",
+              mainConfigFile: "public/js/config.js",
+              out: "public_production/js/" + filename,
+    					//name: "blog",
+              include: filename,
+              optimize: 'uglify2',
+              findNestedDependencies: true
+
+          }
+      };
+  });
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -26,19 +50,20 @@ module.exports = function (grunt) {
         ext: '.js'
       }
     },
-    requirejs: {
-      compile: {
-        options: {
-          baseUrl: "public/js",
-          mainConfigFile: "public/js/config.js",
-          out: "public_production/out.js",
-					name: "blog",
-          optimize: 'uglify2',
-          findNestedDependencies: true
-
-        }
-      }
-    },
+    requirejs: requirejsOptions,
+    // requirejs: {
+    //   compile: {
+    //     options: {
+    //       baseUrl: "public/js",
+    //       mainConfigFile: "public/js/config.js",
+    //       out: "public_production/out.js",
+		// 			name: "blog",
+    //       optimize: 'uglify2',
+    //       findNestedDependencies: true
+    //
+    //     }
+    //   }
+    // },
     vulcanize: {
       default: {
         options: {
@@ -114,5 +139,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', ['clean','coffee:client', 'develop', 'watch']);
 
-  grunt.registerTask('build', ['clean', 'coffee:client', 'vulcanize', 'requirejs:compile'])
+  grunt.registerTask('build', ['clean', 'coffee:client', 'vulcanize', 'requirejs'])
 };
