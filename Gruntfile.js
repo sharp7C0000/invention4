@@ -11,34 +11,86 @@ module.exports = function (grunt) {
   var reloadPort = 35729, files
 
   // looping tasks
+
+  // requirejs task
   var files = grunt.file.expand('public/js/*.js');
   var requirejsOptions = {};
 
   files.forEach(function(file) {
-      var filename = file.split('/').pop();
-      requirejsOptions[filename] = {
-          options: {
-              // baseUrl: 'static/js/',
-              // include: './apps/'+filename,
-              // out: 'static/js/build/'+filename
-
-              baseUrl: "public/js",
-              mainConfigFile: "public/js/config.js",
-              out: "public_production/js/" + filename,
-    					//name: "blog",
-              include: filename,
-              optimize: 'uglify2',
-              findNestedDependencies: true
-
-          }
-      };
+    var filename = file.split('/').pop();
+    requirejsOptions[filename] = {
+      options: {
+        baseUrl               : "public/js",
+        mainConfigFile        : "public/js/config.js",
+        out                   : "public_production/js/" + filename,
+        include               : filename,
+        optimize              : 'uglify2',
+        findNestedDependencies: true
+      }
+    };
   });
 
+  // vulcanize task
+  var files          = grunt.file.expand('public/webcomponent/*.html');
+  var vulcanizeFiles = {};
+
+  files.forEach(function(file) {
+    var filename = file.split('/').pop();
+    vulcanizeFiles["public_production/webcomponent/" + filename] = "public/webcomponent/" + filename
+  });
+
+  // less tasks
+  var lessFiles      = {};
+  grunt.file.recurse("public/less", function callback(abspath, rootdir, subdir, filename) {
+    // exclude common.less
+    if(abspath != "public/less/common.less") {
+      var trimedFilename = filename.split(".")[0] + ".css";
+      if(subdir) {
+        lessFiles["public/css/" + subdir + "/" + trimedFilename] = abspath;
+      } else {
+        lessFiles["public/css/" + trimedFilename] = abspath;
+      }
+    }
+  });
+
+  // init config
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     // clean client side js and css file
-    clean: ["public/js", "public/css"],
+    clean: {
+      development: ["public/js", "public/css"],
+      production : ["public/js",
+                    "public/css",
+                    "public_production/js",
+                    "public_production/css",
+                    "public_production/webcomponent",
+                    "public_production/components" ]
+    },
+
+    // copy component file
+    copy: {
+      production: {
+        files: [
+          {
+            src : 'public/components/requirejs/require.js',
+            dest: 'public_production/components/requirejs/require.js'
+          },
+          {
+            src : 'public/components/webcomponentsjs/webcomponents.min.js',
+            dest: 'public_production/components/webcomponentsjs/webcomponents.js'
+          },
+          {
+            expand: true,
+            cwd: 'public/css',
+            src: '*',
+            dest: 'public_production/css',
+            flatten: true,
+            filter: 'isFile',
+          }
+        ],
+      },
+    },
 
     // client side coffeescript compile
     coffee: {
@@ -50,20 +102,22 @@ module.exports = function (grunt) {
         ext: '.js'
       }
     },
+
+    //less file compile
+    less: {
+      development: {
+        options: {
+          paths   : ["public/less", "public/less/admin", "public/less/blog"],
+          compress: true
+        },
+        files: lessFiles
+      }
+    },
+
+    // optimize js files
     requirejs: requirejsOptions,
-    // requirejs: {
-    //   compile: {
-    //     options: {
-    //       baseUrl: "public/js",
-    //       mainConfigFile: "public/js/config.js",
-    //       out: "public_production/out.js",
-		// 			name: "blog",
-    //       optimize: 'uglify2',
-    //       findNestedDependencies: true
-    //
-    //     }
-    //   }
-    // },
+
+    // optimize web component
     vulcanize: {
       default: {
         options: {
@@ -71,21 +125,16 @@ module.exports = function (grunt) {
           inline: true,
           strip : true
         },
-        files: {
-          'public_production/webcomponent/admin_manage_post.html': 'public/webcomponent/admin_manage_post.html',
-          'public_production/webcomponent/admin_new_post.html': 'public/webcomponent/admin_new_post.html',
-          'public_production/webcomponent/admin_setting.html': 'public/webcomponent/admin_setting.html',
-          'public_production/webcomponent/auth.html': 'public/webcomponent/auth.html',
-          'public_production/webcomponent/blog.html': 'public/webcomponent/blog.html',
-          'public_production/webcomponent/blog_read_post.html': 'public/webcomponent/blog_read_post.html'
-        }
+        files: vulcanizeFiles
       }
     },
+
     develop: {
       server: {
         file: 'app.js'
       }
     },
+
     watch: {
       options: {
         nospawn: true,
@@ -128,16 +177,35 @@ module.exports = function (grunt) {
     }, 500);
   });
 
+  grunt.registerTask('mkdir:production', 'Make directory', function() {
+    grunt.file.mkdir("public_production/webcomponent");
+    grunt.file.mkdir("public_production/js");
+    grunt.file.mkdir("public_production/components");
+    grunt.file.mkdir("public_production/css");
+  });
+
   // https://github.com/gruntjs/grunt-contrib-coffee
   grunt.loadNpmTasks('grunt-contrib-coffee');
-  //https://github.com/gruntjs/grunt-contrib-clean
+  // https://github.com/gruntjs/grunt-contrib-less
+  grunt.loadNpmTasks('grunt-contrib-less');
+  // https://github.com/assemble/assemble-less
   grunt.loadNpmTasks('grunt-contrib-clean');
   // https://github.com/Polymer/grunt-vulcanize
   grunt.loadNpmTasks('grunt-vulcanize');
   // https://github.com/gruntjs/grunt-contrib-requirejs
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  // https://github.com/gruntjs/grunt-contrib-copy
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('default', ['clean','coffee:client', 'develop', 'watch']);
+  grunt.registerTask('default', ['clean:development','coffee:client', 'develop', 'watch']);
 
-  grunt.registerTask('build', ['clean', 'coffee:client', 'vulcanize', 'requirejs'])
+  grunt.registerTask('build', [
+    'clean:production',
+    'mkdir:production',
+    'coffee:client',
+    'vulcanize',
+    'less:development',
+    'requirejs',
+    'copy:production'
+  ]);
 };

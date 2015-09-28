@@ -19,41 +19,43 @@ models.forEach(function (model) {
   require(model);
 });
 
-// insert initial data
-db.once('open', function() {
-  var User = mongoose.model('User');
-	admin = new User({
-    username  : "admin",
-    email     : "support@invention4.com",
-    hashed_pw : passwordHash.generate('1111')
-  });
-  admin.save(function(err, user){
-    if(err) {
-    	console.error(err);
-    } else {
-    	console.log("user " + user.username + " created")
-    }
-  });
-
-  var Setting = mongoose.model('Setting');
-
-  Setting.count({}, function( err, count){
-    if(count == 0) {
-      setting = new Setting();
-      setting.save(function(err, setting){
-        if(err) {
-          console.error(err);
-        } else {
-          console.log("setting created")
-        }
-      });
-    }
-  });
-});
-
 var app = express();
+
+// if development setting initial data
+if(app.get('env') == 'development') {
+  // insert initial data
+  db.once('open', function() {
+    var User = mongoose.model('User');
+  	admin = new User({
+      username  : "admin",
+      email     : "support@invention4.com",
+      hashed_pw : passwordHash.generate('1111')
+    });
+    admin.save(function(err, user){
+      if(err) {
+      	console.error(err);
+      } else {
+      	console.log("user " + user.username + " created")
+      }
+    });
+
+    var Setting = mongoose.model('Setting');
+
+    Setting.count({}, function( err, count){
+      if(count == 0) {
+        setting = new Setting();
+        setting.save(function(err, setting){
+          if(err) {
+            console.error(err);
+          } else {
+            console.log("setting created")
+          }
+        });
+      }
+    });
+  });
+}
 
 require('./config/express')(app, config);
 
 app.listen(config.port);
-
