@@ -3,7 +3,7 @@
 define ['angular', 'editor'], (angular, editor) ->
 	angular.module('invention4.directives.editor', [])
 
-	.directive('ngEditor', ($parse) ->
+	.directive('ngEditor', ["$parse", ($parse) ->
 		{
 			restrict: 'A'
 			require : '?ngModel'
@@ -20,7 +20,7 @@ define ['angular', 'editor'], (angular, editor) ->
 
 				# update view value
 				updateValue(editor.codemirror.getValue())
-				
+
 				# add on change listener
 				editor.codemirror.on("change", () ->
 					# update view value
@@ -31,5 +31,5 @@ define ['angular', 'editor'], (angular, editor) ->
 					editor.codemirror.refresh()
 					editor.codemirror.focus()
 				), 500
-		}
+		}]
 	)

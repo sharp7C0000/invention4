@@ -69,9 +69,7 @@ router.get '/profile', (req, res, next) ->
 ###############################################################################
 
 pageAction = (req, res, next, pageNum) ->
-
-  console.log "mode", process.env.NODE_ENV
-
+  
   totalDocs = 0
 
   Post.count {}, (err, result) ->

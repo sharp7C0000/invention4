@@ -24,7 +24,7 @@ module.exports = function (grunt) {
         mainConfigFile        : "public/js/config.js",
         out                   : "public_production/js/" + filename,
         include               : filename,
-        optimize              : 'uglify2',
+        optimize              : "uglify2",
         findNestedDependencies: true
       }
     };
@@ -65,7 +65,8 @@ module.exports = function (grunt) {
                     "public_production/js",
                     "public_production/css",
                     "public_production/webcomponent",
-                    "public_production/components" ]
+                    "public_production/components",
+                    "public_production/fonts" ]
     },
 
     // copy component file
@@ -87,6 +88,14 @@ module.exports = function (grunt) {
             dest: 'public_production/css',
             flatten: true,
             filter: 'isFile',
+          },
+          {
+            expand: true,
+            cwd: 'public/fonts',
+            src: '*',
+            dest: 'public_production/fonts',
+            flatten: true,
+            filter: 'isFile',
           }
         ],
       },
@@ -105,7 +114,7 @@ module.exports = function (grunt) {
 
     //less file compile
     less: {
-      development: {
+      production: {
         options: {
           paths   : ["public/less", "public/less/admin", "public/less/blog"],
           compress: true
@@ -182,6 +191,7 @@ module.exports = function (grunt) {
     grunt.file.mkdir("public_production/js");
     grunt.file.mkdir("public_production/components");
     grunt.file.mkdir("public_production/css");
+    grunt.file.mkdir("public_production/fonts");
   });
 
   // https://github.com/gruntjs/grunt-contrib-coffee
@@ -204,7 +214,7 @@ module.exports = function (grunt) {
     'mkdir:production',
     'coffee:client',
     'vulcanize',
-    'less:development',
+    'less:production',
     'requirejs',
     'copy:production'
   ]);
