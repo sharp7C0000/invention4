@@ -9,6 +9,9 @@
   <%- css %>
   <%- webcomponent %>
 
-  <script src="http://localhost:35729/livereload.js"></script>
+  <% if(mode == "development") { %>
+    <script src="http://localhost:35729/livereload.js"></script>
+  <% } %>
+
 </head>
 <body fullbleed vertical layout unresolved>

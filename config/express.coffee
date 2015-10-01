@@ -33,7 +33,10 @@ module.exports = (app, config) ->
       dest: '/css',
       pathRoot: config.root + '/' + config.static
     )
-  
+
+  # grobal view template variable
+  app.locals.mode = app.get('env')
+
   app.use express.static config.root + '/' + config.static
   app.use methodOverride()
 
