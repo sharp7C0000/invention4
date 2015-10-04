@@ -21,40 +21,43 @@ models.forEach(function (model) {
 
 var app = express();
 
-// if development setting initial data
-if(app.get('env') == 'development') {
-  // insert initial data
-  db.once('open', function() {
-    var User = mongoose.model('User');
-  	admin = new User({
-      username  : "admin",
-      email     : "support@invention4.com",
-      hashed_pw : passwordHash.generate('1111')
-    });
-    admin.save(function(err, user){
-      if(err) {
-      	console.error(err);
-      } else {
-      	console.log("user " + user.username + " created")
-      }
-    });
+// insert initial data
+db.once('open', function() {
+  var User = mongoose.model('User');
 
-    var Setting = mongoose.model('Setting');
-
-    Setting.count({}, function( err, count){
-      if(count == 0) {
-        setting = new Setting();
-        setting.save(function(err, setting){
-          if(err) {
-            console.error(err);
-          } else {
-            console.log("setting created")
-          }
-        });
-      }
-    });
+  User.count({}, function( err, count){
+    if(count == 0) {
+      admin = new User({
+        username  : config.admin.name,
+        hashed_pw : passwordHash.generate(config.admin.password)
+      });
+      admin.save(function(err, user){
+        if(err) {
+        	console.error(err);
+          process.exit();
+        } else {
+        	console.log("user " + user.username + " created")
+        }
+      });
+    }
   });
-}
+
+  var Setting = mongoose.model('Setting');
+
+  Setting.count({}, function( err, count){
+    if(count == 0) {
+      setting = new Setting();
+      setting.save(function(err, setting){
+        if(err) {
+          console.error(err);
+          process.exit();
+        } else {
+          console.log("setting created")
+        }
+      });
+    }
+  });
+});
 
 require('./config/express')(app, config);
 

@@ -10,6 +10,9 @@ config =
       name: 'invention4 development'
     port: 3000
     db: 'mongodb://localhost/invention4-development'
+    admin:
+      name    : 'admin'
+      password: '1234'
 
 
   test:
@@ -19,6 +22,9 @@ config =
       name: 'invention4 test'
     port: 3000
     db: 'mongodb://localhost/invention4-test'
+    admin:
+      name    : 'admin'
+      password: '1234'
 
 
   production:
@@ -28,6 +34,9 @@ config =
       name: 'invention4'
     port: 3000
     db: 'mongodb://localhost/invention4-production'
+    # admin:
+    #   name    : #ur admin name
+    #   password: #ur admin password
 
 
 module.exports = config[env]

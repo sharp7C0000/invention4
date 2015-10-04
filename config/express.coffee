@@ -18,7 +18,7 @@ module.exports = (app, config) ->
   app.set 'views', config.root + '/app/views'
   app.set 'view engine', 'ejs'
 
-  # app.use(favicon(config.root + '/public/img/favicon.ico'));
+  app.use(favicon(config.root + '/public/img/favicon.png'));
   app.use logger 'dev'
   app.use bodyParser.json()
   app.use bodyParser.urlencoded(
