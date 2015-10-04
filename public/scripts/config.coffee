@@ -23,8 +23,7 @@ require.config
 		editor                : {deps   : ['globalMarked', 'css!../css/editor']}
 		highlightjs           : {deps   : ['css!../components/highlightjs/styles/arta']}
 		social                : {deps   : ['angular']}
-		socjs                 : {deps   : ['css!../components/socjs/soc.min.css']}
-
+	
 	priority: ["angular"]
 
 # https://github.com/tnajdek/angular-requirejs-seed

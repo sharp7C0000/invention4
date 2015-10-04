@@ -82,6 +82,10 @@ module.exports = function (grunt) {
             dest: 'public_production/components/webcomponentsjs/webcomponents.js'
           },
           {
+            src : 'public/components/socjs/soc.min.css',
+            dest: 'public_production/components/socjs/soc.min.css'
+          },
+          {
             expand: true,
             cwd: 'public/css',
             src: '*',
@@ -94,6 +98,14 @@ module.exports = function (grunt) {
             cwd: 'public/fonts',
             src: '*',
             dest: 'public_production/fonts',
+            flatten: true,
+            filter: 'isFile',
+          },
+          {
+            expand: true,
+            cwd: 'public/components/socjs/font',
+            src: '*',
+            dest: 'public_production/components/socjs/font',
             flatten: true,
             filter: 'isFile',
           }
