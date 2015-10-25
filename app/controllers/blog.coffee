@@ -102,7 +102,7 @@ pageAction = (req, res, next, pageNum) ->
       perPage = setting["post_per_page"]
 
       # invalid page number: too big or too small or invalid
-      if !(_.isFinite(realPageNum)) || realPageNum < 0 || realPageNum * perPage >= totalDocs
+      if realPageNum != 0 && (!(_.isFinite(realPageNum)) || realPageNum < 0 || realPageNum * perPage >= totalDocs)
         return next util.errorNotFound()
 
       Post.find {}, 'title publish_date contents', {
