@@ -22,7 +22,7 @@ router.post '/account/info', (req, res, next) ->
   formData = req.body
   userID   = req.user._id
 
-  User.findById(userID, util.dbCallback((docs) ->
+  User.findById(userID, util.dbCallback((docs, error) ->
 
     if docs?
       res.status(200).json(
@@ -33,6 +33,9 @@ router.post '/account/info', (req, res, next) ->
         }
         error : null
       )
+
+    else if error?
+      res.status(400).json(util.errorJsonBadRequest())
 
     else
       res.status(400).json(

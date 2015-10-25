@@ -1,5 +1,5 @@
 ### temporay response message structure
-  
+
   status: "ok"
   data  : [
     {sid:1, title: "post1"}
@@ -49,7 +49,7 @@ router.get '/login', (req, res, next) ->
 # POST : post login form (JSON)
 router.post '/login', (req, res, next) ->
 	passport.authenticate("local", (err, user, info) ->
-    if err 
+    if err
       return next(err)
     if not user
       return res.status(400).json(
@@ -81,6 +81,3 @@ router.delete '/logout', (req, res, next) ->
     }
     error : null
   )
-
-
-

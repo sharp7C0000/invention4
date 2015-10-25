@@ -52,7 +52,7 @@ module.exports =
 		(error, docs) ->
 			if error?
 				console.log "database error : " + error
-				callback(null, context.errorJsonDb())
+				callback(null, context.errorJsonDB())
 
 			else
 				callback(docs, null)
