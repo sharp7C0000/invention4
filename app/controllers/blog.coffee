@@ -19,62 +19,71 @@ router.get '/', (req, res, next) ->
 
 # GET : blog index page with pagenation(Render view)
 router.get '/page/:pageNum', (req, res, next) ->
-  # TODO : handling invalid pageNumber
   pageNum = parseInt(req.params.pageNum)
   pageAction(req, res, next, pageNum)
 
 # GET : blog read post page (Render view)
 router.get '/post/:id', (req, res, next) ->
 
-  Setting.findOne {}, util.dbCallback((docs) =>
-    setting = docs
+  Setting.findOne {}, util.dbCallback((docs, error) =>
 
-    Post.findById(req.params.id, util.dbCallbackHTML((docs) ->
-      if docs?
-        resObj = {
-          title       : docs.title
-          publish_date: moment(docs["publish_date"]).format("LL")
-          contents    : marked(docs.contents)
-        }
-        res.render 'blog_read_post', {
-          title     : setting.title + " : " + docs.title
-          blogName  : setting.title
-          authorName: setting["author_name"]
-          post      : resObj
-        }
-      else
-        # TODO : make 400 page
-        res.status(404).send('post not exsist')
-    ))
+    if docs?
+      setting = docs
+
+      Post.findById(req.params.id, util.dbCallbackHTML((docs, error) ->
+        if docs?
+          resObj = {
+            title       : docs.title
+            publish_date: moment(docs["publish_date"]).format("LL")
+            contents    : marked(docs.contents)
+          }
+          res.render 'blog_read_post', {
+            title     : setting.title + " : " + docs.title
+            blogName  : setting.title
+            authorName: setting["author_name"]
+            post      : resObj
+          }
+        else if error?
+          next error
+        else
+          next util.errorNotFound()
+      ))
+    else
+      next util.errorNotFound()
   )
 
 # GET : blog profile information (JSON)
 router.get '/profile', (req, res, next) ->
 
-  Setting.findOne {}, util.dbCallback((docs) =>
-    setting = docs
-    res.status(200).json(
-      status: "OK"
-      data  : {
-        # profile datas
-        authorName: setting["author_name"]
-        contents  : marked(setting["profile_contents"])
-        photoUrl  : setting["profile_photo"]
-      }
-      error : null
-    )
+  Setting.findOne {}, util.dbCallback((docs, error) =>
+    if docs?
+      setting = docs
+      res.status(200).json(
+        status: "OK"
+        data  : {
+          # profile datas
+          authorName: setting["author_name"]
+          contents  : marked(setting["profile_contents"])
+          photoUrl  : setting["profile_photo"]
+        }
+        error : null
+      )
+    else if error?
+      res.status(400).json(error)
+    else
+      res.status(400).json(util.errorJsonBadRequest())
   )
 
 ###############################################################################
 ###############################################################################
 
 pageAction = (req, res, next, pageNum) ->
-  
+
   totalDocs = 0
 
   Post.count {}, (err, result) ->
     if err?
-      # TODO : handling error
+      return next util.errorInternalServer()
     else
       totalDocs = result
 
@@ -87,41 +96,49 @@ pageAction = (req, res, next, pageNum) ->
     .replace(/<(?:.|\n)*?>/gm, '')
     .substring(0, summaryCharNum)
 
-  Setting.findOne {}, util.dbCallback((docs) =>
-    setting = docs
-    perPage = setting["post_per_page"]
+  Setting.findOne {}, util.dbCallback((docs, error) =>
+    if docs?
+      setting = docs
+      perPage = setting["post_per_page"]
 
-    Post.find {}, 'title publish_date contents', {
-      sort : publish_date: -1
-      skip : realPageNum * perPage
-      limit: perPage
-    }, util.dbCallbackHTML((docs) =>
-      posts = _.map docs, (doc) -> {
-        post_url    : "/post/" + doc._id
-        title       : doc.title
-        publish_date: moment(doc["publish_date"]).format("LL")
-        summary     : getSummary(doc.contents)
-      }
+      # invalid page number: too big or too small or invalid
+      if !(_.isFinite(realPageNum)) || realPageNum < 0 || realPageNum * perPage >= totalDocs
+        return next util.errorNotFound()
 
-      nextPosts = (realPageNum + 1) * perPage
-      prevPosts = (realPageNum - 1) * perPage
+      Post.find {}, 'title publish_date contents', {
+        sort : publish_date: -1
+        skip : realPageNum * perPage
+        limit: perPage
+      }, util.dbCallbackHTML((docs) =>
+        posts = _.map docs, (doc) -> {
+          post_url    : "/post/" + doc._id
+          title       : doc.title
+          publish_date: moment(doc["publish_date"]).format("LL")
+          summary     : getSummary(doc.contents)
+        }
 
-      nextPageUrlIndex = pageNum + 1
-      prevPageUrlIndex = pageNum - 1
+        nextPosts = (realPageNum + 1) * perPage
+        prevPosts = (realPageNum - 1) * perPage
 
-      nextUrl = if nextPageUrlIndex > 1 then "/page/" + nextPageUrlIndex else "/"
-      prevUrl = if prevPageUrlIndex > 1 then "/page/" + prevPageUrlIndex else "/"
+        nextPageUrlIndex = pageNum + 1
+        prevPageUrlIndex = pageNum - 1
 
-      nextUrl = if nextPosts > totalDocs then null else nextUrl
-      prevUrl = if prevPosts < 0 then null else prevUrl
+        nextUrl = if nextPageUrlIndex > 1 then "/page/" + nextPageUrlIndex else "/"
+        prevUrl = if prevPageUrlIndex > 1 then "/page/" + prevPageUrlIndex else "/"
 
-      res.render 'blog', {
-        title     : setting.title
-        blogName  : setting.title
-        authorName: setting["author_name"]
-        posts     : posts
-        nextUrl   : nextUrl
-        prevUrl   : prevUrl
-      }
-    )
+        nextUrl = if nextPosts >= totalDocs then null else nextUrl
+        prevUrl = if prevPosts < 0 then null else prevUrl
+
+        res.render 'blog', {
+          title     : setting.title
+          blogName  : setting.title
+          authorName: setting["author_name"]
+          posts     : posts
+          nextUrl   : nextUrl
+          prevUrl   : prevUrl
+        }
+      )
+
+    else
+     next util.errorNotFound()
   )

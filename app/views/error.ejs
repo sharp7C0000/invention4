@@ -1,7 +1,26 @@
-<%- include('header', {css:"", webcomponent: ""}) %>
+<%- include('header', {
+  css         : "<link rel='stylesheet' href='/css/error.css' shim-shadowdom>" +
+    "<link rel='shortcut icon' href='/img/favicon.png'>",
+  webcomponent: "<link rel='import' href='/webcomponent/error.html'>"
+}); %>
 
-  <%- message %>
-  <%- error.status %>
-  <%- error.stack %>
+<core-header-panel flex>
+
+  <div>
+    <div id="contents">
+
+      <paper-shadow class="content-box summary" z="1">
+        <h3>&nbsp;</h3>
+        <h3 style="color: #AAAAAA;text-align:center;">
+          <%- message %>
+        </h3>
+      </paper-shadow>
+
+      <%- error.status %>
+      <%- error.stack %>
+
+    </div>
+  <div>
+</core-header-panel>
 
 <% include footer %>

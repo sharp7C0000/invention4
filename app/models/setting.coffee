@@ -13,7 +13,7 @@ SettingSchema = new Schema(
   author_name     : { type: String, required: true, default: "author" }
   post_per_page   : { type: Number, required: true, default: 1}
   profile_photo   : String
-  profile_contents: String
+  profile_contents: { type: String, default: "hi"}
 )
 Setting = mongoose.model 'Setting', SettingSchema
 

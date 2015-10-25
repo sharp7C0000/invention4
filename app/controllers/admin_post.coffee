@@ -54,7 +54,7 @@ router.get '/post/', (req, res, next) ->
 # GET : edit posting page (Render view)
 router.get '/post/:id', (req, res, next) ->
 
-  Post.findById(req.params.id, util.dbCallbackHTML((docs) ->
+  Post.findById(req.params.id, util.dbCallbackHTML((docs, error) ->
     if docs?
       resObj = defaultResponse(req)
       resObj.postId       = req.params.id
@@ -64,9 +64,11 @@ router.get '/post/:id', (req, res, next) ->
       resObj.submitUrl    = '/admin/post/' + req.params.id
 
       res.render 'admin_new_post', resObj
+
+    else if error?
+      next error
     else
-      # TODO : make 400 page
-      res.status(404).send('post not exsist')
+      next util.errorNotFound()
   ))
 
 # POST : make new post (JSON)

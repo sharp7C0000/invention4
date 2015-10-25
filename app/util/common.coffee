@@ -1,6 +1,43 @@
 express  = require 'express'
 
 module.exports =
+	# gen not found error
+	errorNotFound: () ->
+		err = new Error 'Not Found'
+		err.status = 404
+		err
+
+	# gen internal server error
+	errorInternalServer: () ->
+		err = new Error 'Internal Server Error'
+		err.status = 500
+		err
+
+	# get json db error
+	errorJsonDB: () ->
+		{
+			status: "BAD_REQUEST"
+			data: null
+			error: {
+				type    : "DATABASE_ERROR"
+				# do not send error detail to client
+				contents: null
+			}
+		}
+
+	# get json bad request error
+	errorJsonBadRequest: () ->
+		{
+			status: "BAD_REQUEST"
+			data: null
+			error: {
+				type    : "SERVER_ERROR"
+				# do not send error detail to client
+				contents: null
+			}
+		}
+
+
 	# check auth or not
 	authenticatedOrNot: (req, res, next) ->
 	  if req.isAuthenticated()
@@ -10,34 +47,22 @@ module.exports =
 	  return
 
 	# default database callback
-	dbCallback: (success) ->
+	dbCallback: (callback) ->
+		context = this
 		(error, docs) ->
 			if error?
-
-			  console.log "database error : " + error
-
-			  return res.status(400).json(
-			    status: "BAD_REQUEST"
-			    data  : null
-			    error : {
-			      type    : "DATABASE_ERROR"
-			      # do not send error detail to client
-			      contents: null
-			    }
-			  )
+				console.log "database error : " + error
+				callback(null, context.errorJsonDb())
 
 			else
-				success(docs)
+				callback(docs, null)
 
 	# default database callback (return HTML 400 error)
-	dbCallbackHTML: (success) ->
+	dbCallbackHTML: (callback) ->
+		context = this
 		(error, docs) ->
 			if error?
-
-			  console.log "database error : " + error
-
-			  # TODO : show default 400 error page
-			  return res.status(400).send(error)
-
+				console.log "database error : " + error
+				callback(null, context.errorInternalServer())
 			else
-				success(docs)
+				callback(docs, null)

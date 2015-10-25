@@ -17,25 +17,25 @@ router.use (req, res, next) ->
 # GET : setting page (Render view)
 router.get '/setting', (req, res, next) ->
 
-  Setting.find({}, util.dbCallbackHTML((docs) ->
+  Setting.findOne({}, util.dbCallbackHTML((docs, error) ->
     if docs?
 
-      doc = docs[0]
-
       resObj = defaultResponse(req)
-      resObj.blogTitle       = doc.title
-      resObj.authorName      = doc["author_name"]
-      resObj.postPerPage     = doc["post_per_page"]
-      resObj.profilePhoto    = doc["profile_photo"]
-      resObj.profileContents = doc["profile_contents"]
+      resObj.blogTitle       = docs.title
+      resObj.authorName      = docs["author_name"]
+      resObj.postPerPage     = docs["post_per_page"]
+      resObj.profilePhoto    = docs["profile_photo"]
+      resObj.profileContents = docs["profile_contents"]
 
       resObj.title        = "blog setting"
       resObj.submitUrl    = '/admin/setting/'
 
       res.render 'admin_setting', resObj
+
+    else if error?
+      next error
     else
-      # TODO : make 400 page
-      res.status(404).send('setting not exsist')
+      next util.errorNotFound()
   ))
 
 # POST : save setting data (JSON)

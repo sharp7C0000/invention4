@@ -12,21 +12,32 @@
 
     <div id="contents">
 
-      <% for(var i=0; i<posts.length; i++) {%>
+      <% if(posts.length > 0) { %>
+
+        <% for(var i=0; i<posts.length; i++) {%>
+          <paper-shadow class="content-box summary" z="1">
+            <h3><a href="<%= posts[i]["post_url"] %>"><%= posts[i].title %></a></h3>
+
+            <p class="date-and-autor">
+              <!--<core-icon icon="today"></core-icon>&nbsp;-->
+              <%= posts[i]["publish_date"] %>&nbsp;
+              |&nbsp;&nbsp;By <%= authorName %>
+            </p>
+
+            <p>
+              <%= posts[i].summary %>...
+              &nbsp;<a href="<%= posts[i]["post_url"] %>">read more</a>
+            </p>
+          </paper-shadow>
+        <% } %>
+
+      <% } else { %>
+
         <paper-shadow class="content-box summary" z="1">
-          <h3><a href="<%= posts[i]["post_url"] %>"><%= posts[i].title %></a></h3>
-
-          <p class="date-and-autor">
-            <!--<core-icon icon="today"></core-icon>&nbsp;-->
-            <%= posts[i]["publish_date"] %>&nbsp;
-            |&nbsp;&nbsp;By <%= authorName %>
-          </p>
-
-          <p>
-            <%= posts[i].summary %>...
-            &nbsp;<a href="<%= posts[i]["post_url"] %>">read more</a>
-          </p>
+          <h3>&nbsp;</h3>
+          <h3 style="color: #AAAAAA;text-align:center;">No post exsist</h3>
         </paper-shadow>
+
       <% } %>
 
       <div class="nav-buttons">
