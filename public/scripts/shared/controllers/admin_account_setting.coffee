@@ -54,7 +54,6 @@ define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$rootScope", "$ht
     $scope.targetForm.$setPristine()
 
     $scope.username    = ""
-    $scope.email       = ""
     $scope.saveSuccess = false
 
     $scope.formData.repeatPassword = null
@@ -73,7 +72,6 @@ define ["shared/controllers/form"], (formCtrl) -> [ "$scope", "$rootScope", "$ht
     $http.post('/admin/account/info')
     .success((data, status, headers, config) ->
       $scope.username  = data.data.username
-      $scope.email     = data.data.email
     )
     .error((data, status) ->
     	# TODO: handle error
