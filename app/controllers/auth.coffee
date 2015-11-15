@@ -42,7 +42,7 @@ router.get '/login', (req, res, next) ->
     res.redirect "/admin"
   else
     res.render 'auth',
-    title    : 'login'
+    title    : 'Login'
     submitUrl: '/auth/login'
     username : undefined
 

@@ -27,7 +27,7 @@ router.get '/setting', (req, res, next) ->
       resObj.profilePhoto    = docs["profile_photo"]
       resObj.profileContents = docs["profile_contents"]
 
-      resObj.title        = "blog setting"
+      resObj.title        = "Blog setting"
       resObj.submitUrl    = '/admin/setting/'
 
       res.render 'admin_setting', resObj

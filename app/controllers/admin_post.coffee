@@ -18,7 +18,7 @@ router.use (req, res, next) ->
 router.get '/posts', (req, res, next) ->
 
   resObj = defaultResponse(req)
-  resObj.title          = "list of post"
+  resObj.title          = "List of post"
   resObj.newPostUrl     = '/admin/post/'
   resObj.postListUrl    = '/admin/posts/list'
   resObj.postDeleteUrl  = '/admin/post/'
