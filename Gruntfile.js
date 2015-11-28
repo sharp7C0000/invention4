@@ -13,22 +13,27 @@ module.exports = function (grunt) {
   // looping tasks
 
   // requirejs task
-  var files = grunt.file.expand('public/js/*.js');
-  var requirejsOptions = {};
 
-  files.forEach(function(file) {
-    var filename = file.split('/').pop();
-    requirejsOptions[filename] = {
-      options: {
-        baseUrl               : "public/js",
-        mainConfigFile        : "public/js/config.js",
-        out                   : "public_production/js/" + filename,
-        include               : filename,
-        optimize              : "uglify2",
-        findNestedDependencies: true
-      }
-    };
-  });
+  var requirejsOptions = function() {
+    var files = grunt.file.expand('public/js/*.js');
+    var opts  = {};
+
+    files.forEach(function(file) {
+      var filename = file.split('/').pop();
+      opts[filename] = {
+        options: {
+          baseUrl               : "public/js",
+          mainConfigFile        : "public/js/config.js",
+          out                   : "public_production/js/" + filename,
+          include               : filename,
+          optimize              : "uglify2",
+          findNestedDependencies: true
+        }
+      };
+    });
+
+    return opts;
+  }
 
   // vulcanize task
   var files          = grunt.file.expand('public/webcomponent/*.html');
@@ -135,9 +140,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // optimize js files
-    requirejs: requirejsOptions,
-
     // optimize web component
     vulcanize: {
       default: {
@@ -221,13 +223,19 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', ['clean:development','coffee:client', 'develop', 'watch']);
 
+  grunt.registerTask('donebuild', "donebuild", function() {
+    // compress scripts
+    grunt.config("requirejs", requirejsOptions());
+    grunt.task.run("requirejs");
+    grunt.task.run("copy:production");
+  });
+
   grunt.registerTask('build', [
-    'clean:production',
-    'mkdir:production',
-    'coffee:client',
-    'vulcanize',
-    'less:production',
-    'requirejs',
-    'copy:production'
-  ]);
+   'clean:production',
+   'mkdir:production',
+   'coffee:client',
+   'vulcanize',
+   'less:production',
+   'donebuild'
+ ]);
 };

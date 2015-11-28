@@ -1,6 +1,9 @@
-path     = require 'path'
-rootPath = path.normalize __dirname + '/..'
-env      = process.env.NODE_ENV || 'development'
+path          = require 'path'
+rootPath      = path.normalize __dirname + '/..'
+env            = process.env.NODE_ENV || 'development'
+dbAddress      = process.env.INVENTION4_DB_ADDRESS || 'mongodb://localhost'
+port           = process.env.INVENTION4_PORT || 3000
+ip             = process.env.INVENTION4_IP || '127.0.0.1'
 
 config =
   development:
@@ -8,35 +11,45 @@ config =
     static: 'public'
     app:
       name: 'invention4 development'
-    port: 3000
-    db: 'mongodb://localhost/invention4-development'
-    admin:
-      name    : 'admin'
-      password: '1234'
-
+    port: port
+    ip: ip
+    db:
+      dbAddress + "/invention4-development"
+    # dbAuth:
+    #   user: changeit
+    #   pass: changeit
+    # initialAdmin:
+    #   name: changeit
+    #   pass: changeit
 
   test:
     root  : rootPath
     static: 'public'
     app:
       name: 'invention4 test'
-    port: 3000
-    db: 'mongodb://localhost/invention4-test'
-    admin:
-      name    : 'admin'
-      password: '1234'
-
+    port: port
+    ip: ip
+    db: dbAddress + "/invention4-test"
+    # dbAuth:
+    #   user: changeit
+    #   pass: changeit
+    # initialAdmin:
+    #   name: changeit
+    #   pass: changeit
 
   production:
     root  : rootPath
     static: 'public_production'
     app:
       name: 'invention4'
-    port: 3000
-    db: 'mongodb://localhost/invention4-production'
-    admin:
-      name    : 'admin'
-      password: '1234'
-
+    port: port
+    ip: ip
+    db: dbAddress + "/invention4-production"
+    # dbAuth:
+    #   user: changeit
+    #   pass: changeit
+    # initialAdmin:
+    #   name: changeit
+    #   pass: changeit
 
 module.exports = config[env]

@@ -6,7 +6,17 @@ var express = require('express'),
   glob = require('glob'),
   mongoose = require('mongoose');
 
-mongoose.connect(config.db);
+var dbOpt = {};
+
+if(config.dbAuth) {
+  dbOpt = {
+    user: config.dbAuth.user,
+    pass: config.dbAuth.pass
+  }
+}
+
+mongoose.connect(config.db, dbOpt);
+
 var db = mongoose.connection;
 db.on('error', function () {
   throw new Error('unable to connect to database at ' + config.db);
@@ -27,9 +37,13 @@ db.once('open', function() {
 
   User.count({}, function( err, count){
     if(count == 0) {
+
+      var initialUserName = config.initialAdmin.name
+      var initialPassword = config.initialAdmin.password
+
       admin = new User({
-        username  : config.admin.name,
-        hashed_pw : passwordHash.generate(config.admin.password)
+        username  : initialUserName,
+        hashed_pw : passwordHash.generate(initialPassword)
       });
       admin.save(function(err, user){
         if(err) {
@@ -61,4 +75,6 @@ db.once('open', function() {
 
 require('./config/express')(app, config);
 
-app.listen(config.port);
+app.listen(config.port, config.ip, function () {
+console.log( "Listening on " + config.ip + ", server_port " + config.port )
+});
