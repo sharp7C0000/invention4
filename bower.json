@@ -18,6 +18,10 @@
     "highlightjs": "~8.5.0",
     "holderjs": "~2.7.1",
     "angular-social-links": "~0.0.19",
-    "socjs": "~1.0.1"
+    "socjs": "~1.0.1",
+    "webcomponentsjs": "0.7.18"
+  },
+  "resolutions": {
+    "webcomponentsjs": "0.7.18"
   }
 }
