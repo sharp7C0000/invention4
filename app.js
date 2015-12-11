@@ -38,8 +38,8 @@ db.once('open', function() {
   User.count({}, function( err, count){
     if(count == 0) {
 
-      var initialUserName = config.initialAdmin.name
-      var initialPassword = config.initialAdmin.password
+      var initialUserName = config.initialAdmin.name;
+      var initialPassword = config.initialAdmin.pass;
 
       admin = new User({
         username  : initialUserName,
