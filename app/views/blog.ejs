@@ -24,8 +24,9 @@
               |&nbsp;&nbsp;By <%= authorName %>
             </p>
 
-            <p>
-              <%= posts[i].summary %>...
+            <p ng-init="summary[<%= i %>] = '<%= posts[i].summary %>'">
+              <span ng-bind="summary[<%= i %>]"></span>
+              ...
               &nbsp;<a href="<%= posts[i]["post_url"] %>">read more</a>
             </p>
           </paper-shadow>
