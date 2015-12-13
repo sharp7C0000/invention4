@@ -113,6 +113,14 @@ module.exports = function (grunt) {
             dest: 'public_production/components/socjs/font',
             flatten: true,
             filter: 'isFile',
+          },
+          {
+            expand: true,
+            cwd: 'public/img',
+            src: '*',
+            dest: 'public_production/img',
+            flatten: true,
+            filter: 'isFile'
           }
         ],
       },
