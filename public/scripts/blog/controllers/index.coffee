@@ -63,7 +63,7 @@ define [], () -> [ "$scope", "$http", "$window", ($scope, $http, $window) ->
 		    # and decrease "end" for each byte of the character sequence
 		    ch = str.charCodeAt(n)
 		    end -= if ch < 128 then 1 else encode_utf8(str[n]).length
-		    resultStr += str[n]
+		    resultStr += str[n] if str[n]?
 		    n++
 		  resultStr
 
@@ -75,10 +75,10 @@ define [], () -> [ "$scope", "$http", "$window", ($scope, $http, $window) ->
 		angular.forEach($scope.summaryOri, (value, key) ->
 
 			if $window.innerWidth < 480
-				$scope.summary[key] = subStrByByte(value, 0, Math.min(value.length, 60))
+				$scope.summary[key] = subStrByByte(value, 0, 60)
 
 			else if $window.innerWidth < 630
-				$scope.summary[key] = subStrByByte(value, 0, Math.min(value.length, 120))
+				$scope.summary[key] = subStrByByte(value, 0, 120)
 
 			else
 				$scope.summary[key] = value

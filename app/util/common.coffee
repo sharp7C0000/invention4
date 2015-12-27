@@ -61,7 +61,7 @@ module.exports =
 		    # and decrease "end" for each byte of the character sequence
 		    ch = str.charCodeAt(n)
 		    end -= if ch < 128 then 1 else encode_utf8(str[n]).length
-		    resultStr += str[n]
+		    resultStr += str[n] if str[n]?
 		    n++
 		  resultStr
 
