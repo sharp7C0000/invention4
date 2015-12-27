@@ -75,10 +75,10 @@ define [], () -> [ "$scope", "$http", "$window", ($scope, $http, $window) ->
 		angular.forEach($scope.summaryOri, (value, key) ->
 
 			if $window.innerWidth < 480
-				$scope.summary[key] = subStrByByte(value, 0, 60)
+				$scope.summary[key] = subStrByByte(value, 0, Math.min(value.length, 60))
 
 			else if $window.innerWidth < 630
-				$scope.summary[key] = subStrByByte(value, 0, 120)
+				$scope.summary[key] = subStrByByte(value, 0, Math.min(value.length, 120))
 
 			else
 				$scope.summary[key] = value
