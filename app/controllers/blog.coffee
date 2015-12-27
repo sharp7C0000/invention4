@@ -92,9 +92,8 @@ pageAction = (req, res, next, pageNum) ->
 
   getSummary  = (contents) ->
     compiled = marked(contents)
-    compiled
-    .replace(/<(?:.|\n)*?>/gm, '')
-    .substring(0, summaryCharNum)
+    trimed   = compiled.replace(/<(?:.|\n)*?>/gm, '')
+    util.subStrByByte(trimed, 0, summaryCharNum)
 
   Setting.findOne {}, util.dbCallback((docs, error) =>
     if docs?
